@@ -1,0 +1,78 @@
+/* login.css */
+.login-container {
+  /* height: 100vh; */
+  background: url("https://images.unsplash.com/photo-1581091870622-1b90f1e5d2d7?auto=format&fit=crop&w=1920&q=80")
+    no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #fefdfdb3; /* transparent white border */
+  border-radius: 50px;
+  padding: 40px 30px;
+  width: 100%;
+}
+
+/* Optional: Text inside the login box */
+.login-box h2,
+.login-box p,
+.login-box label,
+.login-box .text-white {
+  color: #ffffff;
+}
+
+/* Keep background color same even on focus */
+.input-background {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.input-background:focus {
+  background-color: rgba(255, 255, 255, 0.1); /* maintain same background */
+  color: white;
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.5); /* optional - visual cue */
+}
+
+input::placeholder {
+  color: white !important;
+  opacity: 1; /* For Firefox */
+  font-size: 16px !important;
+}
+.divider-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  color: white;
+}
+
+.divider-line::before,
+.divider-line::after {
+  content: "";
+  border-bottom: 1px solid white;
+  width: 140px; /* shorter line */
+  margin: 0 10px;
+}
+
+.divider-text {
+  white-space: nowrap;
+  font-size: 16px; /* optional: adjust size */
+}
+
+.login-text {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.login-text a {
+  color: #00c8c8;
+  text-decoration: none;
+}

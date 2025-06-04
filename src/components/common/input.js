@@ -19,28 +19,33 @@ const Input = ({
   showAsterisk = true,
   lableClassName = "",
   accept = "",
-  showLabel=true,
-  onRightIconClick = () => { },
+  showLabel = true,
+  onRightIconClick = () => {},
   ...rest
 }) => {
   const { t, i18n } = useTranslation();
 
   return (
     <>
-      {showLabel && (  <label className={`${lableClassName}`} htmlFor="username">
-        {t(labelName)} {showAsterisk && <span className="text-danger">*</span>}
-      </label>)}
+      {showLabel && (
+        <label className={`${lableClassName}`} htmlFor="username">
+          {t(labelName)}{" "}
+          {showAsterisk && <span className="text-danger">*</span>}
+        </label>
+      )}
       <div
-        className={`input-group ${disabled ? "userdisabled" : ""} ${i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
-          }`}
+        className={`input-group ${disabled ? "userdisabled" : ""} ${
+          i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
+        }`}
       >
         <input
           type={type}
           name={name}
           value={value}
-          className={`form-control  ${className} ${error && "border-danger bg-error"
-            }`}
-          placeholder={t(placeHolder)}
+          className={`form-control input-background  py-3 ${className} ${
+            error && "border-danger bg-error"
+          }`}
+          placeholder={placeHolder}
           onChange={handleChange}
           // required={required}
           disabled={disabled}
@@ -48,13 +53,17 @@ const Input = ({
           {...rest}
         />
         {showIcon && (
-          <span className={`input-group-text border-radius_input ${disabled ? "userdisabled" : ""}`}>
+          <span
+            className={`input-group-text border-radius_input ${
+              disabled ? "userdisabled" : ""
+            }`}
+          >
             <img src={iconsrc} alt="icon" />
           </span>
         )}
         {showRightIcon && (
           <span
-            className="input-group-text bg-white border-radius_input"
+            className="input-group-text input-background border-radius_input"
             onClick={onRightIconClick}
             style={{ cursor: "pointer" }}
           >

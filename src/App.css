@@ -66,6 +66,7 @@
 
 body {
   font-family: "Quicksand", serif;
+  background-color: #151414;
 }
 
 .screen-height {
@@ -77,7 +78,7 @@ body {
 }
 
 p {
-  font-size: var(--font16);
+  font-size: var(--font18);
   margin-bottom: 0 !important;
   font-weight: var(--fontw5);
 }
@@ -333,7 +334,9 @@ h6 {
 .fw-500 {
   font-weight: var(--fontw5);
 }
-
+.fw-300 {
+  font-weight: var(--fontw3);
+}
 .fw-600 {
   font-weight: var(--fontw6);
 }
@@ -383,7 +386,7 @@ h6 {
 label {
   color: var(--labelColor) !important;
   font-size: var(--font14) !important;
-  font-weight: var(--fontw6) !important;
+  /* font-weight: var(--fontw6) !important; */
   margin-bottom: 6px;
   margin-top: 10px;
 }
@@ -399,16 +402,11 @@ textarea::placeholder {
 }
 
 .border-radius_input {
-  border-radius: 12px;
+  border-radius: 15px;
 }
 
 .input-border {
   border-right: none;
-}
-
-.input-background {
-  background: none;
-  border-left: unset;
 }
 
 input::-webkit-outer-spin-button,
@@ -1346,3 +1344,5 @@ table tbody tr {
   scrollbar-color: blue transparent; /* Firefox */
   margin-right: 1px;
 }
+
+/* css for new project */
