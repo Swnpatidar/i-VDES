@@ -16,12 +16,18 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { useSelector } from "react-redux";
 import { decryptAEStoJSON } from "./utils/utilities";
+import LandingPage from "./pages/landingPage";
 
 function App() {
   return (
     <>
       <Routes>
         {/* auth layout */}
+
+        <Route
+          path={ROUTES?.INDEX}
+          element={<PublicRoutes component={<LandingPage />} />}
+        />
         <Route element={<AuthLayout />}>
           <Route
             path={ROUTES?.LOGIN}

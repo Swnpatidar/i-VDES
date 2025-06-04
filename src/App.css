@@ -2,7 +2,7 @@
 
 :root {
   --white: #ffffff;
-  --buttonColor: #0099ff;
+  --buttonColor: #0066ff;
   --buttonlightRedColor: #ffe2e2;
   --buutonlightPrimeryColor: #c0e6ff;
   --buttonLightColor: #f0f9ff;
@@ -22,7 +22,7 @@
   --darkColor: #111111;
   --lightColor: #ffffff;
   --footerparaColor: #cccccc;
-  --backroundColor: #0167ff;
+  --backroundColor: #0858d1;
   --barchartColor: #3167f2;
   --dashboardIconbgColor: #1673ff;
   --overlayBackgroundColor: #0099ffa3;
@@ -66,7 +66,8 @@
 
 body {
   font-family: "Quicksand", serif;
-  background-color: #151414;
+  background-color: #000000 !important;
+  color: #fff !important;
 }
 
 .screen-height {
@@ -80,7 +81,6 @@ body {
 p {
   font-size: var(--font18);
   margin-bottom: 0 !important;
-  font-weight: var(--fontw5);
 }
 
 a {
@@ -95,7 +95,7 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: var(--darkColor);
+  color: var(--white);
 }
 
 /* common color css */
@@ -1345,4 +1345,18 @@ table tbody tr {
   margin-right: 1px;
 }
 
-/* css for new project */
+/* I-VDES CSS */
+.btn-common {
+  background-color: var(--buttonColor);
+  padding: 10px 30px;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.text-lg {
+  font-size: 80px;
+}
+
+.btn:hover {
+  background-color: var(--backroundColor);
+}
