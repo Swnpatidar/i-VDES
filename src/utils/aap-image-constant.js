@@ -184,3 +184,10 @@ export const GREYEYE_ICONIMG =
 export const BLUEEYE_ICONIMG = "./assets/common/role-icons/roleviewicon.svg";
 
 export const ACCESS_IMAGE_PERMISSION = "./assets/common/Accessimage.svg";
+
+
+// Bridge & Shield Project
+export const COMPANY_LOGO = "./assets/common/company-logo.png";
+export const LANDING_IMAGE_1 = "./assets/common/langing-page-image1.png";
+export const LANDING_IMAGE_2 = "./assets/common/langing-page-image2.png";
+

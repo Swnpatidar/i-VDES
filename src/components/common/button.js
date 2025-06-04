@@ -2,19 +2,19 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const Button = ({
-  label,
+  label="button",
   onClick,
   isLoading,
   icon,
   className,
-  type,
+  type="button",
 }) => {
   const { t } = useTranslation();
   return (
     <>
     <button
       type={type}
-      className={`${className}`}
+      className={`btn btn-common ${className}`}
       onClick={onClick}
       disabled={isLoading}
     >
