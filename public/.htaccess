@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ RewriteBase /dp-website/
+
+ # Serve static files directly
+ RewriteCond %{REQUEST_URI} \.(jpg|jpeg|png|gif|ico|css|js|woff|woff2|ttf|otf|eot|svg)$ [NC]
+ RewriteRule ^ - [L]
+
+ # Rewrite all other URLs to the index.html
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteRule ^ index.html [L]
+</IfModule>
