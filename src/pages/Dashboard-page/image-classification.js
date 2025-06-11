@@ -1,10 +1,11 @@
 import React from 'react'
-import LineCharts from '../components/snippets/line-chart'
+import LineCharts from '../../components/snippets/Graphs/line-chart'
+import { HIGH_IMAGE, LOW_IMAGE, MEDIUM_IMAGE, NONE_IMAGE } from '../../utils/aap-image-constant'
 
-const Dashboard = () => {
+const ImageClassification = () => {
     return (
         <>
-            <div className="col-xl-6 col-xxl-12">
+            <div className='image-classification'>
                 <div className="card">
                     <div className="card-header d-sm-flex d-block pb-4">
                         <div className="me-auto pe-3 mb-sm-0 mb-3">
@@ -47,25 +48,15 @@ const Dashboard = () => {
                         </div> */}
                     </div>
                     <div className="card-body pt-0 pb-0">
-                        <div id="chartBar" style={{ minHeight: 415 }}>
-                            <div
-                                id="apexchartsugg209xq"
-                                className="apexcharts-canvas apexchartsugg209xq apexcharts-theme-light"
-                                style={{ width: 964, height: 400 }}
-                            >
-                                <LineCharts />
-
-                                <div className="apexcharts-yaxistooltip apexcharts-yaxistooltip-0 apexcharts-yaxistooltip-left apexcharts-theme-light">
-                                    <div className="apexcharts-yaxistooltip-text" />
-                                </div>
-                            </div>
-                        </div>
+                        <LineCharts graphColor="rgba(240, 18, 35, 0.5)" graphSensivityName="High" icon={HIGH_IMAGE} />
+                        <LineCharts graphColor="rgba(0, 102, 255, 0.5)" graphSensivityName="Medium" icon={MEDIUM_IMAGE} />
+                        <LineCharts graphColor="rgba(0, 168, 22, 0.5)" graphSensivityName="Low" icon={LOW_IMAGE} />
+                        <LineCharts graphColor="rgba(172, 177, 211, 0.5)" graphSensivityName="None" icon={NONE_IMAGE} />
                     </div>
                 </div>
             </div>
-
         </>
     )
 }
 
-export default Dashboard
+export default ImageClassification

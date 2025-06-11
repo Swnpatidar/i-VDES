@@ -17,17 +17,22 @@ import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";
 import { decryptAEStoJSON } from "./utils/utilities";
 import LandingPage from "./pages/landingPage";
+import Dashboard from "./pages/Dashboard-page/dashboard";
 
 function App() {
   return (
     <>
       <Routes>
         {/* auth layout */}
-
+  
         <Route
           path={ROUTES?.INDEX}
           element={<PublicRoutes component={<LandingPage />} />}
         />
+         <Route
+            path={ROUTES?.DASHBOARD}
+            element={<PublicRoutes component={<Dashboard />} />}
+          />
         <Route element={<AuthLayout />}>
           <Route
             path={ROUTES?.LOGIN}
@@ -45,6 +50,7 @@ function App() {
             path={ROUTES?.NEW_PASSWORD}
             element={<PublicRoutes component={<NewPassword />} />}
           />
+         
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

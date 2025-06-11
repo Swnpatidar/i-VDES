@@ -1,0 +1,67 @@
+.display-align {
+  display: flex;
+  align-items: center;
+}
+
+.custom-line-chart {
+  top: 5px;
+  right: 30px;
+  left: 20px;
+  bottom: 5px;
+}
+
+.avtivity-card {
+  border: 1px solid #f0122380;
+  padding: 0px;
+}
+.avtivity-card .activity-icon {
+  height: 60px;
+  width: 60px;
+  min-width: 60px;
+  display: block;
+  line-height: 60px;
+  text-align: center;
+  background-color: #f0122380;
+  border-radius: 10px;
+}
+.bgl-success {
+  background: #e3f9e9;
+  border-color: #e3f9e9;
+}
+.media-body {
+  flex: 1;
+}
+.image-classification .card {
+  height: inherit;
+}
+
+.donutposition {
+  width: 400px;
+  height: 400px;
+}
+.legent-flex-gap-container {
+  display: flex;
+  gap: 16px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.legent-flex-center-gap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legent-flex-width {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+}
+.data-statistics .card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}

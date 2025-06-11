@@ -29,7 +29,6 @@ function AuthLayout() {
           <div>
             <h1 className="fw-bold mb-3 text-white">Welcome Back!</h1>
             <p
-              className="text-dark"
               style={{ maxWidth: "400px", margin: "0 auto" }}
             >
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer

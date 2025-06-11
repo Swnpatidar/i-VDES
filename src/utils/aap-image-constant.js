@@ -192,4 +192,7 @@ export const COMPANY_LOGO = "./assets/common/company-logo.png";
 export const LANDING_IMAGE_1 = "./assets/common/langing-page-image1.png";
 export const LANDING_IMAGE_2 = "./assets/common/langing-page-image2.png";
 export const HIGH_IMAGE = "./assets/common/image-classification-high.png";
+export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.png";
+export const LOW_IMAGE = "./assets/common/image-classification-low.png";
+export const NONE_IMAGE = "./assets/common/image-classification-none.png";
 
