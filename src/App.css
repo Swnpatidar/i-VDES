@@ -32,7 +32,7 @@
   --btnPrimaryBackground: #09f;
   --btnSecondaryBackground: #e4e4e4;
   --btnSecondaryColor: #808080;
-  --borderTopLogoutColor: #97c1ff;
+  --borderTopLogoutColor:#40414b;
   --lightPinkColor: #ffe5e5;
   --lightOrangeColor: #fff2dd;
   --btnbackground: #c2e7ff;
@@ -195,8 +195,8 @@ h6 {
   color: var(--dangerColor) !important;
 }
 
-.bg-off-white {
-  background: var(--backgroundOffWhiteColor);
+.bg-off-dark {
+  background: var(--darkColor);
 }
 
 .bg-sky-normal {
@@ -241,9 +241,7 @@ h6 {
   border: 1px solid var(--headingColor);
 }
 
-.border-top-logout {
-  border-top: 2px solid var(--borderTopLogoutColor);
-}
+
 
 .btn-blue {
   background-color: var(--btnPrimaryBackground);
@@ -557,15 +555,16 @@ input::-webkit-inner-spin-button {
 
 /* CLASS USED IN SIDEBAR START */
 .sidebar {
-  width: 130px;
+  width: 90px;
   height: 100vh;
   position: static;
+  /* margin-top: 100px; */
 }
 
 .sidebar-active-icon {
-  background-color: rgba(255, 255, 255, 0.4);
-  padding: 8px;
-  border-radius: 10px;
+  /* background-color: rgba(255, 255, 255, 0.4); */
+  /* padding: 8px;
+  border-radius: 10px; */
 }
 
 .active {
@@ -589,7 +588,7 @@ input::-webkit-inner-spin-button {
   animation: unset !important;
 }
 
-.sidebar:dir(rtl) .active::after {
+/* .sidebar:dir(rtl) .active::after {
   content: "";
   width: 5px;
   flex-shrink: 0;
@@ -600,7 +599,7 @@ input::-webkit-inner-spin-button {
   top: 7%;
   transform: rotate(180deg);
   animation: expandHeight 0.5s linear forwards;
-}
+} */
 
 @keyframes expandHeight {
   0% {
@@ -615,26 +614,14 @@ input::-webkit-inner-spin-button {
 .sidebar-not-active-icon {
   padding: 11px 13px 11px 14px;
   border-radius: 10px;
-  background: #1171ff;
+  /* background: #1171ff; */
 }
 
-.active .sidebar-active-icon {
-  background: var(--white);
-}
 
-.sidebar-not-active-text-color {
-  color: rgba(255, 255, 255, 0.82);
-  word-spacing: 300px;
-}
 
-.active .sidebar-active-text {
-  color: var(--white);
-  font-weight: var(--fontw6);
-}
 
-.sidebar-item:hover p {
-  color: var(--white);
-}
+
+
 
 /* CLASS USED IN DASHBOARD START */
 .verifyimage {
@@ -1387,4 +1374,24 @@ table tbody tr {
   justify-content: space-between;
   border-bottom: 1px solid rgba(83, 92, 165, 1);
   border-width: 3px;
+}
+
+
+/* side bar and topbar */
+.border-top-logout {
+  border-top: 1px solid var(--borderTopLogoutColor);
+}
+.border-bottom-line{  
+  border-bottom: 1px solid var(--borderTopLogoutColor);
+}
+.sidebar-logo-img {
+  margin-top: 22px;
+  margin-bottom: 22px;
+  width: 40px;
+  height: 40px;
+}
+
+.bg-sidebar{
+  background-color: rgba(15, 18, 30, 1)
+;
 }

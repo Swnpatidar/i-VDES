@@ -10,18 +10,15 @@
 // export const LANGUAGECHANGE = "./assets/common/langauge_icon.png";
 // export const DOCTOR_DETAIL_IAMGE = "./assets/common/doctor-detail.svg";
 // export const LOGOUT_ICON = "./assets/common/logout.svg";
-// export const LOGOUT_ICONSMALL = "./assets/common/logout.png";
 // export const PROFILE_IMG = "./assets/common/profileimg.png";
 // export const EDIT_ICON = "./assets/common/editicon.png";
 // export const PDF_IMG = "./assets/common/pdfimg.png";
 // export const PROFILE_ICON = "./assets/common/profileicon.svg";
-// export const PROFILE_ICONSMALL = "./assets/common/profile_icon.png";
 // export const SMALL_LOGO = "./assets/common/smalllogo.png";
 // export const NOAVAILABILITYADDED = "./assets/common/addavailability.png";
 // export const FRAMEIMG = "./assets/common/Frame.png";
 // export const QUESTIONIMG = "./assets/common/question_icon.png";
 // export const PROFILE_PICTURE = "./assets/common/profile_picture.png";
-// export const LOGOUT_IMG = "./assets/common/logoutimg.png";
 
 // // login page image constant
 // export const LOGO_ICON = "./assets/loginicon/logo-medicine.png";
@@ -192,4 +189,29 @@ export const COMPANY_LOGO = "./assets/common/company-logo.png";
 export const LANDING_IMAGE_1 = "./assets/common/langing-page-image1.png";
 export const LANDING_IMAGE_2 = "./assets/common/langing-page-image2.png";
 export const HIGH_IMAGE = "./assets/common/image-classification-high.png";
+export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.png";
+export const LOW_IMAGE = "./assets/common/image-classification-low.png";
+export const NONE_IMAGE = "./assets/common/image-classification-none.png"
+
+// Topbar and Side Bar
+export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.png"
+export const SIDEBAR_ANALYSIS_ACTIVE="./assets/dashboardicons/Analyis-active-icon.png"
+
+export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon.png"
+export const SIDEBAR_SETTING_ACTIVE="./assets/dashboardicons/setting-active-icon.png"
+
+
+
+export const SIDEBAR_DASHBOARD_ACTIVE="./assets/dashboardicons/dashboard-active-icon.png"
+export const SIDEBAR_DASHBOARD_DEACTIVE="./assets/dashboardicons/dashboard-deactive-icon.png"
+
+export const SIDEBAR_LOGOUT="./assets/dashboardicons/logout-icon.png"
+export const TOPBAR_PROFILE="./assets/dashboardicons/topbarprofile-icon.png"
+export const SIDEBAR_MAINLOGO="./assets/dashboardicons/dashboard-logo.png"
+
+export const LOGOUT_IMG = "./assets/common/logoutimg.png";
+export const PROFILE_ICONSMALL = "./assets/common/profile_icon.png";
+export const LOGOUT_ICONSMALL = "./assets/common/logout.png";
+
+
 

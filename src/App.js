@@ -17,8 +17,13 @@ import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";
 import { decryptAEStoJSON } from "./utils/utilities";
 import LandingPage from "./pages/landingPage";
+import FirstLayout from "./components/layouts/first-layout";
+import { useState } from "react";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
+  const [sidebarShow, setSidebarShow] = useState(false);
+
   return (
     <>
       <Routes>
@@ -28,6 +33,18 @@ function App() {
           path={ROUTES?.INDEX}
           element={<PublicRoutes component={<LandingPage />} />}
         />
+          <Route element={<FirstLayout  sidebarShow={sidebarShow}
+              setSidebarShow={setSidebarShow}/>}>
+        
+          <Route
+            path={ROUTES?.DASHBOARD}
+            element={
+              <PublicRoutes
+                component={<Dashboard setSidebarShow={setSidebarShow} />}
+              />
+            }
+          />
+        </Route>
         <Route element={<AuthLayout />}>
           <Route
             path={ROUTES?.LOGIN}
@@ -45,8 +62,8 @@ function App() {
             path={ROUTES?.NEW_PASSWORD}
             element={<PublicRoutes component={<NewPassword />} />}
           />
+      
         </Route>
-
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <ToastContainer />
