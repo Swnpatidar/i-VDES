@@ -1,11 +1,18 @@
 import React from 'react'
-import "./heroSection.css";
-import { ARROW_ICON, COMPANY_LOGO, LANDING_IMAGE_1, LANDING_IMAGE_2,} from '../../utils/aap-image-constant';
+import "../landingPage.css"
+import { ARROW_ICON, COMPANY_LOGO, LANDING_IMAGE_1, LANDING_IMAGE_2, } from '../../utils/aap-image-constant';
 import Button from '../../components/common/button';
+import { Amplify } from 'aws-amplify';
+import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import awsExport from '../../aws-export';
+// Amplify.configure(awsExport);
 
 const HeroSection = () => {
   return (
     <>
+      {/* <Authenticator></Authenticator> */}
+    
       <div className='hero-section'>
 
         <div className='top-white-section'>
@@ -29,10 +36,10 @@ const HeroSection = () => {
         {/* <div className='img-section'> */}
         <div className='row'>
           <div className='col-7'>
-            <img src={LANDING_IMAGE_1} alt="image" width="100%" height="100%"/>
+            <img src={LANDING_IMAGE_1} alt="image" width="100%" height="100%" />
           </div>
           <div className='col-5'>
-            <img src={LANDING_IMAGE_2} alt="image" width="100%" height="65%" className='mb-2'/>
+            <img src={LANDING_IMAGE_2} alt="image" width="100%" height="65%" className='mb-2' />
             <Button label="Try Now" icon={ARROW_ICON} className="tryNowButton" />
           </div>
         </div>
