@@ -18,8 +18,13 @@ import { useSelector } from "react-redux";
 import { decryptAEStoJSON } from "./utils/utilities";
 import LandingPage from "./pages/landingPage";
 import Dashboard from "./pages/Dashboard-page/dashboard";
+import FirstLayout from "./components/layouts/first-layout";
+import { useState } from "react";
+
 
 function App() {
+  const [sidebarShow, setSidebarShow] = useState(false);
+
   return (
     <>
       <Routes>
@@ -29,10 +34,19 @@ function App() {
           path={ROUTES?.INDEX}
           element={<PublicRoutes component={<LandingPage />} />}
         />
-         <Route
+         
+          <Route element={<FirstLayout  sidebarShow={sidebarShow}
+              setSidebarShow={setSidebarShow}/>}>
+        
+          <Route
             path={ROUTES?.DASHBOARD}
-            element={<PublicRoutes component={<Dashboard />} />}
+            element={
+              <PublicRoutes
+                component={<Dashboard setSidebarShow={setSidebarShow} />}
+              />
+            }
           />
+        </Route>
         <Route element={<AuthLayout />}>
           <Route
             path={ROUTES?.LOGIN}
@@ -52,7 +66,6 @@ function App() {
           />
          
         </Route>
-
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <ToastContainer />

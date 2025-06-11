@@ -43,18 +43,13 @@ import {
 const FirstLayout = ({ setSidebarShow, sidebarShow }) => {
   return (
     //FOR TWO PARTS SIDEBAR AND MAIN BODY
-    <div className="container-fluid screen-height bg-primary  overflow-hidden">
-      <img
-        src={SIDEBAR_TOP_LEFT_IMAGE}
-        className=" img-top-left  position-absolute mb-5"
-        alt="icon"
-      ></img>
-
+    <div className="container-fluid screen-height p-4 overflow-hidden">
+  
       <div className="row flex-nowrap h-100 overflow-hidden">
         <Sidebar setSidebarShow={setSidebarShow} sidebarShow={sidebarShow} />
 
-        <div className="p-2 z-1 col table_resp_dnp h-100 ">
-          <div className=" px-lg-4 px-2 bg-off-white rounded-30 h-100 overflow-auto  ">
+        <div className="col table_resp_dnp h-100 ">
+          <div className=" px-lg-2   h-100 overflow-auto  ">
             <div className=" h-100">
               <Topbar
                 sidebarShow={sidebarShow}
