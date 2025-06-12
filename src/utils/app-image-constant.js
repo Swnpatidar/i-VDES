@@ -52,7 +52,7 @@
 
 // // table
 // export const SEARCH_ICN = "./assets/table/searchicon.svg";
-// export const RIGHTARROW_ICON = "./assets/table/RightArrowIcon.svg";
+
 // export const PLUS_ICON = "./assets/table/plusicon.svg";
 // export const QUESTION_IMG = "./assets/table/questionicon.svg";
 // export const EDIT_IMG = "./assets/table/editicon.png";
@@ -224,4 +224,8 @@ export const WHYWECHOOSE_IMAGE8 = "./assets/whywechooseImg/fluent_data-pie-32-fi
  
 
 
+// Breadcrum
+export const BREADCRUM_ICON = "./assets/dashboardicons/Bredcrum-icon.png";
+
+export const UPLOAD_ICON="./assets/dashboardicons/upload_icon.png"
 

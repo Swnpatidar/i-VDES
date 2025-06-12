@@ -15,19 +15,35 @@ const data = [
 
 const COLORS = ["#a16cff", "#97dbfb"]; // violet, light blue
 
+// const CustomLegend = (props) => {
+//     const { payload } = props;
+//     return (
+//         <div className="legent-flex-gap-container">
+//             {payload?.map((entry, index) => (
+//                 <div key={`item-${index}`} className="legent-flex-center-gap">
+//                     <div
+//                         className="legent-flex-width"
+//                         style={{
+//                             backgroundColor: entry.color,
+//                         }}
+//                     ></div>
+//                     <span style={{ color: '#fff', fontSize: "12px" }}>{entry.value}</span> {/* ✅ Use dynamic label */}
+//                 </div>
+//             ))}
+//         </div>
+//     );
+// };
 const CustomLegend = (props) => {
     const { payload } = props;
     return (
-        <div className="legent-flex-gap-container">
+        <div className="custom-legend-container">
             {payload?.map((entry, index) => (
-                <div key={`item-${index}`} className="legent-flex-center-gap">
+                <div key={`item-${index}`} className="legend-item">
                     <div
-                        className="legent-flex-width"
-                        style={{
-                            backgroundColor: entry.color,
-                        }}
+                        className="legend-color-box"
+                        style={{ backgroundColor: entry.color }}
                     ></div>
-                    <span style={{ color: '#fff', fontSize: "12px" }}>{entry.value}</span> {/* ✅ Use dynamic label */}
+                    <span className="legend-label">{entry.value}</span>
                 </div>
             ))}
         </div>
@@ -44,7 +60,7 @@ const DonutChart = () => {
                         <Pie
                             data={data}
                             cx="50%"
-                            cy="50%"
+                            cy="40%"
                             innerRadius={40}
                             outerRadius={90}
                             paddingAngle={8}

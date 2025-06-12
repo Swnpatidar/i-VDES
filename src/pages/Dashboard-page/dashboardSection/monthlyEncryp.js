@@ -4,8 +4,8 @@ import StylishLineChart from '../../../components/snippets/Graphs/stylish-line-c
 const MonthlyEncryp = () => {
     return (
         <>
-            <div className='monthlyEncrypChart'>
-                <div className="card">
+            <div className='monthlyEncrypChart h-100'>
+                <div className="card h-100">
                     <div className="card-header d-sm-flex d-block pb-4">
                         <div className="me-auto pe-3 mb-sm-0 mb-3">
                             <h4 className="fs-20">Monthly Encryption & Decryption</h4>

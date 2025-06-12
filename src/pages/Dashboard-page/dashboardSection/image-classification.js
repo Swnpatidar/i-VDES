@@ -5,8 +5,8 @@ import { HIGH_IMAGE, LOW_IMAGE, MEDIUM_IMAGE, NONE_IMAGE } from '../../../utils/
 const ImageClassification = () => {
     return (
         <>
-            <div className='image-classification'>
-                <div className="card">
+            <div className='image-classification h-100'>
+                <div className="card h-100">
                     <div className="card-header d-sm-flex d-block pb-4">
                         <div className="me-auto pe-3 mb-sm-0 mb-3">
                             <h4 className="fs-20">Image Classification</h4>

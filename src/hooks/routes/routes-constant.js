@@ -7,4 +7,6 @@ export const ROUTES = {
   REGISTER: `/register`,
   NEW_PASSWORD: `/new-password`,
   DASHBOARD: `/dashboard`,
+  DASHBOARDDETAILS: `/dashboard/details`,
+
 };
