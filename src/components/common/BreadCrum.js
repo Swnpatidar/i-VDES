@@ -1,5 +1,5 @@
 import React from 'react'
-import { RIGHTARROW_ICON } from '../../utils/aap-image-constant'
+import { RIGHTARROW_ICON } from '../../utils/app-image-constant'
 
 const BreadCrum = ({ TableHeading, firstData, iconshow1, secondData,onSecondDataClick, thirdData, iconshow, className, onFirstDataClick, secondclassName }) => {
   return (

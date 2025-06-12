@@ -1,6 +1,6 @@
 import React from 'react'
 import LineCharts from '../../components/snippets/Graphs/line-chart'
-import { HIGH_IMAGE, LOW_IMAGE, MEDIUM_IMAGE, NONE_IMAGE } from '../../utils/aap-image-constant'
+import { HIGH_IMAGE, LOW_IMAGE, MEDIUM_IMAGE, NONE_IMAGE } from '../../utils/app-image-constant'
 
 const ImageClassification = () => {
     return (

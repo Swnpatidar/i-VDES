@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
 import "../../i18n";
-import { LANGUAGECHANGE } from "../../utils/aap-image-constant";
+import { LANGUAGECHANGE } from "../../utils/app-image-constant";
 
 const LanguageChange = ({ bgColour }) => {
   const { i18n } = useTranslation();

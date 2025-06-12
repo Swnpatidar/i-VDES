@@ -23,7 +23,7 @@ import {
   EYE_CLOSE,
   ARROW_ICON,
   RIGHTARROW_IMG,
-} from "../../utils/aap-image-constant";
+} from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import { useTranslation } from "react-i18next";

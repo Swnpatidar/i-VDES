@@ -8,7 +8,7 @@ import {
   SIDEBAR_MAINLOGO,
   SIDEBAR_SETTING_ACTIVE,
   SIDEBAR_SETTING_DEACTIVE,
-} from "../../utils/aap-image-constant";
+} from "../../utils/app-image-constant";
 
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import Modal from "./Model";

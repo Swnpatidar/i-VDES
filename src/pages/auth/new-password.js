@@ -9,7 +9,7 @@ import {
   ARROW_ICON,
   EYE_CLOSE,
   EYE_OPEN,
-} from "../../utils/aap-image-constant";
+} from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 

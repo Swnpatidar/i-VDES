@@ -1,5 +1,5 @@
 import React from "react";
-import { CLOSE_ICON } from "../../utils/aap-image-constant";
+import { CLOSE_ICON } from "../../utils/app-image-constant";
 import { useTranslation } from "react-i18next";
 
 const Modal = ({

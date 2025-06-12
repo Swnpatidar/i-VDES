@@ -11,7 +11,7 @@ import {
   PROFILE_IMG,
   SMALL_LOGO,
   TWITTERLOGO,
-} from "../../utils/aap-image-constant";
+} from "../../utils/app-image-constant";
 import { decryptAEStoJSON } from "../../utils/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { clearAccessTokenReducer } from "../../hooks/redux/slice/access-token";

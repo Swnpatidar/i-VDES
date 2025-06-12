@@ -1,5 +1,5 @@
 import React from 'react'
-import { PAGE_404 } from '../utils/aap-image-constant';
+import { PAGE_404 } from '../utils/app-image-constant';
 import { ROUTES } from '../hooks/routes/routes-constant';
 import { Link } from 'react-router-dom';
 

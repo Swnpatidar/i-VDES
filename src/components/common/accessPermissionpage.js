@@ -1,4 +1,4 @@
-import { ACCESS_IMAGE_PERMISSION } from "../../utils/aap-image-constant";
+import { ACCESS_IMAGE_PERMISSION } from "../../utils/app-image-constant";
 
 const AccessPermissionpage = () => {
   return (

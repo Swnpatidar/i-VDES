@@ -1,6 +1,6 @@
 import { DNA } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { NORECORDFOUND } from "../../utils/aap-image-constant";
+import { NORECORDFOUND } from "../../utils/app-image-constant";
 import { useTranslation } from "react-i18next";
 
 export const Breadcrumb = ({ _structure = [] }) => {

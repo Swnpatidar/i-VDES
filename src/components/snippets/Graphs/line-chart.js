@@ -12,7 +12,7 @@ import {
     ResponsiveContainer,
     Dot,
 } from 'recharts';
-import { HIGH_IMAGE } from '../../../utils/aap-image-constant';
+import { HIGH_IMAGE } from '../../../utils/app-image-constant';
 
 
 

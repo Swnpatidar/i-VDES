@@ -2,7 +2,7 @@
 import {
   DOWNLOAD_ICONSMALL, LOACK_ICON, LOGO_ICON, LOGOUT_ICONSMALL, LOGOUT_IMG, NOTIFICATION_ICON, PAYMENT_ICON, PROFILE_ICONSMALL, PROFILE_IMG, SMALL_LOGO, STARICON,
   TOPBAR_PROFILE,
-} from "../../utils/aap-image-constant";
+} from "../../utils/app-image-constant";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";

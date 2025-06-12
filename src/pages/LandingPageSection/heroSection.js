@@ -1,6 +1,6 @@
 import React from 'react'
 import "../landingPage.css"
-import { ARROW_ICON, COMPANY_LOGO, LANDING_IMAGE_1, LANDING_IMAGE_2, } from '../../utils/aap-image-constant';
+import { ARROW_ICON, COMPANY_LOGO, LANDING_IMAGE_1, LANDING_IMAGE_2, } from '../../utils/app-image-constant';
 import Button from '../../components/common/button';
 import { Amplify } from 'aws-amplify';
 import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';

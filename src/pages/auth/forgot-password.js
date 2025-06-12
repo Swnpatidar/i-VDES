@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import { toastEmitter, validateRegex } from "../../utils/utilities";
 import { EmailRegex } from "../../utils/regexValidation";
-import { ARROW_ICON, EMAIL_ICON } from "../../utils/aap-image-constant";
+import { ARROW_ICON, EMAIL_ICON } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import { useTranslation } from "react-i18next";
