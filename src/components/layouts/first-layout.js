@@ -50,7 +50,7 @@ const FirstLayout = ({ setSidebarShow, sidebarShow }) => {
 
         <div className="col table_resp_dnp h-100 ">
           <div className=" px-lg-2   h-100 overflow-auto  ">
-            <div className=" h-100">
+            <div className="">
               <Topbar
                 sidebarShow={sidebarShow}
                 setSidebarShow={setSidebarShow}

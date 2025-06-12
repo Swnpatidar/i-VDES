@@ -11,7 +11,6 @@ import EncrypUsesTimeline from './encrypUsesTimeline'
 const Dashboard = () => {
     return (
         <>
-            Dashboard-page
             <div className='row'>
                 <div className='col-xl-6 col-xxl-12'>
                     <DataStatistics />

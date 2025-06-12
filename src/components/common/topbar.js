@@ -12,13 +12,13 @@ import Modal from "./Model";
 const Topbar = ({ setSidebarShow, sidebarShow }) => {
   
   return (
-    <>    <div className="row position-sticky top-0  z-2 border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
-      <div className="col-6 col-sm-5 col-md-3 p-0">
+    <>    <div className="row position-sticky top-0   z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
+      <div className="col-6 col-md-4 p-0">
         <div className="d-flex gap-1 justify-content-sm-centerjustify-content-md-start align-items-center">
           <Link to={ROUTES.INDEX}>
             {/* <img src={LOGO_ICON} alt="" className="logoimg d-none d-sm-block" /> */}
            <div className="d-none d-sm-block">
-             <h5>Welcome Back, Hassan!</h5>
+             <h5 className="font-28">Welcome Back, Hassan!</h5>
             <p className="" >Hope Your Doing Good...!</p>
            </div>
            
