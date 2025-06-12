@@ -1,13 +1,13 @@
-import ImageClassification from "./image-classification";
-import DataStatistics from "./data-statistics";
-import MonthlyEncryp from "./monthlyEncryp";
-import AccuracyModal from "./accuracyModal";
-import EncrypUsesTimeline from "./encrypUsesTimeline";
 import BreadCrum from "../../components/common/BreadCrum";
 import Button from "../../components/common/button";
 import { UPLOAD_ICON } from "../../utils/app-image-constant";
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from "../../hooks/routes/routes-constant";
+import DataStatistics from "./dashboardSection/data-statistics";
+import ImageClassification from "./dashboardSection/image-classification";
+import AccuracyModal from "./dashboardSection/accuracyModal";
+import MonthlyEncryp from "./dashboardSection/monthlyEncryp";
+import EncrypUsesTimeline from "./dashboardSection/encrypUsesTimeline";
 
 const DashboardDetails = () => {
   const navigate = useNavigate();
