@@ -1,5 +1,5 @@
 import React from 'react'
-import TimelineChart from '../../components/snippets/Graphs/timeline-line-chart'
+import TimelineChart from '../../../components/snippets/Graphs/timeline-line-chart'
 
 const EncrypUsesTimeline = () => {
     return (

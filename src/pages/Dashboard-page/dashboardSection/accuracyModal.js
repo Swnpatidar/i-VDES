@@ -1,5 +1,5 @@
 import React from 'react'
-import AccuracyLineChart from '../../components/snippets/Graphs/accuracy-line-chart'
+import AccuracyLineChart from '../../../components/snippets/Graphs/accuracy-line-chart'
 
 const AccuracyModal = () => {
     return (

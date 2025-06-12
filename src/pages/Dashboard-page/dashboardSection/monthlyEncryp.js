@@ -1,5 +1,5 @@
 import React from 'react'
-import StylishLineChart from '../../components/snippets/Graphs/stylish-line-chart';
+import StylishLineChart from '../../../components/snippets/Graphs/stylish-line-chart';
 
 const MonthlyEncryp = () => {
     return (

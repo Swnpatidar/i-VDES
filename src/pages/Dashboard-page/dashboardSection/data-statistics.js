@@ -1,5 +1,5 @@
 import React from 'react'
-import DonutChart from '../../components/snippets/Graphs/donut-chart';
+import DonutChart from '../../../components/snippets/Graphs/donut-chart';
 
 const DataStatistics = () => {
     return (

@@ -68,10 +68,6 @@ body {
   font-family: "Hanken Grotesk", sans-serif;
   background-color: rgba(6, 7, 17, 1) !important;
   color: #fff !important;
-  /* background-image: url("../public/assets/dashboardicons/dashboard-bg.png"); */
-  /* background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center; */
 }
 
 .screen-height {
@@ -84,7 +80,7 @@ body {
 
 p {
   font-size: var(--font16);
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(200, 200, 200, 0.5);
   margin-bottom: 0 !important;
 }
 span {
@@ -103,8 +99,9 @@ h5,
 h6 {
   margin: 0;
   padding: 0;
-  color: var(--white);
+  color: rgba(255, 255, 255, 0.8);
 }
+
 .font-28 {
   font-size: var(--font28);
 }
@@ -750,13 +747,14 @@ table tbody tr {
 }
 .card {
   margin-bottom: 1.875rem;
-  background-color: rgba(16, 18, 30, 1);
+  background-color: rgba(16, 18, 30, 0.4);
   position: relative;
   border: 0px solid transparent;
   border-radius: 1.25rem;
-  height: calc(100% - 30px);
+  /* height: calc(100% - 30px); */
   padding: 20px;
   border: 1px solid rgba(83, 92, 165, 0.15);
+  backdrop-filter: blur(10px);
 }
 .card-header {
   position: relative;
@@ -769,6 +767,13 @@ table tbody tr {
   border-width: 3px;
 }
 
+.gradient-common-bg {
+  background-image: url("../public/assets/dashboardicons/dashboard-bg.svg");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 /* side bar and topbar */
 .border-top-logout {
   border-top: 1px solid var(--borderTopLogoutColor);
@@ -786,6 +791,9 @@ table tbody tr {
 .bg-sidebar {
   background-color: rgba(15, 18, 30, 1);
 }
-.z-index{
+.z-index {
   z-index: 999;
+}
+.text-white {
+  color: var(--white);
 }

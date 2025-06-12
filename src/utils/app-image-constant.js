@@ -196,22 +196,32 @@ export const NONE_IMAGE = "./assets/common/image-classification-none.png"
 // Topbar and Side Bar
 export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.png"
 export const SIDEBAR_ANALYSIS_ACTIVE="./assets/dashboardicons/Analyis-active-icon.png"
-
 export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon.png"
 export const SIDEBAR_SETTING_ACTIVE="./assets/dashboardicons/setting-active-icon.png"
-
-
-
 export const SIDEBAR_DASHBOARD_ACTIVE="./assets/dashboardicons/dashboard-active-icon.png"
 export const SIDEBAR_DASHBOARD_DEACTIVE="./assets/dashboardicons/dashboard-deactive-icon.png"
-
 export const SIDEBAR_LOGOUT="./assets/dashboardicons/logout-icon.png"
 export const TOPBAR_PROFILE="./assets/dashboardicons/topbarprofile-icon.png"
 export const SIDEBAR_MAINLOGO="./assets/dashboardicons/dashboard-logo.png"
-
 export const LOGOUT_IMG = "./assets/common/logoutimg.png";
 export const PROFILE_ICONSMALL = "./assets/common/profile_icon.png";
 export const LOGOUT_ICONSMALL = "./assets/common/logout.png";
+export const UPLOAD_GIF = "./assets/common/upload-animation.gif";
+export const PROCEED_GIF = "./assets/common/proceed-circle.gif";
+export const PROCEED_NEXT_DONE = "./assets/common/process-next-done.gif";
+
+// whyweChooseBanner
+export const WHYWECHOOSE_IMAGE = "./assets/whywechooseImg/ivdes-mobile-img.png";
+export const WHYWECHOOSE_IMAGE1 = "./assets/whywechooseImg/uis_graph-bar.svg";
+export const WHYWECHOOSE_IMAGE2 = "./assets/whywechooseImg/mdi_security-lock.svg";
+export const WHYWECHOOSE_IMAGE3 = "./assets/whywechooseImg/streamline_ok-hand-solid.svg";
+export const WHYWECHOOSE_IMAGE4 = "./assets/whywechooseImg/solar_scale-bold.svg";
+export const IMAGEUPOAD_IMAGE = "./assets/whywechooseImg/upload_background-img.png";
+export const WHYWECHOOSE_IMAGE5 = "./assets/whywechooseImg/streamline_call-center-support-service-solid.svg";
+export const WHYWECHOOSE_IMAGE6 = "./assets/whywechooseImg/tabler_graph-filled.svg";
+export const WHYWECHOOSE_IMAGE7 = "./assets/whywechooseImg/mingcute_ai-fill.svg";
+export const WHYWECHOOSE_IMAGE8 = "./assets/whywechooseImg/fluent_data-pie-32-filled.svg";
+ 
 
 
 
