@@ -67,6 +67,7 @@
 body {
   font-family: "Hanken Grotesk", sans-serif;
   background-color: rgba(6, 7, 17, 1) !important;
+
   color: #fff !important;
   /* background-image: url("../public/assets/dashboardicons/dashboard-bg.png"); */
   /* background-repeat: no-repeat;
@@ -352,9 +353,13 @@ h6 {
   border-radius: 10px;
 }
 
-.rounded-30 {
-  border-radius: 30px;
+ .rounded-30 {
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
+
 
 .rounded-22 {
   border-radius: 22px;
@@ -432,10 +437,11 @@ input::-webkit-inner-spin-button {
 /* CLASS USED IN SIDEBAR START */
 .sidebar {
   width: 90px;
-  height: 100vh;
+  /* height: 100vh; */
   position: static;
-  /* margin-top: 100px; */
+
 }
+
 
 .sidebar-active-icon {
   /* background-color: rgba(255, 255, 255, 0.4); */
@@ -754,7 +760,7 @@ table tbody tr {
   position: relative;
   border: 0px solid transparent;
   border-radius: 1.25rem;
-  height: calc(100% - 30px);
+  /* height: calc(100% - 30px); */
   padding: 20px;
   border: 1px solid rgba(83, 92, 165, 0.15);
 }
@@ -765,7 +771,7 @@ table tbody tr {
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid rgba(83, 92, 165, 1);
-  margin: 30px 0px;
+      margin: 0px 0px 30px 0px;
   border-width: 3px;
 }
 
@@ -784,8 +790,95 @@ table tbody tr {
 }
 
 .bg-sidebar {
-  background-color: rgba(15, 18, 30, 1);
+  background-color:rgba(99, 117, 197, 0.15);
 }
 .z-index{
   z-index: 999;
+}
+ /* Breadcrum */
+ .headingarrowicon {
+  width: 13px;
+  height: 17px;
+}
+.set-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.accuracy-chart-wrapper {
+  position: relative;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 600px;
+}
+.custom-legend-container {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-color-box {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.legend-label {
+  color: #fff;
+  font-size: 12px;
+}
+
+/* image processing loader css */
+.rotating-container {
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: sans-serif;
+  perspective: 1000px;
+}
+
+.rotator {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.text {
+  position: absolute;
+  transform-origin: center;
+}
+
+@keyframes flip {
+  0% { opacity: 1; transform: rotateX(0deg); }
+  100% { opacity: 0; transform: rotateX(90deg); }
+}
+
+@keyframes flipIn {
+  0% { opacity: 0; transform: rotateX(90deg); }
+  100% { opacity: 1; transform: rotateX(0deg); }
+}
+
+.flip {
+  animation: flip 0.5s forwards;
+}
+
+.flipIn {
+  animation: flipIn 0.5s forwards;
 }

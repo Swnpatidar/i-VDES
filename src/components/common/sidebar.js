@@ -42,7 +42,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
 
   return (
     <div
-      className={`sidebar col-auto p-0 overflow-visible  bg-sidebar rounded-30 ${
+      className={`sidebar col-auto  p-0 overflow-visible  bg-sidebar rounded-30 ${
         sidebarShow ? "sidebar-show" : ""
       }`}
     >
@@ -50,7 +50,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
         className="bi p-3 text-white fs-1 bi-x d-inline d-md-none position-fixed top-0"
         onClick={() => setSidebarShow(false)}
       ></i>
-<div className="pb-3 cursor-pointer">
+<div className="pb-3 pt-1 cursor-pointer">
   <div className="ms-2 me-2 text-center border-bottom-line">
    <img
   src={SIDEBAR_MAINLOGO}
@@ -114,7 +114,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
         </div>
       </div>
 
-      {/* LOGOUT MODAL */}
+      {/* LOGOUT MODAL */}    
       <Modal
         heading="Do You Want to Logout ?"
         modalId="logoutModal"
@@ -124,7 +124,11 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
         cancelLable="Cancel"
       />
     </div>
+ 
+
   );
 };
 
 export default Sidebar;
+
+

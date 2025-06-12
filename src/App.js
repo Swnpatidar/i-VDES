@@ -20,6 +20,7 @@ import LandingPage from "./pages/landingPage";
 import Dashboard from "./pages/Dashboard-page/dashboard";
 import FirstLayout from "./components/layouts/first-layout";
 import { useState } from "react";
+import DashboardDetails from "./pages/Dashboard-page/dashboard-details";
 
 
 function App() {
@@ -43,6 +44,14 @@ function App() {
             element={
               <PublicRoutes
                 component={<Dashboard setSidebarShow={setSidebarShow} />}
+              />
+            }
+          />
+           <Route
+            path={ROUTES?.DASHBOARDDETAILS}
+            element={
+              <PublicRoutes
+                component={<DashboardDetails setSidebarShow={setSidebarShow} />}
               />
             }
           />

@@ -12,7 +12,7 @@ import Modal from "./Model";
 const Topbar = ({ setSidebarShow, sidebarShow }) => {
   
   return (
-    <>    <div className="row position-sticky top-0   z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
+    <>    <div className="row position-sticky top-0  bg-off-dark z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
       <div className="col-6 col-md-4 p-0">
         <div className="d-flex gap-1 justify-content-sm-centerjustify-content-md-start align-items-center">
           <Link to={ROUTES.INDEX}>

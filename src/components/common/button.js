@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
 const Button = ({
   label="button",
@@ -7,23 +6,56 @@ const Button = ({
   isLoading,
   icon,
   className,
+  iconPosition="",
   type="button",
 }) => {
-  const { t } = useTranslation();
   return (
     <>
-    <button
+    
+    {/* <button
       type={type}
       className={`btn btn-common ${className}`}
       onClick={onClick}
       disabled={isLoading}
     >
       {isLoading && <i className="fa fa-spinner fa-spin me-2"></i>}
-      {t(label)}
-      {icon && (
+      {icon && iconPosition=="front" && (
+        <img className="me-2 " src={icon} alt="button_icon" height={22} />
+      )}
+      {label}
+      {icon && iconPosition=="back" && (
         <img className="ms-2" src={icon} alt="button_icon" height={14} />
       )}
-    </button>
+    </button> */}
+    <button
+  type={type}
+  className={`btn btn-common d-flex align-items-center ${className}`} 
+  onClick={onClick}
+  disabled={isLoading}
+>
+  {isLoading && <i className="fa fa-spinner fa-spin me-2 align-middle"></i>}
+  
+  {icon && iconPosition === "front" && (
+    <img
+      className="me-2 align-middle" 
+      src={icon}
+      alt="button_icon"
+      height={22}
+    />
+  )}
+
+  <span className="align-middle text-white">{label}</span>
+
+  {icon && iconPosition === "back" && (
+    <img
+      className="ms-2 align-middle" 
+      src={icon}
+      alt="button_icon"
+      height={14}
+    />
+  )}
+</button>
+
     </>
   );
 };
