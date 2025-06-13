@@ -1,7 +1,5 @@
 import React from 'react'
-import DataStatistics from './dashboardSection/data-statistics'
-import ImageClassification from './dashboardSection/image-classification'
-import MonthlyEncryp from './dashboardSection/monthlyEncryp'
+
 import ImageUploadBox from './dashboardSection/imageUploadBox'
 import "./dashboard.css"
 import BreadCrum from '../../components/common/BreadCrum'
@@ -9,6 +7,7 @@ import Button from '../../components/common/button'
 import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../hooks/routes/routes-constant'
 import { ARROW_ICON } from '../../utils/app-image-constant'
+import { WrappedDountChart, WrappedLineChart, WrappedStylishlineChart } from './dashboardSection/wrappedChartComponent'
 
 
 const Dashboard = () => {
@@ -30,6 +29,7 @@ const Dashboard = () => {
       <h5 className="my-3">Upload Image</h5>
       <div className="flex-grow-1">
         <ImageUploadBox />
+        
       </div>
     </div>
 
@@ -39,18 +39,18 @@ const Dashboard = () => {
       <div className="row">
         {/* Data Statistics - col-4 */}
         <div className="col-md-4 col-lg-6 mb-3">
-          <DataStatistics />
+          <WrappedDountChart/>
         </div>
         {/* Image Classification - col-8 */}
         <div className="col-md-8 col-lg-6 mb-3">
-          <ImageClassification />
+          <WrappedLineChart />
         </div>
       </div>
 
       {/* Monthly Chart (below stats) */}
       <div className="row">
         <div className="col-12">
-          <MonthlyEncryp />
+          <WrappedStylishlineChart/>
         </div>
       </div>
     </div>

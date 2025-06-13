@@ -3,11 +3,7 @@ import Button from "../../components/common/button";
 import { UPLOAD_ICON } from "../../utils/app-image-constant";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
-import DataStatistics from "./dashboardSection/data-statistics";
-import ImageClassification from "./dashboardSection/image-classification";
-import AccuracyModal from "./dashboardSection/accuracyModal";
-import MonthlyEncryp from "./dashboardSection/monthlyEncryp";
-import EncrypUsesTimeline from "./dashboardSection/encrypUsesTimeline";
+
 import  {WrappedDountChart, WrappedAccuracyLineChart, WrappedLineChart, WrappedTimelineChart, WrappedStylishlineChart } from "./dashboardSection/wrappedChartComponent";
 
 const DashboardDetails = () => {
