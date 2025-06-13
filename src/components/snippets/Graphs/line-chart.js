@@ -52,7 +52,7 @@ const LineCharts = ({graphColor="",graphSensivityName="",icon=""}) => {
     return (
         <>
 
-            <div className="card avtivity-card">
+            <div className="card avtivity-card " style={{borderColor:graphColor}}>
                 <div className="card-body display-align p-2">
                     <div className="media display-align">
                         <span className="activity-icon me-md-4 me-3" style={{backgroundColor:graphColor}}>
