@@ -29,7 +29,7 @@ const Button = ({
     </button> */}
     <button
   type={type}
-  className={`btn btn-common d-flex align-items-center ${className}`} 
+  className={`btn btn-common  ${className}`} 
   onClick={onClick}
   disabled={isLoading}
 >

@@ -179,12 +179,12 @@
 
 // // Bridge & Shield Project
 export const ARROW_ICON = "./assets/common/arrow_icon.png";
-export const EYE_CLOSE = "./assets/common/eye_close_icon.png";
+export const EYE_CLOSE = "./assets/loginicon/eye-close.png";
 export const EMAIL_ICON = "./assets/common/email_icon.png";
-export const CLOSE_ICON = "./assets/table/closeicon.svg";
+export const CLOSE_ICON = "./assets/loginicon/cross-icon.png";
 export const PAGE_404 = "./assets/img/404page.svg";
 export const RIGHTARROW_IMG = "./assets/common/rightarrowimg.png";
-export const EYE_OPEN = "./assets/common/eye_open_icon.png";
+export const EYE_OPEN = "./assets/loginicon/open-eye.png";
 export const COMPANY_LOGO = "./assets/common/company-logo.png";
 export const LANDING_IMAGE_1 = "./assets/common/langing-page-image1.png";
 export const LANDING_IMAGE_2 = "./assets/common/langing-page-image2.png";
@@ -229,3 +229,5 @@ export const BREADCRUM_ICON = "./assets/dashboardicons/Bredcrum-icon.png";
 
 export const UPLOAD_ICON="./assets/dashboardicons/upload_icon.png"
 
+// Auth bg
+export const AUTH_BACKGROUND_IMAGE="./assets/dashboardicons/Auth-bg.png"

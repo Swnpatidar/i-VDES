@@ -17,21 +17,16 @@ const AccuracyLineChart = () => {
         { x: "Apr", encrypted: 60, },
         { x: "May", encrypted: 50, },
         { x: "Jun", encrypted: 80, },
-        { x: "Jul", encrypted: 90, },
-        { x: "Aug", encrypted: 100, },
-        // { x: "Sep", encrypted: 100, },
-        // { x: "Oct", encrypted: 100, },
-        // { x: "Nov", encrypted: 100, },
-        // { x: "Dec", encrypted: 100, },
-
+       
+      
 
     ];
     return (
-  <div className="d-flex justify-content-center align-items-center" style={{ height: '100%' }}>
+  <div className="d-flex justify-content-center align-items-center" >
     <div
      className="accuracy-chart-wrapper"
     >
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={400}>
         <LineChart data={data}>
           <XAxis
             dataKey="x"

@@ -2,13 +2,13 @@ import React from 'react'
 import "../landingPage.css"
 import { ARROW_ICON, COMPANY_LOGO, LANDING_IMAGE_1, LANDING_IMAGE_2, } from '../../utils/app-image-constant';
 import Button from '../../components/common/button';
-import { Amplify } from 'aws-amplify';
-import { Authenticator, withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import awsExport from '../../aws-export';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../hooks/routes/routes-constant';
 // Amplify.configure(awsExport);
 
 const HeroSection = () => {
+    const navigate = useNavigate();
   return (
     <>
       {/* <Authenticator></Authenticator> */}
@@ -21,7 +21,7 @@ const HeroSection = () => {
               <img src={COMPANY_LOGO} alt="Logo" />
             </div>
             <div className='col-6 col-md-6 col-sm-12 text-end'>
-              <Button label='Login' />
+              <Button label='Login' onClick={() => navigate(ROUTES?.LOGIN)} />
             </div>
           </div>
           <div>
