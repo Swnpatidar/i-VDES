@@ -1,13 +1,12 @@
 
 import React, { useEffect, useRef, useState } from "react";
-import "./RotatingNames.css"; // Import external CSS
 
-const ImageProcessingLoader = () => {
-  const names = ["Ravin", "Swan", "Akash", "Avinash"];
+const ImageProcessingLoader = ({textRef,startImageProcessingLoader}) => {
+  const names = ["Visual Data", "Normalization", "Augmentation", "Fine-tuning", "Image Tagging", "Validation", "Encrypting"]
   const [index, setIndex] = useState(0);
-  const textRef = useRef(null);
-
+  console.log("start processing loader===>",startImageProcessingLoader)
   useEffect(() => {
+    if (!startImageProcessingLoader) return; // don't run unless start is true
     const interval = setInterval(() => {
       if (textRef.current) {
         textRef.current.classList.remove("flipIn");
@@ -24,7 +23,7 @@ const ImageProcessingLoader = () => {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [names.length]);
+  }, [startImageProcessingLoader]);
 
   return (
     <div className="rotating-container">

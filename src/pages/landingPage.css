@@ -35,26 +35,133 @@
 }
 /* -------------------------------------- Choose Us Section -------------------------------------------------- */
 .why-choose-section {
-  background-image: url("../../public/assets/whywechooseImg/whyChooseBanner.png");
+  background-image: url(../../public/assets/whywechooseImg/whyChooseBanner.png);
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  padding: 60px 15px;
+  position: relative;
+  min-height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-/* Inner Box Styling */
+ 
+.center-image {
+  max-width: 400px;
+  position: relative;
+  z-index: 1;
+}
+ 
 .why-choose-inner-div {
-  width: 260px;
+  position: absolute;
+  width: 100%;
+  max-width: 275px;
   height: 80px;
   background-color: var(--white);
   border-radius: 20px;
   padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
-
+ 
 .why-choose-inner-div p {
   color: var(--blueText);
   font-weight: 700;
+  margin: 0;
 }
-
+ 
 .why-choose-h1 {
   font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1.2;
 }
-
+ 
+/* Positioning left side */
+.left-box.box-0 {
+  top: 22%;
+  left: 5%;
+}
+ 
+.left-box.box-1 {
+  top: 37%;
+  left: 2%;
+}
+ 
+.left-box.box-2 {
+  top: 52%;
+  left: 3%;
+}
+ 
+.left-box.box-3 {
+  top: 67%;
+  left: 6%;
+}
+ 
+/* Positioning right side */
+.right-box.box-0 {
+  top: 22%;
+  right: 5%;
+}
+ 
+.right-box.box-1 {
+  top: 37%;
+  right: 2%;
+}
+ 
+.right-box.box-2 {
+  top: 52%;
+  right: 3%;
+}
+ 
+.right-box.box-3 {
+  top: 67%;
+  right: 6%;
+}
+ 
+/* Medium screen (tablet) */
+@media (max-width: 992px) {
+  .why-choose-section {
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+  }
+ 
+  .why-choose-inner-div {
+    position: static;
+    margin: 15px 0;
+  }
+ 
+  .center-image {
+    order: -1;
+    margin-bottom: 30px;
+  }
+ 
+  .why-choose-h1 {
+    font-size: 2rem;
+  }
+}
+ 
+/* Small screen (mobile) */
+@media (max-width: 576px) {
+  .why-choose-inner-div {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-radius: 15px;
+  }
+ 
+  .why-choose-h1 {
+    font-size: 1.6rem;
+  }
+ 
+  .why-choose-inner-div img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+ 
+  .why-choose-inner-div p {
+    font-size: 0.95rem;
+  }
+}
