@@ -14,3 +14,7 @@ export async function forgotPassword(payload) {
 export async function resetPassword(payload) {
   return await axiosMain?.post(`${API_URL?.auth?.ResetPassword}`, payload);
 }
+// Generate pdf file
+export async function uploadImageFile(file) {
+  return await axiosMain?.post(`${API_URL?.dashboard?.uploadImage}`, file);
+}
