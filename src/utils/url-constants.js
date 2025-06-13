@@ -8,4 +8,7 @@ export const API_URL = {
     forgotPassword: "authController/forgotPassword",
     ResetPassword: "authController/changeUserPassword",
   },
+   dashboard: {
+    uploadImage: "file/image",
+  },
 };

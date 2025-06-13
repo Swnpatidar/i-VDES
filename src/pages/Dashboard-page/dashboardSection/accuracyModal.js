@@ -15,8 +15,8 @@ const AccuracyModal = () => {
                         <AccuracyLineChart/>
                     </div> */}
                     <div className="card-body pt-0 pb-0  ">
-  <AccuracyLineChart />
-</div>
+                        <AccuracyLineChart />
+                    </div>
                 </div>
             </div>
         </>
