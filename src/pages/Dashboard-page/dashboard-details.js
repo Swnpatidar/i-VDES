@@ -4,7 +4,7 @@ import { UPLOAD_ICON } from "../../utils/app-image-constant";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 
-import  {WrappedDountChart, WrappedAccuracyLineChart, WrappedLineChart, WrappedTimelineChart, WrappedStylishlineChart } from "./dashboardSection/wrappedChartComponent";
+import { WrappedDountChart, WrappedAccuracyLineChart, WrappedLineChart, WrappedTimelineChart, WrappedStylishlineChart } from "./dashboardSection/wrappedChartComponent";
 
 const DashboardDetails = () => {
   const navigate = useNavigate();
@@ -31,28 +31,26 @@ const DashboardDetails = () => {
 
       <>
         <div className="gradient-common-bg">
-          <div className="row g-4">
-            {/* Row 1: 3 Cards in one row */}
+          <div className="row mb-4">
             <div className="col-12 col-lg-3 ">
               <div className="data-statistics h-100">
-                    <WrappedDountChart/>
+                <WrappedDountChart />
               </div>
-          
             </div>
             <div className="col-12 col-lg-4">
-              <WrappedLineChart/>
+              <WrappedLineChart />
             </div>
             <div className="col-12 col-lg-5">
               <WrappedAccuracyLineChart />
-
             </div>
+          </div>
 
-            {/* Row 2: 2 Cards in one row */}
+          <div className="row">
             <div className="col-12 col-lg-6">
-              <WrappedStylishlineChart/>
+              <WrappedStylishlineChart />
             </div>
             <div className="col-12 col-lg-6">
-              <WrappedTimelineChart/>
+              <WrappedTimelineChart />
             </div>
           </div>
         </div>

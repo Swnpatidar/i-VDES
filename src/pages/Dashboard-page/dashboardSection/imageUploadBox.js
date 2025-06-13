@@ -24,8 +24,8 @@ const ImageUploadBox = () => {
 
   return (
     <>
-      <div className='image-upload-box'>
-        <div className="card">
+      <div className='image-upload-box h-100'>
+        <div className="card h-100">
           <div className='d-flex justify-content-center align-items-center'>
             <div class="upload-container">
               {selectedFile && (<>
