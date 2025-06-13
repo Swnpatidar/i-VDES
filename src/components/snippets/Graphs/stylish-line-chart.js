@@ -12,12 +12,11 @@ import {
 const data = [
   { x: "Jan", encrypted: 10, decrypted: 8 },
   { x: "Feb", encrypted: 14, decrypted: 14 },
-  { x: "Mar", encrypted: 20, decrypted: 18 },
+  { x: "Mar", encrypted: 28, decrypted: 18 },
   { x: "Apr", encrypted: 35, decrypted: 35 },
-  { x: "May", encrypted: 35, decrypted: 33 },
+  { x: "May", encrypted: 35, decrypted: 25 },
   { x: "Jun", encrypted: 38, decrypted: 38 },
-  { x: "Jul", encrypted: 30, decrypted: 45 },
-  { x: "Aug", encrypted: 50, decrypted: 50 },
+ 
 ];
 const CustomDot = ({ cx, cy }) => {
   // Box dimensions

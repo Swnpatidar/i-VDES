@@ -34,9 +34,7 @@ const Input = ({
         </label>
       )}
       <div
-        className={`input-group ${disabled ? "userdisabled" : ""} ${
-          i18n.language === "ar" ? "flex-row-reverse" : "flex-row"
-        }`}
+        className={`input-group ${disabled ? "userdisabled" : ""} `}
       >
         <input
           type={type}

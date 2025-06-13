@@ -18,7 +18,7 @@ const TimelineChart = () => {
     { x: "Apr", ECC: 30, ECC2: 50 },
     { x: "May", ECC: 28, ECC2: 40 },
     { x: "Jun", ECC: 50, ECC2: 35 },
-    { x: "Jul", ECC: 35, ECC2: 25 },
+    
   ];
   const CustomLegend = (props) => {
     const { payload } = props;
@@ -51,7 +51,7 @@ const TimelineChart = () => {
         }}
       >
 
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={350}>
 
           <LineChart data={data}    >
 
@@ -63,7 +63,7 @@ const TimelineChart = () => {
                 , strokeWidth: 4
               }} // custom axis line color
               tickLine={false}
-              tick={{ fill: "#ffffff", dy: 15 }}
+              tick={{ fill: "#ffffff", dy: 12 }}
             />
 
             <YAxis

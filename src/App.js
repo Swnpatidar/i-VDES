@@ -21,6 +21,7 @@ import Dashboard from "./pages/Dashboard-page/dashboard";
 import FirstLayout from "./components/layouts/first-layout";
 import { useState } from "react";
 import DashboardDetails from "./pages/Dashboard-page/dashboard-details";
+import Register from "./pages/auth/register";
 
 
 function App() {
@@ -56,15 +57,15 @@ function App() {
             }
           />
         </Route>
-        <Route element={<AuthLayout />}>
+        {/* <Route element={<AuthLayout />}> */}
           <Route
             path={ROUTES?.LOGIN}
             element={<PublicRoutes component={<Login />} />}
           />
-          {/* <Route
+          <Route
             path={ROUTES?.REGISTER}
             element={<PublicRoutes component={<Register />} />}
-          /> */}
+          />
           <Route
             path={ROUTES?.FORGOT_PASSWORD}
             element={<PublicRoutes component={<ForgotPassword />} />}
@@ -74,7 +75,7 @@ function App() {
             element={<PublicRoutes component={<NewPassword />} />}
           />
          
-        </Route>
+        {/* </Route> */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <ToastContainer />

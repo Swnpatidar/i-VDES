@@ -1,4 +1,4 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   SIDEBAR_ANALYSIS_ACTIVE,
   SIDEBAR_ANALYSIS_DEACTIVE,
@@ -15,6 +15,7 @@ import Modal from "./Model";
 
 const Sidebar = ({ setSidebarShow, sidebarShow }) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const menuItems = [
     {
@@ -50,8 +51,8 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
         className="bi p-3 text-white fs-1 bi-x d-inline d-md-none position-fixed top-0"
         onClick={() => setSidebarShow(false)}
       ></i>
-<div className="pb-3 pt-1 cursor-pointer">
-  <div className="ms-2 me-2 text-center border-bottom-line">
+<div className="pb-3 pt-1 cursor-pointer" onClick={() => navigate(ROUTES?.INDEX)}>
+  <div className="ms-2 me-2 text-center border-bottom-line" >
    <img
   src={SIDEBAR_MAINLOGO}
   alt="Main Logo"
@@ -102,7 +103,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
           </ul>
 
           {/* LOGOUT ICON */}
-          <div className="pt-3 pb-3 cursor-pointer">
+          <div className="pt-3 pb-3 cursor-pointer"onClick={() => navigate(ROUTES?.LOGIN)}>
             <div className="ms-2 me-2 text-center border-top-logout">
               <img
                 src={SIDEBAR_LOGOUT}

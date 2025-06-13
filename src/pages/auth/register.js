@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import "./login.css";
@@ -32,7 +33,7 @@ import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import Modal from "../../components/common/Model";
 import { setPermissionReducer } from "../../hooks/redux/slice/permission";
 
-const Login = () => {
+const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formError, setFormError] = useState({});
@@ -61,81 +62,18 @@ const Login = () => {
       setRememberMe(true);
     }
   }, []);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (payload.email.trim() === "") {
-  //     return toastEmitter("error", "Email is mandatory!");
-  //   }
-  //   if (payload.password.trim() === "") {
-  //     return toastEmitter("error", "Password is mandatory!");
-  //   }
-  //   if (!validateRegex(payload.email, EmailRegex)) {
-  //     return toastEmitter("error", "Email is invalid!");
-  //   }
-  //   if (!validateRegex(payload.password, PasswordRegex)) {
-  //     return toastEmitter(
-  //       "error",
-  //       "password should be a combination  8  characters which include altleast one special character , special symbol , capital letter and number"
-  //     );
-  //   }
 
-  //   setIsLoading(true);
-  //   signIn(payload)
-  //     .then(function (response) {
-  //       if (response.data?.status !== 200) {
-  //         toastEmitter("error", response?.data?.message);
-  //       }
-  //       if (response.data?.status === 200) {
-  //         dispatch(
-  //           setAccessTokenReducer(
-  //             encryptStringtoAES(response?.data?.data?.token)
-  //           )
-  //         );
-  //         dispatch(
-  //           setLoggedUserReducer(encryptJSONtoAES(response?.data?.data))
-  //         );
-  //         dispatch(
-  //           setPermissionReducer(
-  //             encryptJSONtoAES(
-  //               response?.data?.data?.adminResponsePayload?.roleResponsePayload
-  //                 ?.roleModuleMappingResponseList
-  //             )
-  //           )
-  //         );
-
-  //         addbuttonClick.current.click();
-  //         setPayload({
-  //           email: "",
-  //           password: "",
-  //           userType: "CLINIC",
-  //         });
-  //       }
-  //       return setIsLoading(false);
-  //     })
-  //     .catch(function (err) {
-  //       toastEmitter("error", API_RESPONSE?.MESSAGE_503);
-  //       return setIsLoading(false);
-  //     });
-  //   if (rememberMe) {
-  //     localStorage.setItem("email", encryptStringtoAES(payload?.email));
-  //     localStorage.setItem("password", encryptStringtoAES(payload?.password));
-  //     localStorage.setItem("rememberMe", "true");
-  //   } else {
-  //     localStorage.removeItem("email");
-  //     localStorage.removeItem("password");
-  //     localStorage.setItem("rememberMe", "false");
-  //   }
-  // };
 
   return (
-  
+   
     <>
       <div className="Auth-common-bg">
         <div className="container-fluid">
           <div className="row min-vh-100 d-flex align-items-center justify-content-center">
+            {/* Welcome Section (Only visible on md and up) */}
             <div className="col-md-6 d-none d-md-flex justify-content-center align-items-center text-white px-5">
               <div>
-                <h1 className="fw-bold mb-3 display-4">Welcome Back!</h1>
+                <h1 className="fw-bold mb-3 display-4">Welcome!</h1>
                 <p className="fs-5 w-75">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -145,7 +83,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Login Box */}
           
             <div className="col-md-6 col-sm-12 d-flex justify-content-center h-100 ">
               <div className="login-box w-100 mx-3 position-relative">
@@ -158,9 +95,9 @@ const Login = () => {
                 />
                 <form>
                   <div className="login-welcome">
-                    <h2 className="text-white">Login</h2>
+                    <h2 className="text-white">Signup</h2>
                     <p className="text-white ">
-                      Glad you're back.!
+                     Welcome to I-VDES
                    
                     </p>
                   </div>
@@ -168,22 +105,22 @@ const Login = () => {
                     <Input
                       className="border-radius_input"
                       type="text"
-                      value={payload.email}
-                      name="email"
-                      placeHolder="Username"
+                      value={payload.username}
+                      name="username"
+                      placeHolder="Name"
                       handleChange={(e) =>
                         setPayload(
                           handleFormInput(e, payload, formError, setFormError)
                         )
                       }
-                      error={formError?.email}
+                      error={formError?.username}
                       showIcon={false}
                       iconsrc={EMAIL_ICON}
                       showAsterisk={false}
 
                       
                     />
-                    <ErrorMsg error={formError?.email} />
+                    <ErrorMsg error={formError?.username} />
                   </div>
                   <div>
                     <Input
@@ -253,10 +190,9 @@ const Login = () => {
 
                   <p class="text-center text-white ">
                     Don't have an account?{" "}
-                  
-                     <Link to={ROUTES?.REGISTER} className="singup-color">
+                    <a href="#" className="singup-color">
                       Signup
-                    </Link>
+                    </a>
                   </p>
                 </form>
               </div>
@@ -275,4 +211,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

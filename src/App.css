@@ -5,6 +5,7 @@
   --buttonColor: #0066ff;
   --buttonlightRedColor: #ffe2e2;
   --buutonlightPrimeryColor: #c0e6ff;
+  --singupcolor:rgba(10, 118, 123, 1);
   --buttonLightColor: #f0f9ff;
   --headingColor: #0099ff;
   --grayparaColor: #808080;
@@ -427,6 +428,10 @@ input::-webkit-inner-spin-button {
 .login-bg-img {
   width: 100%;
   object-fit: contain;
+}
+.input-background {
+  /* background: none;
+  border-left: unset; */
 }
 
 /* ********************Login Page End************************ */
@@ -890,4 +895,27 @@ table tbody tr {
 
 .flipIn {
   animation: flipIn 0.5s forwards;
+}
+
+.Auth-common-bg {
+  background-image: url("../public/assets/dashboardicons/Auth-bg.png");
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  border-radius: 1.25rem;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px rgb(9, 9, 9) inset !important;
+  box-shadow: 0 0 0 1000px rgb(4, 4, 4) inset !important;
+  -webkit-text-fill-color: #fef9f9 !important;
+  background-color:rgba(34, 34, 34, 0.7);
+
+}
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px rgb(12, 12, 12) inset !important;
+}
+.singup-color{
+  color: var(--singupcolor)
 }
