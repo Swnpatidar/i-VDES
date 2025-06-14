@@ -77,7 +77,7 @@ const ForgotPassword = () => {
         </form>
 
         <Link to={ROUTES?.LOGIN} style={{ textDecoration: "none" }}>
-          <div className="d-flex justify-content-center align-items-center mt-4">
+          <div className="set-center mt-4">
             <i className="fa fa-long-arrow-left text-dark me-2"></i>
             <h6 className="pl-2 mb-0 text-dark fw-600">
               {t("Back to")} <span className="text-primary">{t("log in")}</span>{" "}

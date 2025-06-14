@@ -291,9 +291,18 @@ h6 {
   border-top: 0px solid rgba(0, 0, 0, 0.12) !important;
 }
 
+/* cursor interaction */
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
+.cursor-pointer-none {
+  pointer-events: none !important;
+}
+.cursor-not-allowed {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
 
 /* common font-size css */
 .fs-12 {
@@ -577,12 +586,7 @@ table tbody tr {
   background-color: #f0f0f0;
 }
 
-/* disable button */
-.disabled-style {
-  opacity: 0.5;
-  pointer-events: none;
-  cursor: not-allowed;
-}
+
 
 /* end table css */
 /* tableheading css */
@@ -850,52 +854,6 @@ table tbody tr {
   font-size: 12px;
 }
 
-/* image processing loader css */
-.rotating-container {
-  background: #0f0f0f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-family: sans-serif;
-  perspective: 1000px;
-}
-
-.rotator {
-  position: relative;
-  width: 200px;
-  height: 50px;
-  font-size: 24px;
-  font-weight: bold;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.text {
-  position: absolute;
-  transform-origin: center;
-}
-
-@keyframes flip {
-  0% { opacity: 1; transform: rotateX(0deg); }
-  100% { opacity: 0; transform: rotateX(90deg); }
-}
-
-@keyframes flipIn {
-  0% { opacity: 0; transform: rotateX(90deg); }
-  100% { opacity: 1; transform: rotateX(0deg); }
-}
-
-.flip {
-  animation: flip 0.5s forwards;
-}
-
-.flipIn {
-  animation: flipIn 0.5s forwards;
-}
 
 .Auth-common-bg {
   background-image: url("../public/assets/dashboardicons/Auth-bg.png");
@@ -919,3 +877,35 @@ input:-webkit-autofill:focus {
 .singup-color{
   color: var(--singupcolor)
 }
+/* -------------------------Toast CSS------------------------ */
+.toast-success,.toast-error,.toast-info,.toast-warn {
+  background-color: #14172b !important;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(206, 206, 206, 0.3);
+}
+.toast-success .Toastify__toast-icon {
+  color: #12cf31;
+}
+.toast-success .Toastify__progress-bar {
+  background: #12cf31 !important;
+}
+.toast-error .Toastify__toast-icon {
+  color: #ff4d4f;
+}
+.toast-error .Toastify__progress-bar {
+  background: #ff4d4f !important;
+}
+.toast-info .Toastify__toast-icon {
+  color: #00bcd4;
+}
+.toast-info .Toastify__progress-bar {
+  background: #00bcd4 !important;
+}
+.toast-warn .Toastify__toast-icon {
+  color: #ffc107;
+}
+.toast-warn .Toastify__progress-bar {
+  background: #ffc107 !important;
+}
+
+/* -------------------------Toast CSS------------------------ */

@@ -207,6 +207,7 @@ export const LOGOUT_IMG = "./assets/common/logoutimg.png";
 export const PROFILE_ICONSMALL = "./assets/common/profile_icon.png";
 export const LOGOUT_ICONSMALL = "./assets/common/logout.png";
 export const UPLOAD_GIF = "./assets/common/upload-animation.gif";
+export const IMAGE_ENCRYPTED_GIF = "./assets/common/image-encrypted.gif";
 export const CIRCLE_LOADER = "./assets/common/proceed-circle-loader.gif";
 export const PROCEED_SUCCESS = "./assets/common/proceed-success.gif";
 
