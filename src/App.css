@@ -908,4 +908,43 @@ input:-webkit-autofill:focus {
   background: #ffc107 !important;
 }
 
-/* -------------------------Toast CSS------------------------ */
+/* -------------------------Toast CSS END------------------------ */
+
+/* ---------------------------Modal CSS---------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(9px);
+}
+
+.modal-content {
+  background-color:rgba(17, 10, 28, 0.5);
+  padding: 40px;
+  border-radius: 30px;
+  width: 450px;
+  max-width: 90%;
+  position: relative;
+  border: 1px solid #28292e !important;
+  backdrop-filter: blur(10px);
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 20px;
+  background: none;
+  border: #7f8081;
+  cursor: pointer;
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+}

@@ -210,6 +210,8 @@ export const UPLOAD_GIF = "./assets/common/upload-animation.gif";
 export const IMAGE_ENCRYPTED_GIF = "./assets/common/image-encrypted.gif";
 export const CIRCLE_LOADER = "./assets/common/proceed-circle-loader.gif";
 export const PROCEED_SUCCESS = "./assets/common/proceed-success.gif";
+export const LOGIN_SUCCESS_PNG = "./assets/loginicon/safe-authorization.png";
+export const LOGOUT_CONFIRM_PNG = "./assets/common/logout-confirm.png";
 
 // whyweChooseBanner
 export const WHYWECHOOSE_IMAGE = "./assets/whywechooseImg/ivdes-mobile-img.png";

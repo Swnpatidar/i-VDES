@@ -24,7 +24,7 @@ const ImageProcessingLoader = ({textRef,startImageFlipping}) => {
   }, [startImageFlipping]);
 
   return (
-    <div className="rotating-container">
+    <div className="rotating-container image-upload-center-box">
       <div className="rotator">
         <div className="text gradient-text" ref={textRef}>
           {names[index]}
