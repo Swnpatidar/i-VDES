@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import "./login.css";
@@ -63,9 +62,7 @@ const Register = () => {
     }
   }, []);
 
-
   return (
-   
     <>
       <div className="Auth-common-bg">
         <div className="container-fluid">
@@ -83,7 +80,6 @@ const Register = () => {
               </div>
             </div>
 
-          
             <div className="col-md-6 col-sm-12 d-flex justify-content-center h-100 ">
               <div className="login-box w-100 mx-3 position-relative">
                 <img
@@ -96,12 +92,10 @@ const Register = () => {
                 <form>
                   <div className="login-welcome">
                     <h2 className="text-white">Signup</h2>
-                    <p className="text-white ">
-                     Welcome to I-VDES
-                   
-                    </p>
+                    <p className="text-white my-1 ">Welcome to I-VDES</p>
                   </div>
-                  <div className="">
+                  <div className="d-flex flex-column gap-3">         
+                             <div className="">
                     <Input
                       className="border-radius_input"
                       type="text"
@@ -117,10 +111,29 @@ const Register = () => {
                       showIcon={false}
                       iconsrc={EMAIL_ICON}
                       showAsterisk={false}
-
-                      
+                      showLabel={false}
                     />
                     <ErrorMsg error={formError?.username} />
+                  </div>
+                  <div className="">
+                    <Input
+                      className="border-radius_input"
+                      type="text"
+                      value={payload.email}
+                      name="email"
+                      placeHolder="Username"
+                      handleChange={(e) =>
+                        setPayload(
+                          handleFormInput(e, payload, formError, setFormError)
+                        )
+                      }
+                      error={formError?.email}
+                      showIcon={false}
+                      iconsrc={EMAIL_ICON}
+                      showAsterisk={false}
+                        showLabel={false}
+                    />
+                    <ErrorMsg error={formError?.email} />
                   </div>
                   <div>
                     <Input
@@ -138,6 +151,7 @@ const Register = () => {
                       // labelName="Password"
                       showRightIcon={true}
                       showAsterisk={false}
+                        showLabel={false}
                       rightIconSrc={
                         isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
                       }
@@ -149,38 +163,44 @@ const Register = () => {
                     />
                     <ErrorMsg error={formError?.password} />
                   </div>
-                  <div className="align-position justify-content-between my-3 text-white ">
-                    <div className="form-check">
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        id="Check1"
-                        checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                      />
-                      <label
-                        className="my-0 text-white fs-6"
-                        htmlFor="exampleCheck1"
-                      >
-                        Remember me
-                      </label>
-                    </div>
+                  <div>
+                    <Input
+                      className="border-radius_input"
+                      type={isPwdVisible}
+                      value={payload.password}
+                      name="password"
+                      placeHolder="Confirm Password"
+                      handleChange={(e) =>
+                        setPayload(
+                          handleFormInput(e, payload, formError, setFormError)
+                        )
+                      }
+                      error={formError?.password}
+                      // labelName="Password"
+                      showRightIcon={true}
+                      showAsterisk={false}
+                        showLabel={false}
+                      rightIconSrc={
+                        isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
+                      }
+                      onRightIconClick={() =>
+                        setIsPwdVisible(
+                          isPwdVisible === "password" ? "text" : "password"
+                        )
+                      }
+                    />
+                    <ErrorMsg error={formError?.password} />
                   </div>
 
                   <Button
-                    className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5 py-3 "
-                    label="Login"
+                    className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5  "
+                    label="Signup"
                     type="submit"
                     isLoading={isLoading}
                     style={{ letterSpacing: "1.5px" }}
-                    onClick={() => navigate(ROUTES?.DASHBOARD)}
+                    onClick={() => navigate(ROUTES?.LOGIN)}
                   />
-
-                  <div className="my-3">
-                    <Link to={ROUTES?.FORGOT_PASSWORD} className="text-white">
-                      Forgot password?
-                    </Link>
-                  </div>
+</div>
 
                   <div className="divider-line">
                     <span className="line left-line"></span>
@@ -188,11 +208,11 @@ const Register = () => {
                     <span className="line right-line"></span>
                   </div>
 
-                  <p class="text-center text-white ">
-                    Don't have an account?{" "}
-                    <a href="#" className="singup-color">
-                      Signup
-                    </a>
+                  <p class="text-center text-white m-0">
+                    Already have an account?{" "}
+                    <Link to={ROUTES?.LOGIN} className="singup-color">
+                      Login
+                    </Link>
                   </p>
                 </form>
               </div>

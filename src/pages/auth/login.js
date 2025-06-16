@@ -24,6 +24,7 @@ import {
   ARROW_ICON,
   RIGHTARROW_IMG,
   CLOSE_ICON,
+  LOGIN_SUCCESS_ICON,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
@@ -126,7 +127,13 @@ const Login = () => {
   //     localStorage.setItem("rememberMe", "false");
   //   }
   // };
-
+  useEffect(() => {
+  setTimeout(() => {
+    if (addbuttonClick.current) {
+      addbuttonClick.current.click();
+    }
+  },100);
+}, []);
   return (
   
     <>
@@ -159,11 +166,12 @@ const Login = () => {
                 <form>
                   <div className="login-welcome">
                     <h2 className="text-white">Login</h2>
-                    <p className="text-white ">
+                    <p className="text-white my-1 ">
                       Glad you're back.!
                    
                     </p>
                   </div>
+                  <div className="d-flex flex-column gap-3">
                   <div className="">
                     <Input
                       className="border-radius_input"
@@ -180,6 +188,7 @@ const Login = () => {
                       showIcon={false}
                       iconsrc={EMAIL_ICON}
                       showAsterisk={false}
+                        showLabel={false}
 
                       
                     />
@@ -201,6 +210,7 @@ const Login = () => {
                       // labelName="Password"
                       showRightIcon={true}
                       showAsterisk={false}
+                        showLabel={false}
                       rightIconSrc={
                         isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
                       }
@@ -212,7 +222,7 @@ const Login = () => {
                     />
                     <ErrorMsg error={formError?.password} />
                   </div>
-                  <div className="align-position justify-content-between my-3 text-white ">
+                  <div className="align-position justify-content-between  text-white ">
                     <div className="form-check">
                       <input
                         type="checkbox"
@@ -231,14 +241,14 @@ const Login = () => {
                   </div>
 
                   <Button
-                    className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5 py-3 "
+                    className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5  "
                     label="Login"
                     type="submit"
                     isLoading={isLoading}
                     style={{ letterSpacing: "1.5px" }}
                     onClick={() => navigate(ROUTES?.DASHBOARD)}
                   />
-
+</div>
                   <div className="my-3">
                     <Link to={ROUTES?.FORGOT_PASSWORD} className="text-white">
                       Forgot password?
@@ -251,7 +261,7 @@ const Login = () => {
                     <span className="line right-line"></span>
                   </div>
 
-                  <p class="text-center text-white ">
+                  <p class="text-center text-white mb-5 ">
                     Don't have an account?{" "}
                   
                      <Link to={ROUTES?.REGISTER} className="singup-color">
@@ -266,9 +276,9 @@ const Login = () => {
 
         <Modal
           modalId="login"
-          heading="Login Sucessfully"
+          heading="Login Successfully"
           modalClick={addbuttonClick}
-          iconsrc={RIGHTARROW_IMG}
+          iconsrc={LOGIN_SUCCESS_ICON}
         />
       </div>
     </>

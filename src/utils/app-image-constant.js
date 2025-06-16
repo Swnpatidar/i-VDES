@@ -231,3 +231,4 @@ export const UPLOAD_ICON="./assets/dashboardicons/upload_icon.png"
 
 // Auth bg
 export const AUTH_BACKGROUND_IMAGE="./assets/dashboardicons/Auth-bg.png"
+export const LOGIN_SUCCESS_ICON = "./assets/loginicon/Loginsuccess-icon.png";

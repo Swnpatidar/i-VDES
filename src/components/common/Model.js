@@ -28,6 +28,7 @@ const Modal = ({
   const { t } = useTranslation();
 
   return (
+    <div className="Auth-common-bg">
     <div className="emp-model">
       <button
         type="button"
@@ -104,6 +105,7 @@ const Modal = ({
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
