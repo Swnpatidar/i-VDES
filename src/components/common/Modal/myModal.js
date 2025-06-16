@@ -10,7 +10,7 @@ const MyModal = ({ isOpen, onClose, icon, heading, subHeading, isButton = false 
     return (
         <>
             <div className='set-center flex-column'>
-                {icon && <img src={icon} className="mb-2" alt="authorization-image" width="30%" />}
+                {icon && <img src={icon} className="mb-2" alt="authorization-image" width="25%" />}
                 {heading && <h3 className='text-white'>{heading}</h3>}
                 {subHeading && <p className=''>{subHeading}</p>}
                 {isButton && <div className='mt-3'>

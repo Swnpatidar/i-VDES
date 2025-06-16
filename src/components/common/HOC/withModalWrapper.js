@@ -13,7 +13,7 @@ const withModalWrapper = (WrappedModalComponent) => {
                         className="position-absolute top-0 end-0 m-4"
                         style={{ width: "25px", height: "25px", cursor: "pointer" }}
                     />
-                    <WrappedModalComponent {...rest} onClose={onClose} />
+                    <WrappedModalComponent {...rest} onClose={onClose}/> 
                 </div>
             </div>
         )
