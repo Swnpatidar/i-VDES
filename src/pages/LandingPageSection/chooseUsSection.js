@@ -42,7 +42,7 @@ const ChooseUsSection = () => {
             {leftData.map((v, i) => (
                 <div key={i} className={`why-choose-inner-div left-box box-${i}`}>
                     <div className="row">
-                        <div className='col-3 d-flex justify-content-center align-items-center'>
+                        <div className='col-3 set-center'>
                             <img src={v.Image} alt={v.Name} />
                         </div>
                         <div className='col-9 d-flex justify-content-start align-items-center'>
@@ -56,7 +56,7 @@ const ChooseUsSection = () => {
             {rightData.map((v, i) => (
                 <div key={i} className={`why-choose-inner-div right-box box-${i}`}>
                     <div className="row">
-                        <div className='col-3 d-flex justify-content-center align-items-center'>
+                        <div className='col-3 set-center'>
                             <img src={v.Image} alt={v.Name} />
                         </div>
                         <div className='col-9 d-flex justify-content-start align-items-center'>

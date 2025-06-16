@@ -15,11 +15,11 @@
   padding: 0px;
 }
 .avtivity-card .activity-icon {
-  height: 60px;
-  width: 60px;
-  min-width: 60px;
+  height: 50px;
+  width: 50px;
+  min-width: 50px;
   display: block;
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
   background-color: #f0122380;
   border-radius: 10px;
@@ -80,7 +80,6 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  cursor: pointer;
   overflow: hidden;
 }
 .image-upload-center-box {
@@ -104,7 +103,7 @@
   margin: 0px 10px 10px 10px;
 }
 
-/* Hide input file */
+/*------------------------- Hide input file---------------------------- */
 .image-upload-box input[type="file"] {
   display: none;
 }
@@ -112,6 +111,8 @@
   background-image: url("../../../public/assets/common/proceed-circle-loader.gif");
    filter: blur(28px);
 }
+
+/*------------------------- Circular orbit Image------------------------------------ */
 .orbit {
   position: absolute;
   width: 100%;
@@ -130,7 +131,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* Circular orbit animation */
+/*------------------------- Circular orbit animation------------------------------------ */
 @keyframes orbit {
   from {
     transform: rotate(0deg);
@@ -140,3 +141,57 @@
   }
 }
 
+/*-------------------------- image processing loader css----------------------------- */
+.rotating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1000px;
+}
+
+.rotator {
+  position: relative;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.text {
+  position: absolute;
+  transform-origin: center;
+}
+
+.gradient-text {
+  background: linear-gradient(
+    90deg,
+    rgba(88, 4, 117, 1),
+    rgba(135, 64, 205, 1),
+    rgba(98, 142, 255, 1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} 
+
+@keyframes flip {
+  0% { opacity: 1; transform: rotateX(0deg); }
+  100% { opacity: 0; transform: rotateX(90deg); }
+}
+
+@keyframes flipIn {
+  0% { opacity: 0; transform: rotateX(90deg); }
+  100% { opacity: 1; transform: rotateX(0deg); }
+}
+
+.flip {
+  animation: flip 0.5s forwards;
+}
+
+.flipIn {
+  animation: flipIn 0.5s forwards;
+}

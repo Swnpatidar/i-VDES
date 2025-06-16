@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import "./login.css";
-
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../hooks/services/api-services";
@@ -25,13 +24,14 @@ import {
   RIGHTARROW_IMG,
   CLOSE_ICON,
   LOGIN_SUCCESS_ICON,
+  LOGIN_SUCCESS_PNG,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { useTranslation } from "react-i18next";
 import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
-import Modal from "../../components/common/Model";
 import { setPermissionReducer } from "../../hooks/redux/slice/permission";
+import withModalWrapper from "../../components/common/HOC/withModalWrapper";
+import MyModal from "../../components/common/Modal/myModal";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -41,6 +41,8 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
+  const LogInModal = withModalWrapper(MyModal) //for login modal
+  const [isOpen, setIsOpen] = useState(false); //for login Modal
   const [payload, setPayload] = useState({
     email: "",
     password: "",
@@ -127,15 +129,19 @@ const Login = () => {
   //     localStorage.setItem("rememberMe", "false");
   //   }
   // };
-  useEffect(() => {
-  setTimeout(() => {
-    if (addbuttonClick.current) {
-      addbuttonClick.current.click();
-    }
-  },100);
-}, []);
+ 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsOpen(true)
+    setTimeout(() => {
+      navigate(ROUTES?.DASHBOARD)
+      setIsOpen(false)
+    }, 1200);
+  }
+
   return (
-  
+
     <>
       <div className="Auth-common-bg">
         <div className="container-fluid">
@@ -153,7 +159,7 @@ const Login = () => {
             </div>
 
             {/* Login Box */}
-          
+
             <div className="col-md-6 col-sm-12 d-flex justify-content-center h-100 ">
               <div className="login-box w-100 mx-3 position-relative">
                 <img
@@ -168,7 +174,7 @@ const Login = () => {
                     <h2 className="text-white">Login</h2>
                     <p className="text-white my-1 ">
                       Glad you're back.!
-                   
+
                     </p>
                   </div>
                   <div className="d-flex flex-column gap-3">
@@ -190,7 +196,7 @@ const Login = () => {
                       showAsterisk={false}
                         showLabel={false}
 
-                      
+
                     />
                     <ErrorMsg error={formError?.email} />
                   </div>
@@ -246,7 +252,7 @@ const Login = () => {
                     type="submit"
                     isLoading={isLoading}
                     style={{ letterSpacing: "1.5px" }}
-                    onClick={() => navigate(ROUTES?.DASHBOARD)}
+                    onClick={(e) => handleSubmit(e)}
                   />
 </div>
                   <div className="my-3">
@@ -263,23 +269,20 @@ const Login = () => {
 
                   <p class="text-center text-white mb-5 ">
                     Don't have an account?{" "}
-                  
-                     <Link to={ROUTES?.REGISTER} className="singup-color">
+
+                    <Link to={ROUTES?.REGISTER} className="singup-color">
                       Signup
                     </Link>
+
                   </p>
                 </form>
               </div>
             </div>
           </div>
         </div>
+        <LogInModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGIN_SUCCESS_PNG}
+          heading="Login Successful" />
 
-        <Modal
-          modalId="login"
-          heading="Login Successfully"
-          modalClick={addbuttonClick}
-          iconsrc={LOGIN_SUCCESS_ICON}
-        />
       </div>
     </>
   );

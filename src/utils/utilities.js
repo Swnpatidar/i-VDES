@@ -175,7 +175,7 @@ export const LoaderSpinner = () => {
     <>
       <div
         // style={{ height: "50vh" }}
-        className="d-flex justify-content-center align-items-center"
+        className="set-center"
       >
         <div>
           <DNA

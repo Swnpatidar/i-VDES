@@ -1,17 +1,15 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-const ImageProcessingLoader = ({textRef,startImageProcessingLoader}) => {
+const ImageProcessingLoader = ({textRef,startImageFlipping}) => {
   const names = ["Visual Data", "Normalization", "Augmentation", "Fine-tuning", "Image Tagging", "Validation", "Encrypting"]
   const [index, setIndex] = useState(0);
-  console.log("start processing loader===>",startImageProcessingLoader)
   useEffect(() => {
-    if (!startImageProcessingLoader) return; // don't run unless start is true
+    if (!startImageFlipping) return; 
     const interval = setInterval(() => {
       if (textRef.current) {
         textRef.current.classList.remove("flipIn");
         textRef.current.classList.add("flip");
-
         setTimeout(() => {
           setIndex((prevIndex) => (prevIndex + 1) % names.length);
           if (textRef.current) {
@@ -23,12 +21,12 @@ const ImageProcessingLoader = ({textRef,startImageProcessingLoader}) => {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, [startImageProcessingLoader]);
+  }, [startImageFlipping]);
 
   return (
-    <div className="rotating-container">
+    <div className="rotating-container image-upload-center-box">
       <div className="rotator">
-        <div className="text" ref={textRef}>
+        <div className="text gradient-text" ref={textRef}>
           {names[index]}
         </div>
       </div>
