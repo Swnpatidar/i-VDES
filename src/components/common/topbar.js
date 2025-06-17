@@ -1,6 +1,6 @@
 
 import {
-  DOWNLOAD_ICONSMALL, LOACK_ICON, LOGO_ICON, LOGOUT_ICONSMALL, LOGOUT_IMG, NOTIFICATION_ICON, PAYMENT_ICON, PROFILE_ICONSMALL, PROFILE_IMG, SMALL_LOGO, STARICON,
+  DOWNLOAD_ICONSMALL, LOACK_ICON, LOGO_ICON, LOGOUT_ICONSMALL, LOGOUT_IMG, NOTIFICATION_ICON, PAYMENT_ICON, PROFILE_ICONSMALL, PROFILE_IMG, SIDEBAR_SETTING_ACTIVE, SMALL_LOGO, STARICON,
   TOPBAR_PROFILE,
 } from "../../utils/app-image-constant";
 
@@ -35,19 +35,20 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
         <div
           className={`d-flex  align-items-center   m-0 justify-content-end gap-1 gap-sm-3`}
         >
+      
          <div className="dropdown">
   <img
     src={TOPBAR_PROFILE}
     alt="PROFILE_PICTURE"
     width={32}
     height={32}
-    className="dropdown-toggle cursor-pointer"
+    className="dropdown-toggle cursor-pointer "
     type="button"
     data-bs-toggle="dropdown"
     aria-expanded="false"
   />
 
-  <ul className="dropdown-menu p-0 mt-2">
+  <ul className="dropdown-menu p-0 mt-2 top-right-topbar">
     <Link to={ROUTES.MYPROFILE}>
       <li>
         <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
@@ -56,12 +57,22 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
         </div>
       </li>
     </Link>
-
+    <Link to={ROUTES.MYPROFILE}>
+      <li>
+        <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
+          <img src={SIDEBAR_SETTING_ACTIVE} alt="Profile Icon"  />
+          <span>Setting</span>
+        </div>
+      </li> 
+    </Link>
     <li>
-      <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
-        <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
-        <span>Logout</span>
-      </div>
+      <li className="dropdown-divider-top">
+  <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
+    <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
+    <span>Logout</span>
+  </div>
+</li>
+
     </li>
   </ul>
 </div>

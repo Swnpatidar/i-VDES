@@ -36,9 +36,10 @@
 }
 
 .donutposition {
-  width: 400px;
-  height: 400px;
+   width: 253px;
+    height: 398px;
 }
+  
 .legent-flex-gap-container {
   display: flex;
   gap: 16px;

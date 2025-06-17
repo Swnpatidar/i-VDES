@@ -561,30 +561,10 @@ table tbody tr {
   border: none !important;
 }
 
-.custom-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 999;
-  background: white;
-  border: 1px solid #ccc;
-  width: 250px;
-  max-height: 200px;
-  overflow-y: auto;
-  border-radius: 4px;
-  margin-top: 4px;
-}
 
-.custom-dropdown-item {
-  padding: 6px 10px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
 
-.custom-dropdown-item:hover {
-  background-color: #f0f0f0;
-}
+
+
 
 
 
@@ -928,7 +908,7 @@ input:-webkit-autofill:focus {
 .modal-content {
   background-color:rgba(17, 10, 28, 0.5);
   padding: 40px;
-  border-radius: 30px;
+  border-radius: 55px;
   width: 450px;
   max-width: 90%;
   position: relative;
@@ -947,4 +927,98 @@ input:-webkit-autofill:focus {
   color: #fff;
   padding: 5px;
   border-radius: 50%;
+}
+.modal-btn-close{
+  background-color: rgba(49, 49, 49, 1);
+   }
+.modal-btn-close:hover {
+  background-color: rgba(49, 49, 49, 1); /* Same as normal */
+  color: white; /* Ensure text color doesn't change */
+}
+.modal-btn-logout{
+   background-color: rgba(239, 83, 80, 1);
+ }
+.modal-btn-logout:hover {
+ background-color: rgba(239, 83, 80, 1);
+  color: white; /* Ensure text color doesn't change */
+}
+
+
+.top-right-topbar {
+  background-color:var(--darkColor);
+ border: 1px solid #28292e !important;
+ box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 10px;
+ }
+
+ .dropdown-item:hover{
+  background-color:var(--darkColor);
+
+ }
+ .dropdown-divider-top {
+  border-top: 1px solid #504d4d; /* Light gray line */
+  margin-top: 5px;
+  padding-top: 5px;
+}
+     /* Digital journey */
+.custom-section {
+  padding: 60px 20px;
+  background-color: #1b1b1f;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* howitworks */
+.how-it-works-wrapper {
+  color: white;
+  background-color: #0b0b0d;
+  /* border-radius: 20px; */
+  /* padding: 70px; */
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: white;
+}
+
+
+
+.step-number {
+  font-size: 70px;
+  font-weight: 700;
+  color: #2d2d2d;
+  /* margin-right: 20px;
+  width: 68px; */
+}
+
+
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Custom icon background helpers */
+.bg-light-primary {
+  background-color: #e2ebff;
+ 
+}
+
+.bg-light-warning {
+  background-color: #fff5e1;
+ 
+}
+
+.bg-light-pink {
+  background-color: #fde2f0;
+}
+.icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
