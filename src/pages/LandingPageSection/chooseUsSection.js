@@ -29,51 +29,52 @@ const rightData = [
 const ChooseUsSection = () => {
     return (
         <div className=''>
-<div className='text-center'>
-    <h1 className='mb-3' >Why Choose Us ?</h1 >
-        <h6 className='text-white '>Unlock the Full Potential of Your Data Security with us</h6>
-</div>
-        <div className="why-choose-section position-relative">
-            {/* Center image */}
-            <div className="center-image mx-auto position-relative z-1">
-                <img src={WHYWECHOOSE_IMAGE} className="img-fluid" alt="Center" />
-                <div className="position-absolute top-50 start-50 translate-middle text-center text-white">
-                    <h1 className="why-choose-h1">I-VDES</h1>
-                    <p className='text-white'>The Intelligent Visual Data Encryption System</p>
+
+            <div className="why-choose-section position-relative">
+                <div className='text-center'>
+                    <h1 className='mb-3' >Why Choose Us ?</h1 >
+                    <h6 className='text-white '>Unlock the Full Potential of Your Data Security with us</h6>
                 </div>
+                {/* Center image */}
+                <div className="center-image mx-auto position-relative z-1">
+                    <img src={WHYWECHOOSE_IMAGE} className="img-fluid" alt="Center" />
+                    <div className="position-absolute top-50 start-50 translate-middle text-center text-white">
+                        <h1 className="why-choose-h1">I-VDES</h1>
+                        <p className='text-white'>The Intelligent Visual Data Encryption System</p>
+                    </div>
+                </div>
+
+                {/* Left items */}
+                {leftData.map((v, i) => (
+                    <div key={i} className={`why-choose-inner-div left-box box-${i}`}>
+                        <div className="row">
+                            <div className='col-3 set-center'>
+                                <img src={v.Image} alt={v.Name} />
+                            </div>
+                            <div className='col-9 d-flex justify-content-start align-items-center'>
+                                <p className="mb-0 fw-bold  me-3">{v.Name}</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+
+                {/* Right items */}
+                {rightData.map((v, i) => (
+                    <div key={i} className={`why-choose-inner-div right-box box-${i}`}>
+                        <div className="row">
+                            <div className='col-3 set-center'>
+                                <img src={v.Image} alt={v.Name} />
+                            </div>
+                            <div className='col-9 d-flex justify-content-start align-items-center'>
+                                <p className="mb-0 fw-bold me-3">{v.Name}</p>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                ))}
             </div>
-
-            {/* Left items */}
-            {leftData.map((v, i) => (
-                <div key={i} className={`why-choose-inner-div left-box box-${i}`}>
-                    <div className="row">
-                        <div className='col-3 set-center'>
-                            <img src={v.Image} alt={v.Name} />
-                        </div>
-                        <div className='col-9 d-flex justify-content-start align-items-center'>
-                            <p className="mb-0 fw-bold  me-3">{v.Name}</p>
-                        </div>
-                    </div>
-                </div>
-            ))}
-
-            {/* Right items */}
-            {rightData.map((v, i) => (
-                <div key={i} className={`why-choose-inner-div right-box box-${i}`}>
-                    <div className="row">
-                        <div className='col-3 set-center'>
-                            <img src={v.Image} alt={v.Name} />
-                        </div>
-                        <div className='col-9 d-flex justify-content-start align-items-center'>
-                            <p className="mb-0 fw-bold me-3">{v.Name}</p>
-                        </div>
-
-
-
-                    </div>
-                </div>
-            ))}
-        </div>
         </div>
     );
 }

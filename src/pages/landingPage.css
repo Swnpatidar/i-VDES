@@ -41,14 +41,13 @@
 }
 /* -------------------------------------- Choose Us Section -------------------------------------------------- */
 .why-choose-section {
- 
-  padding: 60px 15px;
+  padding: 0px 15px;
   position: relative;
-  min-height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: column;
 }
  
 .center-image {
@@ -167,4 +166,8 @@
   .why-choose-inner-div p {
     font-size: 0.95rem;
   }
+}
+
+.hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
+  margin: 50px 0px 25px 0px;
 }
