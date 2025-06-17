@@ -5,13 +5,15 @@ import ChooseUsSection from './LandingPageSection/chooseUsSection';
 import DigitalJourneySection from './LandingPageSection/digitalJourneySection';
 import HowItWorks from './LandingPageSection/howItWorks';
 import Footer from '../components/common/footer';
+import LandingNavbar from '../components/common/landing-navbar';
 
 
 const LandingPage = () => {
   return (
     <>
-    <div className='landing-bg'>
+    <div className='landing-bg '>
     <div className='container py-4 px-0  '>
+      <LandingNavbar/>
         <HeroSection/>
         <DigitalJourneySection/>
         <ChooseUsSection/>

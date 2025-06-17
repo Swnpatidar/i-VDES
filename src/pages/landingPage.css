@@ -18,7 +18,7 @@
   pointer-events: none;
   z-index: -1;
 } */
-.hero-section .top-white-section {
+.top-white-section {
   background-color: #fff;
   padding: 10px 20px;
   border-radius: 10px;
@@ -170,4 +170,5 @@
 
 .hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
   margin: 50px 0px 25px 0px;
+   overflow-x: hidden;
 }
