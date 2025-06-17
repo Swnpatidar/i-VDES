@@ -3,14 +3,14 @@ import { DISCOVER_JOURNENY } from "../../utils/app-image-constant";
 
 const DigitalJourneySection = () => {
   return (
-    <div className="digital-journey-section">
+    <div className="digital-journey-section ">
       <div className="row align-items-center custom-section">
         {/* Left side: Single Image */}
-        <div className="col-md-5 mb-4 mb-md-0 text-lg-start ">
+        <div className="col-md-5 mb-4 mb-md-0 text-lg-start m-0 ">
           <img
             src={DISCOVER_JOURNENY}
             alt="Digital Journey"
-            className="img-fluid rounded "
+            className="img-fluid"
           />
         </div>
 

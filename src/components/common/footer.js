@@ -7,7 +7,7 @@ const Footer = () => {
      
         <div className="">
           <footer className="my-5">
-            <div className="container">
+            <div className="">
               <div className="text-center">
                 <img src={NAVBAR_LOGO} alt="Footer Logo" />
               </div>
