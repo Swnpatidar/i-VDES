@@ -9,6 +9,7 @@ import NewPassword from "./pages/auth/new-password";
 import PublicRoutes from "./hooks/routes/public-routes";
 import { ROUTES } from "./hooks/routes/routes-constant";
 import "./App.css";
+import "./Responsive.css";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
 import { useSelector } from "react-redux";

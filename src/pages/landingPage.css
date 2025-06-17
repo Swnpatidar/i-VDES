@@ -3,7 +3,7 @@
   overflow: hidden;
 }
 
-.hero-section::before {
+/* .hero-section::before {
   content: "";
   position: fixed;
   top: 0;
@@ -17,7 +17,7 @@
   );
   pointer-events: none;
   z-index: -1;
-}
+} */
 .hero-section .top-white-section {
   background-color: #fff;
   padding: 10px 20px;
@@ -26,19 +26,22 @@
 
 .hero-section .content-section .para {
   width: 95%;
-  padding: 20px 0px;
 }
-.tryNowButton {
+.hero-section .imageBox{
+  height: 74%;
+}
+
+.hero-section .tryNowButton {
   width: 100%;
-  height: 30%;
+  height: 20%;
   border-radius: 10px;
+}
+.hero-section .tryNowButton span{
+  font-size: 22px;
 }
 /* -------------------------------------- Choose Us Section -------------------------------------------------- */
 .why-choose-section {
-  background-image: url(../../public/assets/whywechooseImg/whyChooseBanner.png);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+ 
   padding: 60px 15px;
   position: relative;
   min-height: 900px;
@@ -66,14 +69,14 @@
 }
  
 .why-choose-inner-div p {
-  color: var(--blueText);
+  color:rgba(0, 43, 107, 1);
   font-weight: 700;
   margin: 0;
 }
  
 .why-choose-h1 {
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 3rem;
   line-height: 1.2;
 }
  

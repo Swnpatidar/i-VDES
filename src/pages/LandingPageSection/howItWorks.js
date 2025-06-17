@@ -9,7 +9,7 @@ import {
 
 const HowItWorks = () => {
   return (
-    <div className="container how-it-works-wrapper">
+    <div className=" how-it-works-wrapper">
       <div className="row">
         {/* Left Side - Steps */}
         <div className="col-md-6 mb-4 mb-md-0">
@@ -26,22 +26,22 @@ const HowItWorks = () => {
                 />
               </div>
               <div className="ms-3">
-                <h6 className="text-dark">Sign Up and Create Account</h6>
+                <h5 className="text-dark">Sign Up and Create Account</h5>
                 <p>Fill out your details.</p>
               </div>
             </div>
           </div>
           <div className="d-flex my-4 py-2">
             <div className=" bg-white d-flex align-items-center px-4 rounded-4 w-75">
-              <div className="icon bg-light-primary d-flex">
+              <div className="icon bg-light-warning d-flex">
                 <img
-                  src={SINGUP_ICON}
+                  src={UPLOAD_IMAGE_ICON}
                   alt="Sign Up"
                   className="img-fluid icon-img"
                 />
               </div>
               <div className="ms-3">
-                <h6 className="text-dark">Upload Your Image</h6>
+                <h5 className="text-dark">Upload Your Image</h5>
                 <p>Simply Upload your Image</p>
               </div>
             </div>
@@ -50,16 +50,16 @@ const HowItWorks = () => {
           <div className="d-flex">
             <span className="step-number me-4">03</span>
             <div className=" bg-white d-flex align-items-center px-4 rounded-4 w-75">
-              <div className="icon bg-light-primary d-flex">
+              <div className="icon bg-light-pink d-flex">
                 <img
-                  src={SINGUP_ICON}
+                  src={SECURED_ICON}
                   alt="Sign Up"
                   className="img-fluid icon-img"
                 />
               </div>
               <div className="ms-3">
-                <h6 className="text-dark">Get Secured</h6>
-                <p>Secure Your Image.</p>
+                <h5 className="text-dark">Get Secured</h5>
+                <p className="">Secure Your Image.</p>
               </div>
             </div>
           </div>

@@ -186,8 +186,8 @@ export const PAGE_404 = "./assets/img/404page.svg";
 export const RIGHTARROW_IMG = "./assets/common/rightarrowimg.png";
 export const EYE_OPEN = "./assets/loginicon/open-eye.png";
 export const COMPANY_LOGO = "./assets/common/company-logo.png";
-export const LANDING_IMAGE_1 = "./assets/common/langing-page-image1.png";
-export const LANDING_IMAGE_2 = "./assets/common/langing-page-image2.png";
+export const LANDING_IMAGE_1 = "./assets/landing-image/Hero-image-left.png";
+export const LANDING_IMAGE_2 = "./assets/landing-image/Hero-image-right.png";
 export const HIGH_IMAGE = "./assets/common/image-classification-high.png";
 export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.png";
 export const LOW_IMAGE = "./assets/common/image-classification-low.png";
@@ -246,3 +246,13 @@ export const WOMEN_WITH_LAPTOP="./assets/howitworks/womenwithcomputer.png"
 export const SINGUP_ICON="./assets/howitworks/singup-image.png"
 export const UPLOAD_IMAGE_ICON="./assets/howitworks/uploadhome-image.png"
 export const SECURED_ICON="./assets/howitworks/secured-group.png"
+
+// footer logo
+export const NAVBAR_LOGO="./assets/topbar/Navbar-logo.svg"
+export const YOUTUBE_LOGO="./assets/footer/youtube-logo.svg"
+export const TWITTER_LOGO="./assets/footer/twitter-logo.svg"
+export const FACEBOOK_LOGO="./assets/footer/facebook-logo.svg"
+export const INSTAGRAM_LOGO="./assets/footer/instagram-logo.svg"
+
+// home background image
+export const HOME_BACKGROUND_IMAGE = "./assets/landing-image/home-background-image.svg";
