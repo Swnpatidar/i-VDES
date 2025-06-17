@@ -29,18 +29,19 @@ const rightData = [
 const ChooseUsSection = () => {
     return (
         <div className=''>
-
             <div className="why-choose-section position-relative">
-                <div className='text-center'>
+                <div className='text-center mb-5'>
                     <h1 className='mb-3' >Why Choose Us ?</h1 >
                     <h6 className='text-white '>Unlock the Full Potential of Your Data Security with us</h6>
                 </div>
-                {/* Center image */}
-                <div className="center-image mx-auto position-relative z-1">
-                    <img src={WHYWECHOOSE_IMAGE} className="img-fluid" alt="Center" />
-                    <div className="position-absolute top-50 start-50 translate-middle text-center text-white">
-                        <h1 className="why-choose-h1">I-VDES</h1>
-                        <p className='text-white'>The Intelligent Visual Data Encryption System</p>
+                <div className='underCircle'>
+                    {/* Center image */}
+                    <div className="center-image mx-auto position-relative z-1">
+                        <img src={WHYWECHOOSE_IMAGE} className="img-fluid" alt="Center" />
+                        <div className="position-absolute top-50 start-50 translate-middle text-center text-white">
+                            <h1 className="why-choose-h1">I-VDES</h1>
+                            <p className='text-white'>The Intelligent Visual Data Encryption System</p>
+                        </div>
                     </div>
                 </div>
 
