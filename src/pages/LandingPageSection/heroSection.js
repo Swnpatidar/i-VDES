@@ -14,7 +14,7 @@ const HeroSection = () => {
 
       <div className='hero-section '>
       
-        <div className='content-section text-center text-md-start mb-4'>
+        <div className='content-section mb-4'>
           <div className='mb-3'>
             <h1 className='text-lg'>Secure Every Image.</h1>
             <h1 className='text-lg'>Safeguard Every Insight.</h1>

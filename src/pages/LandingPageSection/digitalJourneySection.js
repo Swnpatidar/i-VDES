@@ -3,10 +3,10 @@ import { DISCOVER_JOURNENY } from "../../utils/app-image-constant";
 
 const DigitalJourneySection = () => {
   return (
-    <div className="digital-journey-section ">
+    <div className="digital-journey-section my-3 my-md-5 ">
       <div className="row align-items-center custom-section">
         {/* Left side: Single Image */}
-        <div className="col-md-5 mb-4 mb-md-0 text-lg-start m-0 ">
+        <div className="col-md-5 mb-4 mb-md-0 text-lg-start text-sm-center ">
           <img
             src={DISCOVER_JOURNENY}
             alt="Digital Journey"
@@ -15,13 +15,13 @@ const DigitalJourneySection = () => {
         </div>
 
         {/* Right side: Content */}
-        <div className="col-md-7 content text-lg-start text-center">
+        <div className="col-md-7 content ">
           <h2>
-            Discover Our Journey <br />
-            Protecting Your Digital World <br />
-            with Expertise and Care
+            Discover Our Journey </h2>
+          <h2>   Protecting Your Digital World  </h2>
+          <h2>   with Expertise and Care
           </h2>
-          <p className="mt-3">
+          <p className="my-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

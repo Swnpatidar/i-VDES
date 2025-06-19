@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom'
 const LandingNavbar = () => {
       const navigate = useNavigate();
   return (
-    <div>
-        <div className='top-white-section'>
+    <div className='py-md-4 py-2'>
+        <div className='top-white-section '>
           <div className=' display-align justify-content-between'>
-             <img src={NAVBAR_LOGO} alt="Logo" className='' width="200px" />
-              <Button label='Login' onClick={() => navigate(ROUTES?.LOGIN)} />
+             <img src={NAVBAR_LOGO} alt="Logo" className='navbarlogo' width="200px" />
+              <Button label='Login' className="rounded-3" onClick={() => navigate(ROUTES?.LOGIN)} />
       
           </div>
           <div>

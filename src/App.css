@@ -681,56 +681,153 @@ table tbody tr {
 /* end appointment css */
 
 /* media  query*/
-@media (min-width: 320px) and (max-width: 767px) {
-  .dashboardtext {
-    font-size: var(--font16);
+@media (min-width: 320px) and (max-width: 467px) {
+  .navbarlogo{
+    width: 170px;
   }
+  .top-white-section{
+    padding:10px 12px;
+  }
+  .hero-section .text-lg {
+    font-size: 27px;
+  }
+  .content h2{
+    font-size: 22px;
+  }
+  .hero-section .content-section .para ,.content p,.footer-section p{
+    font-size: 12px;
+  }
+  .hero-section .tryNowButton span{
+    font-size: 16px;
+  }
+  .hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
+  margin: 0px 0px 0px 0px !important;
+}
+.step-number{
+  font-size: 45px !important;
+}
+.text-dark{
+  font-size: 14px !important;
+}
+.how-it-works-wrapper p{
+  font-size: 11px !important;
+}
+.howitcard{
+width: unset !important;
+}
+.footer-logo img{
+  width: 285px !important;
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 125px; 
+  z-index: 1250; 
+  /* background-color:rgba(99, 117, 197, 0.15)!important;  */
+  background-color: rgba(17, 18, 34, 1) !important;
 
-  .mainheading {
-    font-size: var(--font22);
-  }
-
-  .disabled-link {
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  .title {
-    font-size: var(--font22);
-  }
-
-  .custom-arrow {
-    top: 110%;
-    width: 30px;
-    height: 30px;
-    font-size: var(--font18);
-  }
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0%);
 }
 
-@media (min-width: 768px) and (max-width: 1196px) {
-  /* CODE TO HIDE DROPDOWN ICON IN TOPBAR */
-  .dropdown-toggle::after {
-    display: none;
-  }
-
-  .title {
-    font-size: var(--font45);
-  }
+.sidebar-show {
+  transform: translateX(1); 
+}
+  
 }
 
-@media (min-width: 1200px) and (max-width: 1450px) {
+@media (min-width: 468px) and (max-width: 767px) {
+  .hero-section .text-lg {
+    font-size: 40px;
+  }
+   .hero-section .content-section .para ,.content p,.footer-section p{
+    font-size: 14px;
+  }
+   .hero-section .tryNowButton span{
+    font-size: 19px;
+  }
+   .content h2{
+    font-size: 34px;
+  }
+   
+  .step-number{
+  font-size: 60px !important;
+}
+.text-dark{
+  font-size: 18px !important;
+}
+.how-it-works-wrapper p{
+  font-size: 14px !important;
+}
+
+.footer-logo img{
+  width: 310px !important;
+}
+.footer-section p{
+  font-size: 14px;
+}
+}
+
+
+@media (min-width: 768px) and (max-width: 1199px) {
+   .hero-section .text-lg {
+    font-size: 60px;
+  }
+    .content h2{
+    font-size: 32px;
+  }
+   .hero-section .content-section .para ,.content p,.footer-section p{
+  font-size: 15px;
+}
+  .step-number{
+  font-size: 45px !important;
+}
+.text-dark{
+  font-size: 17px !important;
+}
+.how-it-works-wrapper p{
+  font-size: 11px !important;
+}
+.footer-logo img{
+  width: 330px !important;
+}
+
+}
+@media (min-width: 1200px) and (max-width: 1458px) {
+  .hero-section .text-lg {
+    font-size: 75px;
+  }
+    .hero-section .content-section .para ,.content p,.footer-section p{
+    font-size: 18px;
+  }
+    .content h2{
+    font-size: 47px;
+  }
+   .step-number{
+  font-size: 65px !important;
+}
+.text-dark{
+  font-size: 18px !important;
+}
+ .footer-logo img{
+  width: 350px !important
+}
+
 }
 
 /* I-VDES CSS */
 .btn-common {
   background-color: var(--buttonColor);
-  padding: 10px 30px;
+  padding: 7px 30px;
   color: var(--white);
   font-weight: 500;
 }
 
 .text-lg {
-  font-size: 80px;
+  font-size: 70px;
 }
 
 .text-light {
@@ -785,7 +882,7 @@ table tbody tr {
 }
 
 .bg-sidebar {
-  background-color:rgba(99, 117, 197, 0.15);
+  background-color:rgba(17, 18, 34, 1) !important;
 }
 .z-index {
   z-index: 999;
@@ -1037,6 +1134,8 @@ input:-webkit-autofill:focus {
   background-repeat: repeat;
   background-size: cover;
   background-position: top;
-  /* background-attachment: fixed; */
-  border-radius: 1.25rem;
 }
+
+
+
+

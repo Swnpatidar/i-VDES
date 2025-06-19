@@ -9,15 +9,15 @@ import {
 
 const HowItWorks = () => {
   return (
-    <div className=" how-it-works-wrapper">
+    <div className=" how-it-works-wrapper my-3 my-md-5">
       <div className="row">
         {/* Left Side - Steps */}
         <div className="col-md-6 mb-4 mb-md-0">
           <div></div>
-          <h2 className="section-title mb-5">How It Works</h2>
-          <div className="d-flex">
+          <h2 className="section-title mb-3 mb-md-5">How It Works</h2>
+          <div className="d-flex ">
             <span className="step-number me-4">01</span>
-            <div className=" bg-white d-flex align-items-center px-4 rounded-4 w-75">
+            <div className=" bg-white d-flex align-items-center px-md-4 px-2 rounded-4 w-75 ">
               <div className="icon bg-light-primary d-flex">
                 <img
                   src={SINGUP_ICON}
@@ -31,8 +31,8 @@ const HowItWorks = () => {
               </div>
             </div>
           </div>
-          <div className="d-flex my-4 py-2">
-            <div className=" bg-white d-flex align-items-center px-4 rounded-4 w-75">
+          <div className="d-flex my-4 py-2 py-md-3 ">
+            <div className=" bg-white d-flex align-items-center px-md-4 p-2 rounded-4 w-75 ">
               <div className="icon bg-light-warning d-flex">
                 <img
                   src={UPLOAD_IMAGE_ICON}
@@ -47,9 +47,9 @@ const HowItWorks = () => {
             </div>
             <span className="step-number ms-4">02</span>
           </div>
-          <div className="d-flex">
+          <div className="d-flex ">
             <span className="step-number me-4">03</span>
-            <div className=" bg-white d-flex align-items-center px-4 rounded-4 w-75">
+            <div className=" bg-white d-flex align-items-center px-md-4 p-2 rounded-4 w-75 ">
               <div className="icon bg-light-pink d-flex">
                 <img
                   src={SECURED_ICON}

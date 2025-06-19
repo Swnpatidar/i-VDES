@@ -12,7 +12,7 @@ const LandingPage = () => {
   return (
     <>
     <div className='landing-bg '>
-    <div className='container py-4 px-0  '>
+    <div className='container  px-md-0 px-3'>
       <LandingNavbar/>
         <HeroSection/>
         <DigitalJourneySection/>

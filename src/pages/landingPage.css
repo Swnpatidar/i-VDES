@@ -127,6 +127,6 @@
 }
 
 .hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
-  margin: 50px 0px 25px 0px;
+  /* margin: 50px 0px 25px 0px; */
    overflow-x: hidden;
 }

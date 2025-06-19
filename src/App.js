@@ -17,13 +17,15 @@ import { decryptAEStoJSON } from "./utils/utilities";
 import LandingPage from "./pages/landingPage";
 import Dashboard from "./pages/Dashboard-page/dashboard";
 import FirstLayout from "./components/layouts/first-layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardDetails from "./pages/Dashboard-page/dashboard-details";
 import Register from "./pages/auth/register";
+import ConfirmSingUp from "./pages/auth/confirmsingup";
 
 
 function App() {
   const [sidebarShow, setSidebarShow] = useState(false);
+
 
   return (
     <>
@@ -63,6 +65,10 @@ function App() {
         <Route
           path={ROUTES?.REGISTER}
           element={<PublicRoutes component={<Register />} />}
+        />
+         <Route
+          path={ROUTES?.CONFIRM_SINGUP}
+          element={<PublicRoutes component={<ConfirmSingUp />} />}
         />
         <Route
           path={ROUTES?.FORGOT_PASSWORD}

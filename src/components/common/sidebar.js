@@ -44,17 +44,16 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
       src_active: SIDEBAR_SETTING_ACTIVE,
     },
   ];
-
+console.log("sidebarShow",sidebarShow)
   return (
+    <>
+    {sidebarShow &&
     <div
       className={`sidebar col-auto  p-0 overflow-visible  bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""
         }`}
     >
-      <i
-        className="bi p-3 text-white fs-1 bi-x d-inline d-md-none position-fixed top-0"
-        onClick={() => setSidebarShow(false)}
-      ></i>
-      <div className="pb-3 pt-1 cursor-pointer" onClick={() => navigate(ROUTES?.INDEX)}>
+     
+      <div className="pb-3 pt-1 cursor-pointer" >
         <div className="ms-2 me-2 text-center border-bottom-line" >
           <img
             src={SIDEBAR_MAINLOGO}
@@ -122,6 +121,8 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
       <LogoutModal isOpen={isOpen} onClose={()=>setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true}/>
       
     </div>
+}
+    </>
   );
 };
 

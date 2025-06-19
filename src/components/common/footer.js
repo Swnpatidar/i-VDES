@@ -5,16 +5,16 @@ const Footer = () => {
   return (
     <div>
      
-        <div className="">
-          <footer className="my-5">
+        <div className="footer-section my-3 my-md-5">
+          <footer className="">
             <div className="">
-              <div className="text-center">
+              <div className="text-center footer-logo">
                 <img src={NAVBAR_LOGO} alt="Footer Logo" />
               </div>
 
               {/* Description */}
               <div className=" d-flex justify-content-center align-items-center ">
-                <p className="mt-3  text-center ">
+                <p className="mt-md-3 mt-2  text-center ">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
