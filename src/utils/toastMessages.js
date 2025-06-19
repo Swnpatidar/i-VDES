@@ -1,3 +1,5 @@
+import { DefaultIdentityIdStore } from "@aws-amplify/auth/cognito";
+
 export const Message = {
     Response: {
         Get: "Data loaded successfully.",
@@ -6,7 +8,9 @@ export const Message = {
         Delete: "Item deleted successfully.",
         FormSubmit: "Form submitted successfully.",
         Login: "Login successful. Welcome back!",
-        fileUpload: "File uploaded successfully."
+        FileUpload: "File uploaded successfully.",
+        Error:"Unexpected error occurred. Please try again later.",
+        Default:"Sorry, Something Went Wrong. Try again in a moment."
     }
 }
 

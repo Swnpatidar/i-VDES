@@ -7,12 +7,12 @@ import { persistStore } from "redux-persist";
 import App from "./App";
 import { store } from "./hooks/redux/store";
 import { Amplify } from 'aws-amplify';
-// import amplifyconfig from './amplifyconfiguration.json';
+import amplifyconfig from './amplifyconfiguration.json';
 let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 
-// Amplify.configure(amplifyconfig);
+Amplify.configure(amplifyconfig);
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

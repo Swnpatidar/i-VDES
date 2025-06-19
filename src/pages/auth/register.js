@@ -25,6 +25,8 @@ import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import Modal from "../../components/common/Model";
 // import { Auth } from "aws-amplify";
 import { signUp } from '@aws-amplify/auth'; //Gen2
+import useToast from "../../hooks/Custom-hooks/useToast";
+import { Message } from "../../utils/toastMessages";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -33,6 +35,7 @@ const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
+  const toast = useToast();
 
   const [registedPayload, setRegistedPayload] = useState({
     name: "",
@@ -54,7 +57,7 @@ const Register = () => {
     setIsLoading(true);
     const { name, email, password } = registedPayload;
     const signUpDynamicPayload = {
-      username: email, 
+      username: email,
       password: password,
       options: {
         userAttributes: {
@@ -63,25 +66,30 @@ const Register = () => {
         }
       }
     }
-    console.log("signUpDynamicPayload===>",signUpDynamicPayload)
-    return
     try {
-      const result = await signUp({
-        // username: "sawan.patidar@advantal.net",
-        // password: "Sawan@123",
-        // options: {
-        //   userAttributes: {
-        //     email: "sawan.patidar@advantal.net",
-        //     name: "Sawan Patidar",
-        //   },
-        // },
-      });
-      console.log("Sign up result:", result);
-      toastEmitter("Signup successful! Please verify your email.", "success");
-      // navigate(ROUTES.CONFIRM_SINGUP);
+      const result = await signUp(signUpDynamicPayload);
+      console.log("Sign up result:==>", result);
+      
+      // {
+      //   "isSignUpComplete": false,
+      //     "nextStep": {
+      //     "signUpStep": "CONFIRM_SIGN_UP",
+      //       "codeDeliveryDetails": {
+      //       "destination": "k***@h***",
+      //         "deliveryMedium": "EMAIL",
+      //           "attributeName": "email"
+      //     }
+      //   },
+      //   "userId": "b682c2e4-6091-701f-9612-6a6372862016"
+      // }
+      if(result.userId && !result.isSignUpComplete){
+        toast.success("Registration complete. We've sent a verification code to your email.")
+        navigate(ROUTES.CONFIRM_SINGUP, { state: { email: registedPayload?.email } });
+      }else{
+        toast.error(Message.Response.Default)
+      }
     } catch (error) {
-      console.log("error ?????????", error)
-      toastEmitter(error.message || "Signup failed", "error");
+      toast.error(Message.Response.Error);
     } finally {
       setIsLoading(false);
     }
@@ -201,7 +209,6 @@ const Register = () => {
                         placeHolder="Confirm Password"
                         handleChange={handleChange}
                         error={formError?.confirmPassword}
-                        // labelName="Password"
                         showRightIcon={true}
                         showAsterisk={false}
                         showLabel={false}
@@ -214,7 +221,7 @@ const Register = () => {
                           )
                         }
                       />
-                      <ErrorMsg error={formError?.password} />
+                      <ErrorMsg error={formError?.confirmPassword} />
                     </div>
 
                     <Button
@@ -223,7 +230,6 @@ const Register = () => {
                       type="submit"
                       isLoading={isLoading}
                       style={{ letterSpacing: "1.5px" }}
-                    // onClick={() => navigate(ROUTES?.CONFIRM_SINGUP)}
                     />
                   </div>
 

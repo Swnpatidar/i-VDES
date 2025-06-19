@@ -18,16 +18,39 @@ export const handleFormInput = (
   const { name, value } = e.target;
   if (!name || name.trim() === "") return payload;
 
+  const updatedPayload = {
+    ...payload,
+    [name]: value,
+  };
+
   // Perform validation ONLY if formError and setFormError are provided
   if (validationConfig[name] && formError && setFormError) {
     const { regex, message } = validationConfig[name];
     checkValidation(value, name, message, regex, formError, setFormError);
   }
 
-  return {
-    ...payload,
-    [name]: value,
-  };
+  //only if confirmPassword field exists
+  if (
+    (name === "confirmPassword") &&
+    formError &&
+    setFormError &&
+    updatedPayload.password &&
+    !formError.password
+  ) {
+    if (updatedPayload.password !== updatedPayload.confirmPassword) {
+      setFormError((prev) => ({
+        ...prev,
+        confirmPassword: "The passwords you entered don’t match.",
+      }));
+    } else {
+      setFormError((prev) => ({
+        ...prev,
+        confirmPassword: "", // Remove mismatch error if matched
+      }));
+    }
+  }
+
+  return updatedPayload;
 };
 // export const handleFormInput = (e, payload) => {
 //   const { name, value } = e.target;
@@ -175,7 +198,7 @@ export const ErrorMsg = ({ error }) => {
     (errMsg.charAt(0).toUpperCase() + errMsg.slice(1))
       .replace(/[A-Z]/g, " $&")
       .trim();
-  return <div className="error-message-style text-danger">{formatMsg}</div>;
+  return <small className="error-message-style text-danger">{formatMsg}</small>;
 };
 
 export const hasValidationErrors = (formError) => {
