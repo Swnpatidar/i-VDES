@@ -68,7 +68,7 @@ function App() {
         />
          <Route
           path={ROUTES?.CONFIRM_SINGUP}
-          element={<PublicRoutes component={<ConfirmSingUp />} />}
+          element={<PublicRoutes component={<ConfirmSingUp />}  />}
         />
         <Route
           path={ROUTES?.FORGOT_PASSWORD}
