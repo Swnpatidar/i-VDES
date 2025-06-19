@@ -44,7 +44,6 @@ const Register = () => {
     confirmPassword: "",
   });
 
-  console.log("payload===>", registedPayload)
 
   // common handle change for name , email , password
   const handleChange = (e) => { setRegistedPayload(handleFormInput(e, registedPayload, formError, setFormError)) };

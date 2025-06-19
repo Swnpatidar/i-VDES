@@ -9,7 +9,7 @@ const ConfirmSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
   const [timer, setTimer] = useState(60);
-  const user_email= state.email
+  // const user_email= state.email
   const inputRefs = useRef([]);
   const username = "sawan.patidar@advantal.net"; // Or get it from location state
    console.log("timer",timer)
