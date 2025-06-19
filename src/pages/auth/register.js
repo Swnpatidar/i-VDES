@@ -7,103 +7,101 @@ import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../hooks/services/api-services";
 import {
   decryptAEStoString,
-  encryptJSONtoAES,
-  encryptStringtoAES,
   toastEmitter,
   validateRegex,
 } from "../../utils/utilities";
-import { setAccessTokenReducer } from "../../hooks/redux/slice/access-token";
-import { setLoggedUserReducer } from "../../hooks/redux/slice/logged-user";
-import { API_RESPONSE } from "../../utils/app-constants";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import { EmailRegex, PasswordRegex } from "../../utils/regexValidation";
 import {
   EYE_OPEN,
   EMAIL_ICON,
   EYE_CLOSE,
-  ARROW_ICON,
   RIGHTARROW_IMG,
   CLOSE_ICON,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { useTranslation } from "react-i18next";
 import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import Modal from "../../components/common/Model";
-import { setPermissionReducer } from "../../hooks/redux/slice/permission";
 // import { Auth } from "aws-amplify";
-import { signUp } from '@aws-amplify/auth';
+import { signUp } from '@aws-amplify/auth'; //Gen2
 
 const Register = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formError, setFormError] = useState({});
   const [isPwdVisible, setIsPwdVisible] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
-  const [payload, setPayload] = useState({
-    // name: "",
-    // email: "",
-    // password: "",
-    // confirmPassword: "",
+
+  const [registedPayload, setRegistedPayload] = useState({
     name: "",
+    email: "",
     password: "",
-   
-      userAttributes: {
-        email: "",
-        name: "",
-      },
-    },
-  );
-       
-  useEffect(() => {
-    const savedEmail = decryptAEStoString(localStorage.getItem("email"));
-    const savedPassword = decryptAEStoString(localStorage.getItem("password"));
-    const savedRememberMe = localStorage.getItem("rememberMe") === "true";
-    if (savedRememberMe) {
-      setPayload({
-        ...payload,
-        email: savedEmail,
-        password: savedPassword,
-      });
-      setRememberMe(true);
-    }
-  }, []);
+    confirmPassword: "",
+  });
 
-  const handleInputChange = (e) => {
-    setPayload({ ...payload, [e.target.name]: e.target.value });
-  };
+  console.log("payload===>", registedPayload)
 
+  // common handle change for name , email , password
+  const handleChange = (e) => { setRegistedPayload(handleFormInput(e, registedPayload, formError, setFormError)) };
+
+
+  // Function for form register form submit
   const handleRegister = async (e) => {
     e.preventDefault();
     setFormError({});
-    
     setIsLoading(true);
+    const { name, email, password } = registedPayload;
+    const signUpDynamicPayload = {
+      username: email, 
+      password: password,
+      options: {
+        userAttributes: {
+          ...(email && { email }),
+          ...(name && { name }),
+        }
+      }
+    }
+    console.log("signUpDynamicPayload===>",signUpDynamicPayload)
+    return
     try {
-     const result = await signUp({
-  username: "sawan.patidar@advantal.net",
-  password: "Sawan@123",
-  options: {
-    userAttributes: {
-      email: "sawan.patidar@advantal.net",
-      name: "Sawan Patidar",
-    },
-  },
-});
-
-console.log("Sign up result:", result);
-
-
+      const result = await signUp({
+        // username: "sawan.patidar@advantal.net",
+        // password: "Sawan@123",
+        // options: {
+        //   userAttributes: {
+        //     email: "sawan.patidar@advantal.net",
+        //     name: "Sawan Patidar",
+        //   },
+        // },
+      });
+      console.log("Sign up result:", result);
       toastEmitter("Signup successful! Please verify your email.", "success");
       // navigate(ROUTES.CONFIRM_SINGUP);
     } catch (error) {
-       console.log("error ?????????",error)
+      console.log("error ?????????", error)
       toastEmitter(error.message || "Signup failed", "error");
     } finally {
       setIsLoading(false);
     }
   };
+
+
+  // useEffect(() => {
+  //   const savedEmail = decryptAEStoString(localStorage.getItem("email"));
+  //   const savedPassword = decryptAEStoString(localStorage.getItem("password"));
+  //   const savedRememberMe = localStorage.getItem("rememberMe") === "true";
+  //   if (savedRememberMe) {
+  //     setRegistedPayload({
+  //       ...registedPayload,
+  //       email: savedEmail,
+  //       password: savedPassword,
+  //     });
+  //     setRememberMe(true);
+  //   }
+  // }, []);
+
 
   return (
     <>
@@ -142,34 +140,26 @@ console.log("Sign up result:", result);
                       <Input
                         className="border-radius_input"
                         type="text"
-                        value={payload.name}
+                        value={registedPayload.name}
                         name="name"
                         placeHolder="Name"
-                        handleChange={(e) =>
-                          setPayload(
-                            handleFormInput(e, payload, formError, setFormError)
-                          )
-                        }
+                        handleChange={handleChange}
                         error={formError?.name}
                         showIcon={false}
-                        iconsrc={EMAIL_ICON}
                         showAsterisk={false}
                         showLabel={false}
                       />
                       <ErrorMsg error={formError?.name} />
                     </div>
+
                     <div className="">
                       <Input
                         className="border-radius_input"
                         type="text"
-                        value={payload.email}
+                        value={registedPayload.email}
                         name="email"
-                        placeHolder="Username"
-                        handleChange={(e) =>
-                          setPayload(
-                            handleFormInput(e, payload, formError, setFormError)
-                          )
-                        }
+                        placeHolder="Email"
+                        handleChange={handleChange}
                         error={formError?.email}
                         showIcon={false}
                         iconsrc={EMAIL_ICON}
@@ -178,20 +168,16 @@ console.log("Sign up result:", result);
                       />
                       <ErrorMsg error={formError?.email} />
                     </div>
+
                     <div>
                       <Input
                         className="border-radius_input"
                         type={isPwdVisible}
-                        value={payload.password}
+                        value={registedPayload.password}
                         name="password"
                         placeHolder="Password"
-                        handleChange={(e) =>
-                          setPayload(
-                            handleFormInput(e, payload, formError, setFormError)
-                          )
-                        }
+                        handleChange={handleChange}
                         error={formError?.password}
-                        // labelName="Password"
                         showRightIcon={true}
                         showAsterisk={false}
                         showLabel={false}
@@ -210,14 +196,10 @@ console.log("Sign up result:", result);
                       <Input
                         className="border-radius_input"
                         type={isPwdVisible}
-                        value={payload.confirmPassword}
+                        value={registedPayload.confirmPassword}
                         name="confirmPassword"
                         placeHolder="Confirm Password"
-                        // handleChange={(e) =>
-                        //   setPayload(
-                        //     handleFormInput(e, payload, formError, setFormError)
-                        //   )
-                        // }
+                        handleChange={handleChange}
                         error={formError?.confirmPassword}
                         // labelName="Password"
                         showRightIcon={true}
@@ -241,7 +223,7 @@ console.log("Sign up result:", result);
                       type="submit"
                       isLoading={isLoading}
                       style={{ letterSpacing: "1.5px" }}
-                      // onClick={() => navigate(ROUTES?.CONFIRM_SINGUP)}
+                    // onClick={() => navigate(ROUTES?.CONFIRM_SINGUP)}
                     />
                   </div>
 
