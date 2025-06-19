@@ -17,7 +17,7 @@ const MyModal = ({ isOpen, onClose, icon, heading, subHeading, isButton = false 
                     <Button label="Cancel" className="mx-1 px-5 py-2 modal-btn-close rounded-3" onClick={onClose} />
                     <Button label="Yes, Logout!" className="mx-1 px-4 py-2 modal-btn-logout rounded-3 " onClick={() => navigate(ROUTES?.LOGIN)} />
                 </div>}
-            </div>
+            </div> 
         </>
     );
 }
