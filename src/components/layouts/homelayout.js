@@ -54,7 +54,7 @@ const HomeLayout = () => {
             <div className="container  mb-0 pt-lg-4 pt-md-1 pt-sm-2 ">
               <div className="d-flex justify-content-between align-items-center">
                 <div className="navbar-brand mb-sm-0 ">
-                  <a href="/I-VDES">
+                  <a href="/b&s">
                     <img
                       src={LOGO_ICON}
                       className="navbarlogo d-none d-sm-block"

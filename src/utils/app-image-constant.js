@@ -256,3 +256,4 @@ export const INSTAGRAM_LOGO="./assets/footer/instagram-logo.svg"
 
 // home background image
 export const HOME_BACKGROUND_IMAGE = "./assets/landing-image/home-background-image.svg";
+export const VERFICATION_EMAIL_LOGO="./assets/loginicon/verfication-email-logo.png"

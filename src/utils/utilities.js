@@ -3,10 +3,9 @@ import CryptoJS from "crypto-js";
 import { secretCodeAES } from "./app-constants";
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { store } from "../hooks/redux/store";
 import React from "react";
 import { DNA } from "react-loader-spinner";
-
+import { useEffect } from "react";
 export const toastEmitter = (type = "info", message = "") => {
   switch (type) {
     case "success":
@@ -103,17 +102,7 @@ export const decryptAEStoString = (str) => {
   return bytes.toString(CryptoJS.enc.Utf8);
 };
 
-export const getCurrentUser = () => {
-  // let state = store.getState(),
-  //   loggedUser = state.loggedUser.value;
-  // loggedUser = loggedUser ? decryptAEStoJSON(loggedUser) : false;
-  // return loggedUser;
-  let state = store.getState(),
-      loggedUser = state.loggedUser.value;
 
-  const user = loggedUser ? decryptAEStoJSON(loggedUser) : false;
-  return user || false;  // Ensure function always returns false or user object
-};
 
 export const modifyTableDate = (str) => {
   if (!str) return false;
@@ -191,4 +180,33 @@ export const LoaderSpinner = () => {
     </>
   );
 };
+
+
+
+let logoutTimer;
+
+const useIdleLogout = (callback, timeout = 20 * 60 * 1000) => {
+  useEffect(() => {
+    const events = ["mousemove", "keydown", "mousedown", "scroll", "touchstart"];
+
+    const resetTimer = () => {
+      clearTimeout(logoutTimer);
+      logoutTimer = setTimeout(callback, timeout);
+    };
+
+    // Attach event listeners
+    events.forEach(event => window.addEventListener(event, resetTimer));
+
+    // Start initial timer
+    logoutTimer = setTimeout(callback, timeout);
+
+    // Cleanup on unmount
+    return () => {
+      clearTimeout(logoutTimer);
+      events.forEach(event => window.removeEventListener(event, resetTimer));
+    };
+  }, [callback, timeout]);
+};
+
+export default useIdleLogout;
 

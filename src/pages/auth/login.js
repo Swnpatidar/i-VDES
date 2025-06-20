@@ -11,9 +11,7 @@ import {
   toastEmitter,
   validateRegex,
 } from "../../utils/utilities";
-import { setAccessTokenReducer } from "../../hooks/redux/slice/access-token";
-import { setLoggedUserReducer } from "../../hooks/redux/slice/logged-user";
-import { API_RESPONSE } from "../../utils/app-constants";
+
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import { EmailRegex, PasswordRegex } from "../../utils/regexValidation";
 import {
@@ -29,12 +27,12 @@ import {
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
-import { setPermissionReducer } from "../../hooks/redux/slice/permission";
 import withModalWrapper from "../../components/common/HOC/withModalWrapper";
 import MyModal from "../../components/common/Modal/myModal";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
-import { signIn } from "@aws-amplify/auth";
+import { fetchAuthSession, getCurrentUser, signIn, signOut } from "@aws-amplify/auth";
+import { setAmplifyAuthSession } from "../../hooks/redux/slice/auth-session";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -70,11 +68,11 @@ const Login = () => {
   const handleChange = (e) => { setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError)) };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  async(e) => { 
     e.preventDefault();
-    if (loginPayload.email.trim() === "") {
-      return toast.error("Email is mandatory!");
-    }
+    // if (loginPayload.email.trim() === "") {
+    //   return toast.error("Email is mandatory!");
+    // }
     if (loginPayload.password.trim() === "") {
       return toast.error("error", "Password is mandatory!");
     }
@@ -88,7 +86,7 @@ const Login = () => {
       );
     }
     setIsLoading(true);
-    AmplifySignIn()
+   await AmplifySignIn();
     setIsLoading(false);
     if (rememberMe) {
       localStorage.setItem("email", encryptStringtoAES(loginPayload?.email));
@@ -102,39 +100,57 @@ const Login = () => {
   };
 
     
-  const AmplifySignIn=async()=>{
-    const { email, password } = loginPayload;
-    console.log("login payload===>",loginPayload)
-    const loginDynamicPayload={
-      username:email,
-      password:password
-    }
- try {
+//  const getSessionAndStore = async () => {
+//     try {
+//       const session = await fetchAuthSession();
+//       dispatch(
+//         setAmplifyAuthSession({
+//           accessToken: session.tokens?.accessToken?.toString(),
+//           idToken: session.tokens?.idToken?.toString(),
+//           refreshToken: session.tokens?.refreshToken?.toString(),
+//         })
+//       );
+//     } catch (err) {
+//       console.error("Error fetching session:", err);
+//     }
+//   };
+
+const AmplifySignIn = async () => {
+  const { email, password } = loginPayload;
+  const loginDynamicPayload = {
+    username: email,
+    password: password
+  };
+
+  try {
+    console.log("Attempting to sign in with:", loginDynamicPayload);
     const result = await signIn(loginDynamicPayload);
-    console.log("result==>",result)
+    console.log("Login result:", result);
+
     if (result.isSignedIn) {
-      setIsOpen(true)
+
+    //  await getSessionAndStore();
+      toast.success("Login successful!");
+      setIsOpen(true);
       setTimeout(() => {
-      navigate(ROUTES?.DASHBOARD)
-      setIsOpen(false)
-    }, 1200);
+        setIsOpen(false);
+        navigate(ROUTES?.DASHBOARD);
+      }, 1200);
     } else {
-      toast.error("Account does not exist. Please sign up first.");
+      toast.error("Login failed. Please check your credentials.");
     }
   } catch (error) {
-    toast.error(Message.Response.Default);
+    if (error.name === "NotAuthorizedException") {
+      toast.error("Login failed, please enter valid credentials.");
+    } else if (error.name === "UserNotFoundException") {
+      toast.error("Email not registered, please create an account.");
+    } else if (error.name === "UserAlreadyAuthenticatedException") {
+      toast.error("You're already logged in.");
+    } else {
+      toast.error(Message.Response.Default);
+    }
   }
-}
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setIsOpen(true)
-  //   setTimeout(() => {
-  //     navigate(ROUTES?.DASHBOARD)
-  //     setIsOpen(false)
-  //   }, 1200);
-  // }
+};
 
   return (
 
@@ -168,7 +184,7 @@ const Login = () => {
                 <form>
                   <div className="login-welcome">
                     <h2 className="text-white">Login</h2>
-                    <p className="text-white my-1 ">
+                    <p className="text-white my-2 ">
                       Glad you're back.!
 
                     </p>

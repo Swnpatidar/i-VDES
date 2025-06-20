@@ -8,6 +8,7 @@ import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import { ErrorMsg } from "../../utils/form-utils";
 import useToast from "../../hooks/Custom-hooks/useToast";
+import { Message } from "../../utils/toastMessages";
 
 const ForgotPassword = () => {
   const toast = useToast();
@@ -63,13 +64,12 @@ const ForgotPassword = () => {
     confirmationCode: payload.code,
     newPassword: payload.password,
   });
-  toast.success("Password reset successfully! Redirecting to login...");
+  toast.success("Password reset successfully!");
   navigate(ROUTES.LOGIN);
 }
 
     } catch (err) {
-       console.log(" err ravin",err)
-      toast.error(err.message || "Something went wrong.");
+      toast.error(err.message || Message.Response.Default);
     } finally {
       setIsLoading(false);
     }
@@ -80,7 +80,7 @@ const ForgotPassword = () => {
       <div className="container-fluid">
         <div className="row min-vh-100 justify-content-center align-items-center">
           <div className="col-md-6 col-lg-5">
-            <div className="modal-content p-4">
+            <div className="modal-content p-4 border-white">
               {/* Header */}
               <div className="text-center mb-4">
                 <h5 className="text-white mb-2">

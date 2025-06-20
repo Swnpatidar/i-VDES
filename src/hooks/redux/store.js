@@ -1,38 +1,45 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
-import accessToken from "./slice/access-token";
-import loggedUser from "./slice/logged-user";
-import { FileUpload } from "./slice/file-upload";
-import permission from "./slice/permission";
+// import { configureStore } from "@reduxjs/toolkit";
+// import authAmplifySessionReducer from "./slice/auth-session"
+// export const store=configureStore({
+//     reducer:{
+//         amplifyAuthSession:authAmplifySessionReducer,
+//     }
+// })
 
+
+// store.js
+
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer, persistStore } from "redux-persist";
+
+// Slices
+import authAmplifySessionReducer from "./slice/auth-session";
+
+// 1. Combine reducers
 const rootReducer = combineReducers({
-  accessToken: accessToken,
-  loggedUser: loggedUser,
-  permission: permission,
-  FileUpload: FileUpload,
+  amplifyAuthSession: authAmplifySessionReducer, // this will NOT be persisted
 });
 
+// 2. Persist config (only for selected reducers)
 const persistConfig = {
   key: "root",
   storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-// export const store = configureStore({
-//   reducer: persistedReducer,
-//   devTools: process.env.NODE_ENV !== "production",
-//   middleware: [thunk],
-// });
 
+// 3. Configure store
 export const store = configureStore({
   reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+       ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }),
 });
+
+// 4. Persistor export
+export const persistor = persistStore(store);

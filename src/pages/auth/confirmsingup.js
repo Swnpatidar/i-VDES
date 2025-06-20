@@ -4,11 +4,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/common/button";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { ROUTES } from "../../hooks/routes/routes-constant";
+import { Message } from "../../utils/toastMessages";
+import { VERFICATION_EMAIL_LOGO } from "../../utils/app-image-constant";
 
 const ConfirmSignUp = () => {
     const navigate = useNavigate();
   const location = useLocation();
-   console.log("location",location)
   const toast = useToast(); 
   const user_email = location?.state?.email;
 
@@ -63,10 +64,10 @@ const ConfirmSignUp = () => {
         username: user_email,
         confirmationCode: code,
       });
-      toast.success("Verification successful! Redirecting to login...");
+      toast.success("Verification successful!");
       navigate(ROUTES?.LOGIN);
     } catch (err) {
-      toast.error(err.message || "Verification failed.");
+      toast.error(err.message || Message.Response.Default);
     } finally {
       setLoading(false);
     }
@@ -87,11 +88,15 @@ const ConfirmSignUp = () => {
     <div className="Auth-common-bg">
       <div className="container-fluid">
         <div className="row min-vh-100 d-flex align-items-center justify-content-center text-center">
-          <div className="modal-content">
+          <div className="modal-content border-white">
+            <div className="text-center">
+            <img src={VERFICATION_EMAIL_LOGO} alt="verfication-email" className="verificatiom-emaillogo"/>
+
+            </div>
             <div className="my-2">
               <h2>OTP Verification</h2>
             </div>
-            <div className="my-3">
+            <div className="my-2">
               <p>
                 Please enter the 6-digit OTP sent to your registered{" "}
                 <strong>email</strong>.
