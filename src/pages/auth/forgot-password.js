@@ -53,22 +53,22 @@ const ForgotPassword = () => {
 
     setIsLoading(true);
     try {
-    if (step === 1) {
-  await resetPassword({ username: payload.email });
-  toast.success("OTP sent to your email.");
-  setStep(2);
-} else {
-  await confirmResetPassword({
-    username: payload.email,
-    confirmationCode: payload.code,
-    newPassword: payload.password,
-  });
-  toast.success("Password reset successfully! Redirecting to login...");
-  navigate(ROUTES.LOGIN);
-}
+      if (step === 1) {
+        await resetPassword({ username: payload.email });
+        toast.success("OTP sent to your email.");
+        setStep(2);
+      } else {
+        await confirmResetPassword({
+          username: payload.email,
+          confirmationCode: payload.code,
+          newPassword: payload.password,
+        });
+        toast.success("Password reset successfully! Redirecting to login...");
+        navigate(ROUTES.LOGIN);
+      }
 
     } catch (err) {
-       console.log(" err ravin",err)
+      console.log(" err ravin", err)
       toast.error(err.message || "Something went wrong.");
     } finally {
       setIsLoading(false);
@@ -96,28 +96,28 @@ const ForgotPassword = () => {
               {/* Form */}
               <form onSubmit={handleSubmit}>
                 {step === 1 && (
-                  
-    <div className="mb-3">
-                      <Input
-                        className="border-radius_input"
-                        type="email"
-                        value={payload.email}
-                        name="email"
-                        placeHolder="Email"
-                        handleChange={handleChange}
-                        error={formError?.email}
-                        showIcon={false}
-                        iconsrc={EMAIL_ICON}
-                        showAsterisk={false}
-                        showLabel={false}
-                      />
-                      <ErrorMsg error={formError?.email} />
-                    </div>
+
+                  <div className="mb-3">
+                    <Input
+                      className="border-radius_input"
+                      type="email"
+                      value={payload.email}
+                      name="email"
+                      placeHolder="Email"
+                      handleChange={handleChange}
+                      error={formError?.email}
+                      showIcon={false}
+                      iconsrc={EMAIL_ICON}
+                      showAsterisk={false}
+                      showLabel={false}
+                    />
+                    <ErrorMsg error={formError?.email} />
+                  </div>
                 )}
                 {step === 2 && (
                   <>
                     <div className="mb-3">
-                       <Input
+                      <Input
                         className="border-radius_input"
                         type="text"
                         value={payload.code}
@@ -132,7 +132,7 @@ const ForgotPassword = () => {
                       />
                       <ErrorMsg error={formError?.code} />
                     </div>
-                     <div className="mb-3">
+                    <div className="mb-3">
                       <Input
                         className="border-radius_input"
                         type={isPwdVisible}

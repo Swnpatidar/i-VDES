@@ -6,10 +6,10 @@ import useToast from "../../hooks/Custom-hooks/useToast";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 
 const ConfirmSignUp = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
-   console.log("location",location)
-  const toast = useToast(); 
+  console.log("location", location)
+  const toast = useToast();
   const user_email = location?.state?.email;
 
   const [OTP, setOTP] = useState(new Array(6).fill(""));
@@ -112,7 +112,6 @@ const ConfirmSignUp = () => {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleChange(e, idx)}
-                //   onKeyDown={(e) => handleKeyDown(e, idx)}
                   ref={(el) => (inputRefs.current[idx] = el)}
                   style={{
                     width: "3rem",
@@ -127,29 +126,29 @@ const ConfirmSignUp = () => {
             </div>
 
             <div className="text-center">
-  <Button
-    className="w-50"
-    onClick={handleSubmit}
-    disabled={loading}
-    label={loading ? "Verifying..." : "Verify OTP"}
-  />
-</div>
+              <Button
+                className="w-50"
+                onClick={handleSubmit}
+                disabled={loading}
+                label={loading ? "Verifying..." : "Verify OTP"}
+              />
+            </div>
 
             <p className="mt-3">
               Didn’t receive the OTP?{" "}
-             
+
               <span
-  onClick={!resendDisabled ? handleResend : undefined}
-   className="singup-color"
-  style={{
-     fontSize:"15px",
-    textDecoration: "underline",
-    cursor: resendDisabled ? "not-allowed" : "pointer",
-    opacity: resendDisabled ? 0.5 : 1,
-  }}
->
-  Resend OTP
-</span>
+                onClick={!resendDisabled ? handleResend : undefined}
+                className="singup-color"
+                style={{
+                  fontSize: "15px",
+                  textDecoration: "underline",
+                  cursor: resendDisabled ? "not-allowed" : "pointer",
+                  opacity: resendDisabled ? 0.5 : 1,
+                }}
+              >
+                Resend OTP
+              </span>
 
             </p>
 
