@@ -2,17 +2,22 @@ import React, { useState, useRef, useEffect } from "react";
 import { confirmSignUp, resendSignUpCode } from "aws-amplify/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/common/button";
+import useToast from "../../hooks/Custom-hooks/useToast";
+import { ROUTES } from "../../hooks/routes/routes-constant";
 
 const ConfirmSignUp = () => {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+  const location = useLocation();
+   console.log("location",location)
+  const toast = useToast(); 
+  const user_email = location?.state?.email;
+
   const [OTP, setOTP] = useState(new Array(6).fill(""));
   const [loading, setLoading] = useState(false);
   const [resendDisabled, setResendDisabled] = useState(false);
   const [timer, setTimer] = useState(60);
-  const user_email= state.email
   const inputRefs = useRef([]);
-  const username = "sawan.patidar@advantal.net"; // Or get it from location state
-   console.log("timer",timer)
+
   useEffect(() => {
     let countdown;
     if (resendDisabled && timer > 0) {
@@ -45,26 +50,23 @@ const ConfirmSignUp = () => {
     }
   };
 
-
   const handleSubmit = async () => {
     const code = OTP.join("");
     if (code.length !== 6) {
-      alert("Please enter a 6-digit OTP.");
+      toast.error("Please enter a 6-digit OTP.");
       return;
     }
 
     setLoading(true);
     try {
-      const response = await confirmSignUp({
-        username,
+      await confirmSignUp({
+        username: user_email,
         confirmationCode: code,
       });
-      console.log("✅ Confirmed:", response);
-      alert("Verification successful! Redirecting to login...");
-      navigate("/login");
+      toast.success("Verification successful! Redirecting to login...");
+      navigate(ROUTES?.LOGIN);
     } catch (err) {
-      console.error("❌ Error confirming sign-up:", err);
-      alert(err.message || "Verification failed.");
+      toast.error(err.message || "Verification failed.");
     } finally {
       setLoading(false);
     }
@@ -73,11 +75,10 @@ const ConfirmSignUp = () => {
   const handleResend = async () => {
     try {
       setResendDisabled(true);
-      await resendSignUpCode({ username });
-      alert("OTP resent successfully!");
+      await resendSignUpCode({ username: user_email });
+      toast.success("OTP resent successfully!");
     } catch (error) {
-      console.error("❌ Error resending code:", error);
-      alert("Failed to resend OTP. Please try again later.");
+      toast.error("Failed to resend OTP. Please try again later.");
       setResendDisabled(false);
     }
   };
@@ -92,7 +93,7 @@ const ConfirmSignUp = () => {
             </div>
             <div className="my-3">
               <p>
-                Please enter the 6-digit OTP sent to your registered:{" "}
+                Please enter the 6-digit OTP sent to your registered{" "}
                 <strong>email</strong>.
               </p>
             </div>
@@ -111,7 +112,7 @@ const ConfirmSignUp = () => {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleChange(e, idx)}
-                  onKeyDown={(e) => handleKeyDown(e, idx)}
+                //   onKeyDown={(e) => handleKeyDown(e, idx)}
                   ref={(el) => (inputRefs.current[idx] = el)}
                   style={{
                     width: "3rem",
