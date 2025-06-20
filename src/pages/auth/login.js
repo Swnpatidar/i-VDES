@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./login.css";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "../../hooks/services/api-services";
+// import { signIn } from "../../hooks/services/api-services";
 import {
   decryptAEStoString,
   encryptJSONtoAES,
@@ -32,6 +32,9 @@ import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import { setPermissionReducer } from "../../hooks/redux/slice/permission";
 import withModalWrapper from "../../components/common/HOC/withModalWrapper";
 import MyModal from "../../components/common/Modal/myModal";
+import useToast from "../../hooks/Custom-hooks/useToast";
+import { Message } from "../../utils/toastMessages";
+import { signIn } from "@aws-amplify/auth";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -43,12 +46,10 @@ const Login = () => {
   const addbuttonClick = useRef();
   const LogInModal = withModalWrapper(MyModal) //for login modal
   const [isOpen, setIsOpen] = useState(false); //for login Modal
-  const [payload, setPayload] = useState({
+  const toast = useToast()
+  const [loginPayload, setLoginPayload] = useState({
     email: "",
     password: "",
-    userType: "CLINIC",
-    deviceToken: "",
-    deviceType: "web",
   });
 
   useEffect(() => {
@@ -56,89 +57,84 @@ const Login = () => {
     const savedPassword = decryptAEStoString(localStorage.getItem("password"));
     const savedRememberMe = localStorage.getItem("rememberMe") === "true";
     if (savedRememberMe) {
-      setPayload({
-        ...payload,
+      setLoginPayload({
+        ...loginPayload,
         email: savedEmail,
         password: savedPassword,
       });
       setRememberMe(true);
     }
   }, []);
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (payload.email.trim() === "") {
-  //     return toastEmitter("error", "Email is mandatory!");
-  //   }
-  //   if (payload.password.trim() === "") {
-  //     return toastEmitter("error", "Password is mandatory!");
-  //   }
-  //   if (!validateRegex(payload.email, EmailRegex)) {
-  //     return toastEmitter("error", "Email is invalid!");
-  //   }
-  //   if (!validateRegex(payload.password, PasswordRegex)) {
-  //     return toastEmitter(
-  //       "error",
-  //       "password should be a combination  8  characters which include altleast one special character , special symbol , capital letter and number"
-  //     );
-  //   }
 
-  //   setIsLoading(true);
-  //   signIn(payload)
-  //     .then(function (response) {
-  //       if (response.data?.status !== 200) {
-  //         toastEmitter("error", response?.data?.message);
-  //       }
-  //       if (response.data?.status === 200) {
-  //         dispatch(
-  //           setAccessTokenReducer(
-  //             encryptStringtoAES(response?.data?.data?.token)
-  //           )
-  //         );
-  //         dispatch(
-  //           setLoggedUserReducer(encryptJSONtoAES(response?.data?.data))
-  //         );
-  //         dispatch(
-  //           setPermissionReducer(
-  //             encryptJSONtoAES(
-  //               response?.data?.data?.adminResponsePayload?.roleResponsePayload
-  //                 ?.roleModuleMappingResponseList
-  //             )
-  //           )
-  //         );
+  // common handle change for name , email , password
+  const handleChange = (e) => { setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError)) };
 
-  //         addbuttonClick.current.click();
-  //         setPayload({
-  //           email: "",
-  //           password: "",
-  //           userType: "CLINIC",
-  //         });
-  //       }
-  //       return setIsLoading(false);
-  //     })
-  //     .catch(function (err) {
-  //       toastEmitter("error", API_RESPONSE?.MESSAGE_503);
-  //       return setIsLoading(false);
-  //     });
-  //   if (rememberMe) {
-  //     localStorage.setItem("email", encryptStringtoAES(payload?.email));
-  //     localStorage.setItem("password", encryptStringtoAES(payload?.password));
-  //     localStorage.setItem("rememberMe", "true");
-  //   } else {
-  //     localStorage.removeItem("email");
-  //     localStorage.removeItem("password");
-  //     localStorage.setItem("rememberMe", "false");
-  //   }
-  // };
- 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsOpen(true)
-    setTimeout(() => {
+    if (loginPayload.email.trim() === "") {
+      return toast.error("Email is mandatory!");
+    }
+    if (loginPayload.password.trim() === "") {
+      return toast.error("error", "Password is mandatory!");
+    }
+    if (!validateRegex(loginPayload.email, EmailRegex)) {
+      return toast.error("error", "Email is invalid!");
+    }
+    if (!validateRegex(loginPayload.password, PasswordRegex)) {
+      return toast.error(
+        "error",
+        "password should be a combination  8  characters which include altleast one special character , special symbol , capital letter and number"
+      );
+    }
+    setIsLoading(true);
+    AmplifySignIn()
+    setIsLoading(false);
+    if (rememberMe) {
+      localStorage.setItem("email", encryptStringtoAES(loginPayload?.email));
+      localStorage.setItem("password", encryptStringtoAES(loginPayload?.password));
+      localStorage.setItem("rememberMe", "true");
+    } else {
+      localStorage.removeItem("email");
+      localStorage.removeItem("password");
+      localStorage.setItem("rememberMe", "false");
+    }
+  };
+
+    
+  const AmplifySignIn=async()=>{
+    const { email, password } = loginPayload;
+    console.log("login payload===>",loginPayload)
+    const loginDynamicPayload={
+      username:email,
+      password:password
+    }
+ try {
+    const result = await signIn(loginDynamicPayload);
+    console.log("result==>",result)
+    if (result.isSignedIn) {
+      setIsOpen(true)
+      setTimeout(() => {
       navigate(ROUTES?.DASHBOARD)
       setIsOpen(false)
     }, 1200);
+    } else {
+      toast.error("Account does not exist. Please sign up first.");
+    }
+  } catch (error) {
+    toast.error(Message.Response.Default);
   }
+}
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setIsOpen(true)
+  //   setTimeout(() => {
+  //     navigate(ROUTES?.DASHBOARD)
+  //     setIsOpen(false)
+  //   }, 1200);
+  // }
 
   return (
 
@@ -178,83 +174,74 @@ const Login = () => {
                     </p>
                   </div>
                   <div className="d-flex flex-column gap-3">
-                  <div className="">
-                    <Input
-                      className="border-radius_input"
-                      type="text"
-                      value={payload.email}
-                      name="email"
-                      placeHolder="Username"
-                      handleChange={(e) =>
-                        setPayload(
-                          handleFormInput(e, payload, formError, setFormError)
-                        )
-                      }
-                      error={formError?.email}
-                      showIcon={false}
-                      iconsrc={EMAIL_ICON}
-                      showAsterisk={false}
+                    <div className="">
+                      <Input
+                        className="border-radius_input"
+                        type="text"
+                        value={loginPayload.email}
+                        name="email"
+                        placeHolder="Email"
+                        handleChange={handleChange}
+                        error={formError?.email}
+                        showIcon={false}
+                        iconsrc={EMAIL_ICON}
+                        showAsterisk={false}
                         showLabel={false}
 
 
-                    />
-                    <ErrorMsg error={formError?.email} />
-                  </div>
-                  <div>
-                    <Input
-                      className="border-radius_input"
-                      type={isPwdVisible}
-                      value={payload.password}
-                      name="password"
-                      placeHolder="Password"
-                      handleChange={(e) =>
-                        setPayload(
-                          handleFormInput(e, payload, formError, setFormError)
-                        )
-                      }
-                      error={formError?.password}
-                      // labelName="Password"
-                      showRightIcon={true}
-                      showAsterisk={false}
-                        showLabel={false}
-                      rightIconSrc={
-                        isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
-                      }
-                      onRightIconClick={() =>
-                        setIsPwdVisible(
-                          isPwdVisible === "password" ? "text" : "password"
-                        )
-                      }
-                    />
-                    <ErrorMsg error={formError?.password} />
-                  </div>
-                  <div className="align-position justify-content-between  text-white ">
-                    <div className="form-check">
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        id="Check1"
-                        checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
                       />
-                      <label
-                        className="my-0 text-white fs-6"
-                        htmlFor="exampleCheck1"
-                      >
-                        Remember me
-                      </label>
+                      <ErrorMsg error={formError?.email} />
                     </div>
-                  </div>
+                    <div>
+                      <Input
+                        className="border-radius_input"
+                        type={isPwdVisible}
+                        value={loginPayload.password}
+                        name="password"
+                        placeHolder="Password"
+                        handleChange={handleChange}
+                        error={formError?.password}
+                        showRightIcon={true}
+                        showAsterisk={false}
+                        showLabel={false}
+                        rightIconSrc={
+                          isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
+                        }
+                        onRightIconClick={() =>
+                          setIsPwdVisible(
+                            isPwdVisible === "password" ? "text" : "password"
+                          )
+                        }
+                      />
+                      <ErrorMsg error={formError?.password} />
+                    </div>
+                    <div className="align-position justify-content-between  text-white ">
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="Check1"
+                          checked={rememberMe}
+                          onChange={(e) => setRememberMe(e.target.checked)}
+                        />
+                        <label
+                          className="my-0 text-white fs-6"
+                          htmlFor="exampleCheck1"
+                        >
+                          Remember me
+                        </label>
+                      </div>
+                    </div>
 
-                  <Button
-                    className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5  "
-                    label="Login"
-                    type="submit"
-                    isLoading={isLoading}
-                    style={{ letterSpacing: "1.5px" }}
-                    onClick={(e) => handleSubmit(e)}
-                  />
-</div>
+                    <Button
+                      className="btn btn-common btn-lg w-100 rounded-18 fw-600 fs-5  "
+                      label="Login"
+                      type="submit"
+                      isLoading={isLoading}
+                      style={{ letterSpacing: "1.5px" }}
+                      onClick={(e) => handleSubmit(e)}
+                    />
+                  </div>
                   <div className="my-3">
                     <Link to={ROUTES?.FORGOT_PASSWORD} className="text-white">
                       Forgot password?
