@@ -34,23 +34,23 @@ const DashboardDetails = () => {
           <div className="row">
             <div className="col-12 col-lg-3 mb-4">
               <div className="data-statistics h-100">
-                <WrappedDountChart />
+                <WrappedDountChart/>
               </div>
             </div>
             <div className="col-12 col-lg-4 mb-4">
-              <WrappedLineChart />
+              <WrappedLineChart/>
             </div>
             <div className="col-12 col-lg-5 mb-4">
-              <WrappedAccuracyLineChart />
+              <WrappedAccuracyLineChart/>
             </div>
           </div>
 
           <div className="row">
             <div className="col-12 col-lg-6 mb-4">
-              <WrappedStylishlineChart />
+              <WrappedStylishlineChart/>
             </div>
             <div className="col-12 col-lg-6 mb-4">
-              <WrappedTimelineChart />
+              <WrappedTimelineChart/>
             </div>
           </div>
         </div>
