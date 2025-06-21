@@ -1007,3 +1007,6 @@ input:-webkit-autofill:focus {
 .border-light {
   border: 1px solid #7b7e8b !important;
 }
+.arrow-left {
+  transform: rotate(180deg);
+}

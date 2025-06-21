@@ -25,6 +25,7 @@ import {
   CLOSE_ICON,
   LOGIN_SUCCESS_ICON,
   LOGIN_SUCCESS_PNG,
+  ARROWTOLEFT,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
@@ -101,30 +102,30 @@ const Login = () => {
     }
   };
 
-    
-  const AmplifySignIn=async()=>{
+
+  const AmplifySignIn = async () => {
     const { email, password } = loginPayload;
-    console.log("login payload===>",loginPayload)
-    const loginDynamicPayload={
-      username:email,
-      password:password
+    console.log("login payload===>", loginPayload)
+    const loginDynamicPayload = {
+      username: email,
+      password: password
     }
- try {
-    const result = await signIn(loginDynamicPayload);
-    console.log("result==>",result)
-    if (result.isSignedIn) {
-      setIsOpen(true)
-      setTimeout(() => {
-      navigate(ROUTES?.DASHBOARD)
-      setIsOpen(false)
-    }, 1200);
-    } else {
-      toast.error("Account does not exist. Please sign up first.");
+    try {
+      const result = await signIn(loginDynamicPayload);
+      console.log("result==>", result)
+      if (result.isSignedIn) {
+        setIsOpen(true)
+        setTimeout(() => {
+          navigate(ROUTES?.DASHBOARD)
+          setIsOpen(false)
+        }, 1200);
+      } else {
+        toast.error("Account does not exist. Please sign up first.");
+      }
+    } catch (error) {
+      toast.error(Message.Response.Default);
     }
-  } catch (error) {
-    toast.error(Message.Response.Default);
   }
-}
 
 
   // const handleSubmit = (e) => {
@@ -253,15 +254,19 @@ const Login = () => {
                     <span className="divider-text mx-2">Or</span>
                     <span className="line right-line"></span>
                   </div>
-
-                  <p class="text-center text-white mb-5 ">
-                    Don't have an account?{" "}
-
-                    <Link to={ROUTES?.REGISTER} className="singup-color">
-                      Signup
+                  <div className="text-center">
+                    <p class="text-white">
+                      Don't have an account?{" "}
+                      <Link to={ROUTES?.REGISTER} className="singup-color">
+                        Signup
+                      </Link>
+                    </p>
+                    <Link to={ROUTES?.INDEX} className="singup-color">
+                      <img src={ARROWTOLEFT} className="arrow-left mx-2" alt="right-arrow" width="14px" />
+                      Back to home
                     </Link>
+                  </div>
 
-                  </p>
                 </form>
               </div>
             </div>
