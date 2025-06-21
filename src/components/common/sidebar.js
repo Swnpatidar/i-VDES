@@ -47,7 +47,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
   return (
     <>
 
-      <div className={`sidebar col-auto p-0 overflow-visible bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""}`}>
+      <div className={`sidebar p-0 bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""}`}>
         <div className="pb-3 pt-1 cursor-pointer" >
           <div className="ms-2 me-2 text-center border-bottom-line" >
             <img
@@ -62,7 +62,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
         {/* TOP LOGO AND LINE */}
 
         {/* MENU ITEMS */}
-        <div className="d-flex flex-column gap-3 overflow-auto h-100 justify-content-center">
+        <div className="sidebar-scroll-area d-flex flex-column gap-3 justify-content-center">
           <div className="h-100">
             <ul className="p-0">
               {menuItems.map((sidebar) => {
@@ -70,7 +70,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
                 return (
                   <li
                     key={sidebar.id}
-                    className="position-relative pb-4 ps-1 pe-1 pe-lg-0"
+                    className="position-relative pb-4 pe-1 pe-lg-0"
                   >
                     <NavLink
                       to={sidebar.route}
@@ -110,13 +110,10 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
             </div>
           </div>
         </div>
-
-        {/* LOGOUT MODAL */}
-
-        <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
-
       </div>
-
+      {/* LOGOUT MODAL */}
+      <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
+     
     </>
   );
 };
