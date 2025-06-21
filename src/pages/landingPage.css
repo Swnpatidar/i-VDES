@@ -70,6 +70,9 @@
   border-radius: 20px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
  
 .why-choose-inner-div p {
@@ -86,47 +89,47 @@
  
 /* Positioning left side */
 .left-box.box-0 {
-  top: 22%;
+  top: 30%;
   left: 5%;
 }
  
 .left-box.box-1 {
-  top: 37%;
-  left: 2%;
+  top: 45%;
+  left: 0%;
 }
  
 .left-box.box-2 {
-  top: 52%;
-  left: 3%;
+  top: 60%;
+  left: 2%;
 }
  
 .left-box.box-3 {
-  top: 67%;
+  top: 75%;
   left: 6%;
 }
  
 /* Positioning right side */
 .right-box.box-0 {
-  top: 22%;
+  top: 30%;
   right: 5%;
 }
  
 .right-box.box-1 {
-  top: 37%;
-  right: 2%;
+  top: 45%;
+  right: 0%;
 }
  
 .right-box.box-2 {
-  top: 52%;
-  right: 3%;
+  top: 60%;
+  right: 2%;
 }
  
 .right-box.box-3 {
-  top: 67%;
+  top: 75%;
   right: 6%;
 }
 
 .hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
-  /* margin: 50px 0px 25px 0px; */
+  margin: 0px 0px 70px 0px;
    overflow-x: hidden;
 }
