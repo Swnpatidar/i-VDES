@@ -102,6 +102,18 @@ export const decryptAEStoString = (str) => {
   return bytes.toString(CryptoJS.enc.Utf8);
 };
 
+// const SECRET_KEY = 'my-strong-secret-key'; // Define it
+// export function decryptAEStoString(ciphertext) {
+//   try {
+//     const bytes = CryptoJS.AES.decrypt(ciphertext, SECRET_KEY);
+//     const originalText = bytes.toString(CryptoJS.enc.Utf8);
+//     return originalText || null;
+//   } catch (error) {
+//     console.error("AES decryption error:", error.message);
+//     return null;
+//   }
+// }
+
 
 
 export const modifyTableDate = (str) => {

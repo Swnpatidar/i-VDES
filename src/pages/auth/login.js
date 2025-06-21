@@ -67,7 +67,20 @@ const Login = () => {
 
   // common handle change for name , email , password
   const handleChange = (e) => { setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError)) };
-
+ const getSessionAndStore = async () => {
+    try {
+      const session = await fetchAuthSession();
+      dispatch(
+        setAmplifyAuthSession({
+          accessToken: session.tokens?.accessToken?.toString(),
+          idToken: session.tokens?.idToken?.toString(),
+          refreshToken: session.tokens?.refreshToken?.toString(),
+        })
+      );
+    } catch (err) {
+      console.error("Error fetching session:", err);
+    }
+  };
 
   const handleSubmit =  async(e) => { 
     e.preventDefault();
@@ -112,6 +125,8 @@ const Login = () => {
       const result = await signIn(loginDynamicPayload);
       console.log("result==>", result)
       if (result.isSignedIn) {
+        await getSessionAndStore();
+
         setIsOpen(true)
         setTimeout(() => {
           navigate(ROUTES?.DASHBOARD)
@@ -121,6 +136,7 @@ const Login = () => {
         toast.error("Account does not exist. Please sign up first.");
       }
     } catch (error) {
+       console.log("err",error)
       toast.error(Message.Response.Default);
     }
   }
