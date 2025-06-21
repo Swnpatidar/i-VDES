@@ -19,7 +19,7 @@ root.render(
       <PersistGate persistor={persistor}>
 
       <React.StrictMode>
-        <BrowserRouter basename="/b&s">
+        <BrowserRouter basename="/I-VDES">
           <App />
         </BrowserRouter>
       </React.StrictMode>
