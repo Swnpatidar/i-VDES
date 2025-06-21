@@ -12,7 +12,7 @@ const HeroSection = () => {
     <>
       {/* <Authenticator></Authenticator> */}
 
-      <div className='hero-section '>
+      <div className='hero-section mt-0'>
       
         <div className='content-section mb-4'>
           <div className='mb-3'>
@@ -23,10 +23,10 @@ const HeroSection = () => {
         </div>
         {/* <div className='img-section'> */}
         <div className='row'>
-          <div className='col-12 col-md-7 col-sm-12 mb-3'>
+          <div className='col-12 col-md-7 col-sm-12'>
             <img src={LANDING_IMAGE_1} alt="image" width="100%" height="100%" />
           </div>
-          <div className='col-12 col-md-5 col-sm-12 mb-3'>
+          <div className='col-12 col-md-5 col-sm-12 mt-3'>
             <div className='imageBox mb-3'>
               <img src={LANDING_IMAGE_2} alt="image" width="100%" height="100%" className='mb-2' />
             </div>

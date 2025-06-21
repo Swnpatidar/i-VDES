@@ -3,7 +3,7 @@ import { DISCOVER_JOURNENY } from "../../utils/app-image-constant";
 
 const DigitalJourneySection = () => {
   return (
-    <div className="digital-journey-section my-3 my-md-5 ">
+    <div className="digital-journey-section ">
       <div className="row align-items-center custom-section">
         {/* Left side: Single Image */}
         <div className="col-md-5 mb-4 mb-md-0 text-lg-start text-sm-center ">

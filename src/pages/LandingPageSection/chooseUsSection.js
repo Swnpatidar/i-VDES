@@ -52,7 +52,7 @@ const ChooseUsSection = () => {
                             <div className='col-3 set-center'>
                                 <img src={v.Image} alt={v.Name} />
                             </div>
-                            <div className='col-9 d-flex justify-content-start align-items-center'>
+                            <div className='why-choose-inner-sub-div col-9 d-flex justify-content-start align-items-center'>
                                 <p className="mb-0 fw-bold  me-3">{v.Name}</p>
                             </div>
                         </div>
