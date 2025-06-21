@@ -5,7 +5,7 @@
   --buttonColor: #0066ff;
   --buttonlightRedColor: #ffe2e2;
   --buutonlightPrimeryColor: #c0e6ff;
-  --singupcolor:rgba(10, 118, 123, 1);
+  --singupcolor: rgba(10, 118, 123, 1);
   --buttonLightColor: #f0f9ff;
   --headingColor: #0099ff;
   --grayparaColor: #808080;
@@ -303,7 +303,6 @@ h6 {
   cursor: not-allowed !important;
 }
 
-
 /* common font-size css */
 .fs-12 {
   font-size: var(--font12);
@@ -360,13 +359,12 @@ h6 {
   border-radius: 10px;
 }
 
- .rounded-30 {
+.rounded-30 {
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   border-bottom-left-radius: 30px;
   border-bottom-right-radius: 30px;
 }
-
 
 .rounded-22 {
   border-radius: 22px;
@@ -450,9 +448,7 @@ input::-webkit-inner-spin-button {
   width: 90px;
   /* height: 100vh; */
   position: static;
-
 }
-
 
 .sidebar-active-icon {
   /* background-color: rgba(255, 255, 255, 0.4); */
@@ -560,13 +556,6 @@ table tbody td,
 table tbody tr {
   border: none !important;
 }
-
-
-
-
-
-
-
 
 /* end table css */
 /* tableheading css */
@@ -680,148 +669,10 @@ table tbody tr {
 
 /* end appointment css */
 
-/* media  query*/
-@media (min-width: 320px) and (max-width: 467px) {
-  .navbarlogo{
-    width: 170px;
-  }
-  .top-white-section{
-    padding:10px 12px;
-  }
-  .hero-section .text-lg {
-    font-size: 27px;
-  }
-  .content h2{
-    font-size: 22px;
-  }
-  .hero-section .content-section .para ,.content p,.footer-section p{
-    font-size: 12px;
-  }
-  .hero-section .tryNowButton span{
-    font-size: 16px;
-  }
-  .hero-section,.digital-journey-section,.why-choose-section,.how-it-works-wrapper{
-  margin: 0px 0px 0px 0px !important;
-}
-.step-number{
-  font-size: 45px !important;
-}
-.text-dark{
-  font-size: 14px !important;
-}
-.how-it-works-wrapper p{
-  font-size: 11px !important;
-}
-.howitcard{
-width: unset !important;
-}
-.footer-logo img{
-  width: 285px !important;
-}
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 125px; 
-  z-index: 1250; 
-  /* background-color:rgba(99, 117, 197, 0.15)!important;  */
-  background-color: rgba(17, 18, 34, 1) !important;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(0%);
-}
-
-.sidebar-show {
-  transform: translateX(1); 
-}
-  
-}
-
-@media (min-width: 468px) and (max-width: 767px) {
-  .hero-section .text-lg {
-    font-size: 40px;
-  }
-   .hero-section .content-section .para ,.content p,.footer-section p{
-    font-size: 14px;
-  }
-   .hero-section .tryNowButton span{
-    font-size: 19px;
-  }
-   .content h2{
-    font-size: 34px;
-  }
-   
-  .step-number{
-  font-size: 60px !important;
-}
-.text-dark{
-  font-size: 18px !important;
-}
-.how-it-works-wrapper p{
-  font-size: 14px !important;
-}
-
-.footer-logo img{
-  width: 310px !important;
-}
-.footer-section p{
-  font-size: 14px;
-}
-}
-
-
-@media (min-width: 768px) and (max-width: 1199px) {
-   .hero-section .text-lg {
-    font-size: 60px;
-  }
-    .content h2{
-    font-size: 32px;
-  }
-   .hero-section .content-section .para ,.content p,.footer-section p{
-  font-size: 15px;
-}
-  .step-number{
-  font-size: 45px !important;
-}
-.text-dark{
-  font-size: 17px !important;
-}
-.how-it-works-wrapper p{
-  font-size: 11px !important;
-}
-.footer-logo img{
-  width: 330px !important;
-}
-
-}
-@media (min-width: 1200px) and (max-width: 1458px) {
-  .hero-section .text-lg {
-    font-size: 75px;
-  }
-    .hero-section .content-section .para ,.content p,.footer-section p{
-    font-size: 18px;
-  }
-    .content h2{
-    font-size: 47px;
-  }
-   .step-number{
-  font-size: 65px !important;
-}
-.text-dark{
-  font-size: 18px !important;
-}
- .footer-logo img{
-  width: 350px !important
-}
-
-}
-
 /* I-VDES CSS */
 .btn-common {
   background-color: var(--buttonColor);
-  padding: 7px 30px;
+  padding: 5px 30px;
   color: var(--white);
   font-weight: 500;
 }
@@ -855,7 +706,7 @@ width: unset !important;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid rgba(83, 92, 165, 1);
-      margin: 0px 0px 30px 0px;
+  margin: 0px 0px 30px 0px;
   border-width: 3px;
 }
 
@@ -882,7 +733,7 @@ width: unset !important;
 }
 
 .bg-sidebar {
-  background-color:rgba(17, 18, 34, 1) !important;
+  background-color: rgba(17, 18, 34, 1) !important;
 }
 .z-index {
   z-index: 999;
@@ -890,12 +741,12 @@ width: unset !important;
 .text-white {
   color: var(--white);
 }
- /* Breadcrum */
- .headingarrowicon {
+/* Breadcrum */
+.headingarrowicon {
   width: 13px;
   height: 17px;
 }
-.set-center{
+.set-center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -931,7 +782,6 @@ width: unset !important;
   font-size: 12px;
 }
 
-
 .Auth-common-bg {
   background-image: url("../public/assets/dashboardicons/Auth-bg.png");
   background-repeat: repeat;
@@ -945,17 +795,19 @@ input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 1000px rgb(9, 9, 9) inset !important;
   box-shadow: 0 0 0 1000px rgb(4, 4, 4) inset !important;
   -webkit-text-fill-color: #fef9f9 !important;
-  background-color:rgba(34, 34, 34, 0.7);
-
+  background-color: rgba(34, 34, 34, 0.7);
 }
 input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px rgb(12, 12, 12) inset !important;
 }
-.singup-color{
-  color: var(--singupcolor)
+.singup-color {
+  color: var(--singupcolor);
 }
 /* -------------------------Toast CSS------------------------ */
-.toast-success,.toast-error,.toast-info,.toast-warn {
+.toast-success,
+.toast-error,
+.toast-info,
+.toast-warn {
   background-color: #14172b !important;
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 12px rgba(206, 206, 206, 0.3);
@@ -1003,7 +855,7 @@ input:-webkit-autofill:focus {
 }
 
 .modal-content {
-  background-color:rgba(17, 10, 28, 0.5);
+  background-color: rgba(17, 10, 28, 0.5);
   padding: 40px;
   border-radius: 55px;
   width: 450px;
@@ -1025,40 +877,38 @@ input:-webkit-autofill:focus {
   padding: 5px;
   border-radius: 50%;
 }
-.modal-btn-close{
+.modal-btn-close {
   background-color: rgba(49, 49, 49, 1);
-   }
+}
 .modal-btn-close:hover {
   background-color: rgba(49, 49, 49, 1); /* Same as normal */
   color: white; /* Ensure text color doesn't change */
 }
-.modal-btn-logout{
-   background-color: rgba(239, 83, 80, 1);
- }
+.modal-btn-logout {
+  background-color: rgba(239, 83, 80, 1);
+}
 .modal-btn-logout:hover {
- background-color: rgba(239, 83, 80, 1);
+  background-color: rgba(239, 83, 80, 1);
   color: white; /* Ensure text color doesn't change */
 }
 
-
 .top-right-topbar {
-  background-color:var(--darkColor);
- border: 1px solid #28292e !important;
- box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 10px;
- }
+  background-color: var(--darkColor);
+  border: 1px solid #28292e !important;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 5px 10px;
+}
 
- .dropdown-item:hover{
-  background-color:var(--darkColor);
-
- }
- .dropdown-divider-top {
+.dropdown-item:hover {
+  background-color: var(--darkColor);
+}
+.dropdown-divider-top {
   border-top: 1px solid #504d4d; /* Light gray line */
   margin-top: 5px;
   padding-top: 5px;
 }
-     /* Digital journey */
+/* Digital journey */
 .custom-section {
-  background-color:rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 24px;
   /* overflow: hidden; */
 }
@@ -1078,8 +928,6 @@ input:-webkit-autofill:focus {
   color: white;
 }
 
-
-
 .step-number {
   font-size: 70px;
   font-weight: 700;
@@ -1087,8 +935,6 @@ input:-webkit-autofill:focus {
   /* margin-right: 20px;
   width: 68px; */
 }
-
-
 
 .icon {
   width: 50px;
@@ -1102,12 +948,10 @@ input:-webkit-autofill:focus {
 /* Custom icon background helpers */
 .bg-light-primary {
   background-color: #e2ebff;
- 
 }
 
 .bg-light-warning {
   background-color: #fff5e1;
- 
 }
 
 .bg-light-pink {
@@ -1119,23 +963,31 @@ input:-webkit-autofill:focus {
   object-fit: contain;
 }
 
-.how-it-works-wrapper p{
+.how-it-works-wrapper p {
   color: rgba(65, 77, 96, 1);
   font-size: 16px;
 }
-.how-it-works-wrapper h6{
+.how-it-works-wrapper h6 {
   color: rgba(30, 36, 44, 1);
   font-weight: 500;
 }
 
- /* home background image */
- .landing-bg {
+/* home background image */
+.landing-bg {
   background-image: url("../public/assets/landing-image/home-background-image.svg");
   background-repeat: repeat;
   background-size: cover;
   background-position: top;
 }
-
-
-
-
+.bi-x::before {
+  border-radius: 6px !important;
+  background: #d70707 !important;
+}
+.bi-transiton {
+  z-index: 1100;
+  position: relative !important;
+}
+.bi-transiton.bi-x {
+  transition: transform 0.4s ease-out;
+  transform: translateX(365%);
+}

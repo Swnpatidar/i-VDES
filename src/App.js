@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AuthLayout from "./components/layouts/auth-layout";
 import PageNotFound from "./pages/pageNotFound";
 import Login from "./pages/auth/login";
 import ForgotPassword from "./pages/auth/forgot-password";
@@ -12,20 +11,15 @@ import "./App.css";
 import "./Responsive.css";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
-import { useSelector } from "react-redux";
-import { decryptAEStoJSON } from "./utils/utilities";
 import LandingPage from "./pages/landingPage";
 import Dashboard from "./pages/Dashboard-page/dashboard";
 import FirstLayout from "./components/layouts/first-layout";
-import { useEffect, useState } from "react";
 import DashboardDetails from "./pages/Dashboard-page/dashboard-details";
 import Register from "./pages/auth/register";
 import ConfirmSingUp from "./pages/auth/confirmsingup";
 
 
 function App() {
-  const [sidebarShow, setSidebarShow] = useState(false);
-
 
   return (
     <>
@@ -37,14 +31,13 @@ function App() {
           element={<PublicRoutes component={<LandingPage />} />}
         />
 
-        <Route element={<FirstLayout sidebarShow={sidebarShow}
-          setSidebarShow={setSidebarShow} />}>
+        <Route element={<FirstLayout/>}>
 
           <Route
             path={ROUTES?.DASHBOARD}
             element={
               <PublicRoutes
-                component={<Dashboard setSidebarShow={setSidebarShow} />}
+                component={<Dashboard />}
               />
             }
           />
@@ -52,12 +45,11 @@ function App() {
             path={ROUTES?.DASHBOARDDETAILS}
             element={
               <PublicRoutes
-                component={<DashboardDetails setSidebarShow={setSidebarShow} />}
+                component={<DashboardDetails/>}
               />
             }
           />
         </Route>
-        {/* <Route element={<AuthLayout />}> */}
         <Route
           path={ROUTES?.LOGIN}
           element={<PublicRoutes component={<Login />} />}

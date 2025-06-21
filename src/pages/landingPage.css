@@ -50,7 +50,7 @@
 }
 
 .why-choose-section .underCircle {
-    background-image: url(http://localhost:3001/I-VDES/static/media/Circke-ChooseUsimage.c91d35576a9bbfa692b8.svg);
+    background-image: url("../../public/assets/dashboardicons/Circke-ChooseUsimage.svg");
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;

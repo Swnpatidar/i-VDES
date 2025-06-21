@@ -25,32 +25,25 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
       {" "}
       <div className="row position-sticky top-0  bg-off-dark z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
         <div className="col-6 col-md-4 p-0">
-          <div className="d-flex gap-1  justify-content-sm-centerjustify-content-md-start align-items-center">
+          <div className="d-flex gap-1 justify-content-sm-centerjustify-content-md-start align-items-center">
+            <i
+              className={`bi-transiton bi fs-2 d-md-none me-3 cursor-pointer position-relative ${sidebarShow ? "bi-x" : "bi-list"
+                }`}
+              style={{
+                //left: sidebarShow ? "100px" : "0px", // Move left only for bi-x
+              }}
+              onClick={() => setSidebarShow((prev) => !prev)}
+            ></i>
             <Link to={ROUTES.INDEX}>
               {/* <img src={LOGO_ICON} alt="" className="logoimg d-none d-sm-block" /> */}
-              <div className="d-none d-sm-block">
-                <h5 className="font-28">Welcome Back, Hassan!</h5>
+              <div className="topbarTextSection">
+                <h5 className="font-28 topbar-heading">Welcome Back, Hassan!</h5>
                 <p className="">Hope Your Doing Good...!</p>
               </div>
             </Link>
-          
-   <i
-  className={`bi fs-2 d-md-none cursor-pointer position-relative ${
-    sidebarShow ? "bi-x" : "bi-list"
-  }`}
-  style={{
-    zIndex: 1100,
-    position: "relative",
-    left: sidebarShow ? "100px" : "0px", // Move left only for bi-x
-  }}
-  onClick={() => setSidebarShow((prev) => !prev)}
-></i>
-
-
-
           </div>
         </div>
-        <div className="col-4 col-md-9  col-lg-8 col-xl-7 col-xxl-6 p-0">
+        <div className="col-4 col-md-8 col-lg-8 col-xl-7 col-xxl-6 p-0">
           <div
             className={`d-flex  align-items-center   m-0 justify-content-end gap-1 gap-sm-3`}
           >

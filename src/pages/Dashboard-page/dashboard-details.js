@@ -31,25 +31,25 @@ const DashboardDetails = () => {
 
       <>
         <div className="gradient-common-bg">
-          <div className="row mb-4">
-            <div className="col-12 col-lg-3 ">
+          <div className="row">
+            <div className="col-12 col-lg-3 mb-4">
               <div className="data-statistics h-100">
                 <WrappedDountChart />
               </div>
             </div>
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-4 mb-4">
               <WrappedLineChart />
             </div>
-            <div className="col-12 col-lg-5">
+            <div className="col-12 col-lg-5 mb-4">
               <WrappedAccuracyLineChart />
             </div>
           </div>
 
           <div className="row">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 mb-4">
               <WrappedStylishlineChart />
             </div>
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-6 mb-4">
               <WrappedTimelineChart />
             </div>
           </div>

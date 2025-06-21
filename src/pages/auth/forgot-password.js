@@ -3,7 +3,7 @@ import { resetPassword, confirmResetPassword } from 'aws-amplify/auth';
 
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
-import { EMAIL_ICON, ARROW_ICON, EYE_CLOSE, EYE_OPEN } from "../../utils/app-image-constant";
+import { EMAIL_ICON, ARROW_ICON, EYE_CLOSE, EYE_OPEN, FORGET_PASSWORD } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import { ErrorMsg } from "../../utils/form-utils";
@@ -83,13 +83,14 @@ const ForgotPassword = () => {
             <div className="modal-content p-4">
               {/* Header */}
               <div className="text-center mb-4">
+                <img src={FORGET_PASSWORD} className="mb-3" alt="password" width="100px" />
                 <h5 className="text-white mb-2">
                   {step === 1 ? "Forgot Password!" : "Reset Password"}
                 </h5>
                 <p className="mb-0">
                   {step === 1
-                    ? "No worries, we'll send you reset instructions."
-                    : "Please enter the OTP sent to your email and set a new password."}
+                    ? "Please enter your registered email address. We will send you a One-Time Password to verify your identity."
+                    : "A One-Time Password (OTP) has been sent to your registered email address. Please enter the OTP below to proceed with resetting your password."}
                 </p>
               </div>
 
