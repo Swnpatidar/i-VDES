@@ -22,7 +22,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
       {" "}
       <div className="row position-sticky top-0 bg-off-dark z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
         <div className="col-6 col-md-4 p-0">
-          <div className="d-flex gap-1 justify-content-sm-center justify-content-md-start align-items-center">
+          <div className="d-flex gap-1 justify-content-sm-start justify-content-md-start align-items-center">
             <i
               className={`bi-transiton bi fs-2 d-md-none me-3 cursor-pointer position-relative ${sidebarShow ? "bi-x" : "bi-list"
                 }`}
