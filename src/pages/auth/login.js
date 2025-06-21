@@ -23,6 +23,7 @@ import {
   CLOSE_ICON,
   LOGIN_SUCCESS_ICON,
   LOGIN_SUCCESS_PNG,
+  ARROWTOLEFT,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
@@ -99,58 +100,40 @@ const Login = () => {
     }
   };
 
-    
-//  const getSessionAndStore = async () => {
-//     try {
-//       const session = await fetchAuthSession();
-//       dispatch(
-//         setAmplifyAuthSession({
-//           accessToken: session.tokens?.accessToken?.toString(),
-//           idToken: session.tokens?.idToken?.toString(),
-//           refreshToken: session.tokens?.refreshToken?.toString(),
-//         })
-//       );
-//     } catch (err) {
-//       console.error("Error fetching session:", err);
-//     }
-//   };
 
-const AmplifySignIn = async () => {
-  const { email, password } = loginPayload;
-  const loginDynamicPayload = {
-    username: email,
-    password: password
-  };
-
-  try {
-    console.log("Attempting to sign in with:", loginDynamicPayload);
-    const result = await signIn(loginDynamicPayload);
-    console.log("Login result:", result);
-
-    if (result.isSignedIn) {
-
-    //  await getSessionAndStore();
-      toast.success("Login successful!");
-      setIsOpen(true);
-      setTimeout(() => {
-        setIsOpen(false);
-        navigate(ROUTES?.DASHBOARD);
-      }, 1200);
-    } else {
-      toast.error("Login failed. Please check your credentials.");
+  const AmplifySignIn = async () => {
+    const { email, password } = loginPayload;
+    console.log("login payload===>", loginPayload)
+    const loginDynamicPayload = {
+      username: email,
+      password: password
     }
-  } catch (error) {
-    if (error.name === "NotAuthorizedException") {
-      toast.error("Login failed, please enter valid credentials.");
-    } else if (error.name === "UserNotFoundException") {
-      toast.error("Email not registered, please create an account.");
-    } else if (error.name === "UserAlreadyAuthenticatedException") {
-      toast.error("You're already logged in.");
-    } else {
+    try {
+      const result = await signIn(loginDynamicPayload);
+      console.log("result==>", result)
+      if (result.isSignedIn) {
+        setIsOpen(true)
+        setTimeout(() => {
+          navigate(ROUTES?.DASHBOARD)
+          setIsOpen(false)
+        }, 1200);
+      } else {
+        toast.error("Account does not exist. Please sign up first.");
+      }
+    } catch (error) {
       toast.error(Message.Response.Default);
     }
   }
-};
+
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setIsOpen(true)
+  //   setTimeout(() => {
+  //     navigate(ROUTES?.DASHBOARD)
+  //     setIsOpen(false)
+  //   }, 1200);
+  // }
 
   return (
 
@@ -269,15 +252,19 @@ const AmplifySignIn = async () => {
                     <span className="divider-text mx-2">Or</span>
                     <span className="line right-line"></span>
                   </div>
-
-                  <p class="text-center text-white mb-5 ">
-                    Don't have an account?{" "}
-
-                    <Link to={ROUTES?.REGISTER} className="singup-color">
-                      Signup
+                  <div className="text-center">
+                    <p class="text-white">
+                      Don't have an account?{" "}
+                      <Link to={ROUTES?.REGISTER} className="singup-color">
+                        Signup
+                      </Link>
+                    </p>
+                    <Link to={ROUTES?.INDEX} className="singup-color">
+                      <img src={ARROWTOLEFT} className="arrow-left mx-2" alt="right-arrow" width="14px" />
+                      Back to home
                     </Link>
+                  </div>
 
-                  </p>
                 </form>
               </div>
             </div>

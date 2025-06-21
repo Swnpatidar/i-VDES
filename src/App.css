@@ -734,8 +734,7 @@ table tbody tr {
   border-bottom: 1px solid var(--borderTopLogoutColor);
 }
 .sidebar-logo-img {
-  margin-top: 22px;
-  margin-bottom: 22px;
+  margin: 22px 0px;
   width: 40px;
   height: 40px;
 }
@@ -1003,8 +1002,11 @@ input:-webkit-autofill:focus {
 }
 .bi-transiton.bi-x {
   transition: transform 0.4s ease-out;
-  transform: translateX(365%);
+  transform: translateX(290%);
 }
 .border-light {
   border: 1px solid #7b7e8b !important;
+}
+.arrow-left {
+  transform: rotate(180deg);
 }

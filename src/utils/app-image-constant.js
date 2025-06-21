@@ -193,6 +193,7 @@ export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.png";
 export const LOW_IMAGE = "./assets/common/image-classification-low.png";
 export const NONE_IMAGE = "./assets/common/image-classification-none.png"
 export const FORGET_PASSWORD = "./assets/common/forget-img.png"
+export const ARROWTOLEFT = "./assets/common/arrow-right.svg"
 
 // Topbar and Side Bar
 export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.png"
