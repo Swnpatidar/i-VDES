@@ -38,7 +38,7 @@ const Dashboard = () => {
               <h5 className="my-3">Your Statistics</h5>
               <div className="row mb-4">
                 {/* Data Statistics - col-4 */}
-                <div className="col-md-4 col-lg-6 ">
+                <div className="col-md-4 col-lg-6 mb-4">
                   <WrappedDountChart />
                 </div>
                 {/* Image Classification - col-8 */}

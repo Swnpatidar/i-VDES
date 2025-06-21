@@ -3,12 +3,11 @@
 import Sidebar from "../common/sidebar";
 import Topbar from "../common/topbar";
 import { Outlet } from "react-router-dom";
+import { useState } from "react";
 
-import {
-  SIDEBAR_TOP_LEFT_IMAGE,
-} from "../../utils/app-image-constant";
+const FirstLayout = () => {
+  const [sidebarShow, setSidebarShow] = useState(false);
 
-const FirstLayout = ({ setSidebarShow, sidebarShow }) => {
   return (
     //FOR TWO PARTS SIDEBAR AND MAIN BODY
     <div className="container-fluid screen-height p-4 overflow-hidden">
@@ -17,7 +16,7 @@ const FirstLayout = ({ setSidebarShow, sidebarShow }) => {
         <Sidebar setSidebarShow={setSidebarShow} sidebarShow={sidebarShow} />
 
         <div className="col table_resp_dnp h-100 ">
-          <div className=" px-lg-2   h-100 overflow-auto  ">
+          <div className="px-lg-2 h-100 overflow-auto  ">
             <div className="">
               <Topbar
                 sidebarShow={sidebarShow}

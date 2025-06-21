@@ -2,7 +2,7 @@
   "name": "b&s",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/b&s",
+  "homepage": "/I-VDES/",
   "dependencies": {
     "@aws-amplify/auth": "^6.13.1",
     "@aws-amplify/ui-react": "^6.11.2",

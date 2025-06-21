@@ -5,7 +5,7 @@ const withModalWrapper = (WrappedModalComponent) => {
         if (!isOpen) return false;
         return (
             <div className="modal-overlay">
-                <div className="modal-content">
+                <div className="modal-content border-light">
                     {/* <img
                         src={CLOSE_ICON}
                         alt="Close"

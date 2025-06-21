@@ -18,7 +18,6 @@ import MyModal from "./Modal/myModal";
 
 const Sidebar = ({ setSidebarShow, sidebarShow }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
   const menuItems = [
@@ -44,84 +43,77 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
       src_active: SIDEBAR_SETTING_ACTIVE,
     },
   ];
-console.log("sidebarShow",sidebarShow)
+  console.log("sidebarShow==>", sidebarShow)
   return (
     <>
-    {sidebarShow &&
-    <div
-      className={`sidebar col-auto  p-0 overflow-visible  bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""
-        }`}
-    >
-     
-      <div className="pb-3 pt-1 cursor-pointer" >
-        <div className="ms-2 me-2 text-center border-bottom-line" >
-          <img
-            src={SIDEBAR_MAINLOGO}
-            alt="Main Logo"
-            className="sidebar-logo-img"
-          />
 
+      <div className={`sidebar p-0 bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""}`}>
+        <div className="pb-3 pt-1 cursor-pointer" >
+          <div className="ms-2 me-2 text-center border-bottom-line" >
+            <img
+              src={SIDEBAR_MAINLOGO}
+              alt="Main Logo"
+              className="sidebar-logo-img"
+            />
+
+          </div>
         </div>
-      </div>
 
-      {/* TOP LOGO AND LINE */}
+        {/* TOP LOGO AND LINE */}
 
-      {/* MENU ITEMS */}
-      <div className="d-flex flex-column gap-3 overflow-auto h-100 justify-content-center">
-        <div className="h-100">
-          <ul className="p-0">
-            {menuItems.map((sidebar) => {
-              const isActive = location.pathname.includes(sidebar.route);
-              return (
-                <li
-                  key={sidebar.id}
-                  className="position-relative pb-4 ps-1 pe-1 pe-lg-0"
-                >
-                  <NavLink
-                    to={sidebar.route}
-                    className={({ isActive: linkIsActive }) =>
-                      `fs-6 sidebar-item text-decoration-none ${linkIsActive ? "active" : ""
-                      }`
-                    }
-                    onClick={() => setSidebarShow(false)}
+        {/* MENU ITEMS */}
+        <div className="sidebar-scroll-area d-flex flex-column gap-3 justify-content-center">
+          <div className="h-100">
+            <ul className="p-0">
+              {menuItems.map((sidebar) => {
+                const isActive = location.pathname.includes(sidebar.route);
+                return (
+                  <li
+                    key={sidebar.id}
+                    className="position-relative pb-4 pe-1 pe-lg-0"
                   >
-                    <div className="d-flex justify-content-center px-2">
-                      <div className="sidebar-not-active-icon sidebar-active-icon w-auto d-inline-block">
-                        <img
-                          src={
-                            isActive
-                              ? sidebar.src_active
-                              : sidebar.src_not_active
-                          }
-                          alt="sidebar_icon"
-                        />
+                    <NavLink
+                      to={sidebar.route}
+                      className={({ isActive: linkIsActive }) =>
+                        `fs-6 sidebar-item text-decoration-none ${linkIsActive ? "active" : ""
+                        }`
+                      }
+                      onClick={() => setSidebarShow(false)}
+                    >
+                      <div className="d-flex justify-content-center px-2">
+                        <div className="sidebar-not-active-icon sidebar-active-icon w-auto d-inline-block">
+                          <img
+                            src={
+                              isActive
+                                ? sidebar.src_active
+                                : sidebar.src_not_active
+                            }
+                            alt="sidebar_icon"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  </NavLink>
-                </li>
-              );
-            })}
-          </ul>
+                    </NavLink>
+                  </li>
+                );
+              })}
+            </ul>
 
-          {/* LOGOUT ICON */}
-          <div className="pt-3 pb-3 cursor-pointer" onClick={() => setIsOpen(true)}> 
-            <div className="ms-2 me-2 text-center border-top-logout">
-              <img
-                src={SIDEBAR_LOGOUT}
-                alt="LOGOUT-ICON"
-                className="mt-3 mb-1"
-              />
+            {/* LOGOUT ICON */}
+            <div className="pt-3 pb-3 cursor-pointer" onClick={() => setIsOpen(true)}>
+              <div className="ms-2 me-2 text-center border-top-logout">
+                <img
+                  src={SIDEBAR_LOGOUT}
+                  alt="LOGOUT-ICON"
+                  className="mt-3 mb-1"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-
       {/* LOGOUT MODAL */}
-
-      <LogoutModal isOpen={isOpen} onClose={()=>setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true}/>
-      
-    </div>
-}
+      <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
+     
     </>
   );
 };
