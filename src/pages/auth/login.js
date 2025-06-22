@@ -67,14 +67,16 @@ const Login = () => {
 
   // common handle change for name , email , password
   const handleChange = (e) => { setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError)) };
- const getSessionAndStore = async () => {
+
+  // get token 
+  const getSessionAndStore = async () => {
     try {
       const session = await fetchAuthSession();
       dispatch(
         setAmplifyAuthSession({
-          accessToken: session.tokens?.accessToken?.toString(),
-          idToken: session.tokens?.idToken?.toString(),
-          refreshToken: session.tokens?.refreshToken?.toString(),
+          accessToken: encryptJSONtoAES(session.tokens?.accessToken?.toString()),
+          idToken: encryptJSONtoAES(session.tokens?.idToken?.toString()),
+          refreshToken: encryptJSONtoAES(session.tokens?.refreshToken?.toString()),
         })
       );
     } catch (err) {
@@ -82,7 +84,7 @@ const Login = () => {
     }
   };
 
-  const handleSubmit =  async(e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (loginPayload.email.trim() === "") {
       return toast.error("Email is mandatory!");
@@ -100,7 +102,7 @@ const Login = () => {
       );
     }
     setIsLoading(true);
-   await AmplifySignIn();
+    await AmplifySignIn();
     setIsLoading(false);
     if (rememberMe) {
       localStorage.setItem("email", encryptStringtoAES(loginPayload?.email));
@@ -116,7 +118,6 @@ const Login = () => {
 
   const AmplifySignIn = async () => {
     const { email, password } = loginPayload;
-    console.log("login payload===>", loginPayload)
     const loginDynamicPayload = {
       username: email,
       password: password
@@ -125,8 +126,7 @@ const Login = () => {
       const result = await signIn(loginDynamicPayload);
       console.log("result==>", result)
       if (result.isSignedIn) {
-        await getSessionAndStore();
-
+        await getSessionAndStore(); //to get the Token
         setIsOpen(true)
         setTimeout(() => {
           navigate(ROUTES?.DASHBOARD)
@@ -136,20 +136,10 @@ const Login = () => {
         toast.error("Account does not exist. Please sign up first.");
       }
     } catch (error) {
-       console.log("err",error)
+      console.log("err", error)
       toast.error(Message.Response.Default);
     }
   }
-
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setIsOpen(true)
-  //   setTimeout(() => {
-  //     navigate(ROUTES?.DASHBOARD)
-  //     setIsOpen(false)
-  //   }, 1200);
-  // }
 
   return (
 

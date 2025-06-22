@@ -73,8 +73,6 @@ export const encryptJSONtoAES = (str) => {
 
 export const decryptAEStoJSON = (str) => {
   if (!str) return false;
-  // const bytes = CryptoJS.AES.decrypt(str, secretCodeAES);
-  // return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
    try {
     const bytes = CryptoJS.AES.decrypt(str, secretCodeAES);
     const decryptedText = bytes.toString(CryptoJS.enc.Utf8);

@@ -15,7 +15,8 @@ const PublicRoutes = ({ component }) => {
   try {
     // Avoid decryption if token is not a valid encrypted string
     if (rawAccessToken && typeof rawAccessToken === "string") {
-      decryptedToken = decryptAEStoString(rawAccessToken);
+      // decryptedToken = decryptAEStoString(rawAccessToken);
+      decryptedToken = rawAccessToken;
     }
   } catch (err) {
     console.error("Decryption failed:", err.message);
@@ -23,6 +24,7 @@ const PublicRoutes = ({ component }) => {
   }
 
   if (decryptedToken) {
+    // If already signed in, redirect to dashboard
     return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
 

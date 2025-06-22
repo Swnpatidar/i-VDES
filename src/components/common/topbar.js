@@ -17,6 +17,13 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
   console.log("isOpen==>", isOpen)
+
+// Logout Function
+const handleLogout=()=>{
+    setIsOpen(true)
+}
+
+
   return (
     <>
       {" "}
@@ -74,7 +81,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
                   <li className="dropdown-divider-top">
                     <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2" >
                       <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
-                      <span onClick={() => setIsOpen(true)} >Logout</span>
+                      <span onClick={handleLogout} >Logout</span>
                     </div>
                   </li>
                 </li>
@@ -84,7 +91,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
         </div>
       </div>
 
-      <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
+      <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true}/>
     </>
   );
 };

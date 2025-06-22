@@ -19,25 +19,52 @@ import "./App.css";
 import "./Responsive.css";
 import ConfirmSignUp from "./pages/auth/confirmsingup";
 import Register from "./pages/auth/register";
+import ProtectedRoutes from "./hooks/routes/protected-routes";
 
 function App() {
 
   return (
     <>
+      {/* ******************************Public Route******************************* */}
       <Routes>
-      
-        {/* Dashboard Routes (wrapped in FirstLayout) */}
+        {/* landing page */}
         <Route
           path={ROUTES?.INDEX}
           element={<PublicRoutes component={<LandingPage />} />}
         />
+        {/* login page */}
+        <Route
+          path={ROUTES?.LOGIN}
+          element={<PublicRoutes component={<Login />} />}
+        />
+        {/* SignUp page */}
+        <Route
+          path={ROUTES?.REGISTER}
+          element={<PublicRoutes component={<Register />} />}
+        />
+        {/* Confirm Signup page */}
+        <Route
+          path={ROUTES?.CONFIRM_SINGUP}
+          element={<PublicRoutes component={<ConfirmSignUp />} />}
+        />
+        {/* Forget password page */}
+        <Route
+          path={ROUTES?.FORGOT_PASSWORD}
+          element={<PublicRoutes component={<ForgotPassword />} />}
+        />
+        {/* Change Password */}
+        <Route
+          path={ROUTES?.NEW_PASSWORD}
+          element={<PublicRoutes component={<NewPassword />} />}
+        />
 
-        <Route element={<FirstLayout/>}>
-
+        {/* ****************************Protected Route********************************* */}
+        {/*Start Layout for protected route is FirstLayout*/}
+        <Route element={<FirstLayout />}>
           <Route
             path={ROUTES?.DASHBOARD}
             element={
-              <PublicRoutes
+              <ProtectedRoutes
                 component={<Dashboard />}
               />
             }
@@ -45,37 +72,19 @@ function App() {
           <Route
             path={ROUTES?.DASHBOARDDETAILS}
             element={
-              <PublicRoutes
-                component={<DashboardDetails/>}
+              <ProtectedRoutes
+                component={<DashboardDetails />}
               />
             }
           />
         </Route>
-        <Route
-          path={ROUTES?.LOGIN}
-          element={<PublicRoutes component={<Login />} />}
-        />
-        <Route
-          path={ROUTES?.REGISTER}
-          element={<PublicRoutes component={<Register />} />}
-        />
-         <Route
-          path={ROUTES?.CONFIRM_SINGUP}
-          element={<PublicRoutes component={<ConfirmSignUp />}  />}
-        />
-        <Route
-          path={ROUTES?.FORGOT_PASSWORD}
-          element={<PublicRoutes component={<ForgotPassword />} />}
-        />
-        <Route
-          path={ROUTES?.NEW_PASSWORD}
-          element={<PublicRoutes component={<NewPassword />} />}
-        />
+        {/* End Layout for protected route is FirstLayout*/}
 
         {/* 404 Fallback */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
 
+      {/* Notification toaster */}
       <ToastContainer
         hideProgressBar={false}
         closeOnClick
