@@ -32,7 +32,12 @@ import withModalWrapper from "../../components/common/HOC/withModalWrapper";
 import MyModal from "../../components/common/Modal/myModal";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
-import { fetchAuthSession, getCurrentUser, signIn, signOut } from "@aws-amplify/auth";
+import {
+  fetchAuthSession,
+  getCurrentUser,
+  signIn,
+  signOut,
+} from "@aws-amplify/auth";
 import { setAmplifyAuthSession } from "../../hooks/redux/slice/auth-session";
 
 const Login = () => {
@@ -43,9 +48,9 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
-  const LogInModal = withModalWrapper(MyModal) //for login modal
+  const LogInModal = withModalWrapper(MyModal); //for login modal
   const [isOpen, setIsOpen] = useState(false); //for login Modal
-  const toast = useToast()
+  const toast = useToast();
   const [loginPayload, setLoginPayload] = useState({
     email: "",
     password: "",
@@ -66,8 +71,10 @@ const Login = () => {
   }, []);
 
   // common handle change for name , email , password
-  const handleChange = (e) => { setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError)) };
- const getSessionAndStore = async () => {
+  const handleChange = (e) => {
+    setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError));
+  };
+  const getSessionAndStore = async () => {
     try {
       const session = await fetchAuthSession();
       dispatch(
@@ -82,29 +89,31 @@ const Login = () => {
     }
   };
 
-  const handleSubmit =  async(e) => { 
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (loginPayload.email.trim() === "") {
       return toast.error("Email is mandatory!");
     }
     if (loginPayload.password.trim() === "") {
-      return toast.error("error", "Password is mandatory!");
+      return toast.error("Password is mandatory!");
     }
     if (!validateRegex(loginPayload.email, EmailRegex)) {
-      return toast.error("error", "Email is invalid!");
+      return toast.error("Email is invalid!");
     }
     if (!validateRegex(loginPayload.password, PasswordRegex)) {
       return toast.error(
-        "error",
         "password should be a combination  8  characters which include altleast one special character , special symbol , capital letter and number"
       );
     }
     setIsLoading(true);
-   await AmplifySignIn();
+    await AmplifySignIn();
     setIsLoading(false);
     if (rememberMe) {
       localStorage.setItem("email", encryptStringtoAES(loginPayload?.email));
-      localStorage.setItem("password", encryptStringtoAES(loginPayload?.password));
+      localStorage.setItem(
+        "password",
+        encryptStringtoAES(loginPayload?.password)
+      );
       localStorage.setItem("rememberMe", "true");
     } else {
       localStorage.removeItem("email");
@@ -113,34 +122,43 @@ const Login = () => {
     }
   };
 
-
   const AmplifySignIn = async () => {
     const { email, password } = loginPayload;
-    console.log("login payload===>", loginPayload)
+    console.log("login payload===>", loginPayload);
     const loginDynamicPayload = {
       username: email,
-      password: password
-    }
+      password: password,
+    };
     try {
       const result = await signIn(loginDynamicPayload);
-      console.log("result==>", result)
+      console.log("result==>", result);
       if (result.isSignedIn) {
         await getSessionAndStore();
+        toast.success("Login successful!");
 
-        setIsOpen(true)
+        setIsOpen(true);
         setTimeout(() => {
-          navigate(ROUTES?.DASHBOARD)
-          setIsOpen(false)
+          navigate(ROUTES?.DASHBOARD);
+          setIsOpen(false);
         }, 1200);
       } else {
-        toast.error("Account does not exist. Please sign up first.");
+        toast.error("Invalid user,please sign up.");
       }
     } catch (error) {
-       console.log("err",error)
-      toast.error(Message.Response.Default);
+       if (error.name === "NotAuthorizedException") {
+      toast.error("Invalid credentials,Please check.");
+    } else if (error.name === "UserNotFoundException") {
+      toast.error("Invalid user,Please sign up.");
+    } else if (error.name === "UserAlreadyAuthenticatedException") {
+      toast.error("You're already logged in.");
+    } else {
+         toast.error(Message.Response.Default);
     }
   }
-
+    
+   
+    
+  };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -152,7 +170,6 @@ const Login = () => {
   // }
 
   return (
-
     <>
       <div className="Auth-common-bg">
         <div className="container-fluid">
@@ -183,10 +200,7 @@ const Login = () => {
                 <form>
                   <div className="login-welcome">
                     <h2 className="text-white">Login</h2>
-                    <p className="text-white my-2 ">
-                      Glad you're back.!
-
-                    </p>
+                    <p className="text-white my-2 ">Glad you're back.!</p>
                   </div>
                   <div className="d-flex flex-column gap-3">
                     <div className="">
@@ -202,8 +216,6 @@ const Login = () => {
                         iconsrc={EMAIL_ICON}
                         showAsterisk={false}
                         showLabel={false}
-
-
                       />
                       <ErrorMsg error={formError?.email} />
                     </div>
@@ -276,19 +288,26 @@ const Login = () => {
                       </Link>
                     </p>
                     <Link to={ROUTES?.INDEX} className="singup-color">
-                      <img src={ARROWTOLEFT} className="arrow-left mx-2" alt="right-arrow" width="14px" />
+                      <img
+                        src={ARROWTOLEFT}
+                        className="arrow-left mx-2"
+                        alt="right-arrow"
+                        width="14px"
+                      />
                       Back to home
                     </Link>
                   </div>
-
                 </form>
               </div>
             </div>
           </div>
         </div>
-        <LogInModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGIN_SUCCESS_PNG}
-          heading="Login Successful" />
-
+        <LogInModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          icon={LOGIN_SUCCESS_PNG}
+          heading="Login Successful"
+        />
       </div>
     </>
   );

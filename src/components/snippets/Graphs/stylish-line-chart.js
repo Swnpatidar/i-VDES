@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -18,11 +18,14 @@ const data = [
   { x: "Jun", encrypted: 38, decrypted: 38 },
  
 ];
+
 const CustomDot = ({ cx, cy }) => {
   // Box dimensions
   const boxWidth = 80;
   const boxHeight = 200;
+  
 
+  
   return (
     <g>
       <defs>
@@ -58,6 +61,10 @@ const CustomDot = ({ cx, cy }) => {
     </g>
   );
 };
+
+
+
+
 
 
 const CustomCursor = ({ points, height }) => {
@@ -132,11 +139,35 @@ const CustomTooltip = ({ active, payload, coordinate }) => {
 
 
 const StylishLineChart = () => {
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const tickStyle = isMobile
+    ? {
+        fill: "#ffffff",
+        angle: -35,
+        textAnchor: "end",
+        dy: 3,
+      }
+    : {
+        fill: "#ffffff",
+        angle: 0,
+        textAnchor: "middle",
+        dy: 10,
+      };
+
   return (
     <div
       style={{
         position: "relative",
         borderRadius: "16px",
+          // paddingRight: isMobile ? "30px" : "0px",
       }}
     >
 
@@ -204,14 +235,21 @@ const StylishLineChart = () => {
 
       <ResponsiveContainer width="100%" height={300}>
 
-        <LineChart data={data} >
+        <LineChart data={data}  margin={{
+      top: 0,
+      right: 0 , // 👈 More right space for mobile
+      left: isMobile ? -35 : 0,
+      bottom: isMobile ? 10 : 0,
+    }}>
           {/* <CartesianGrid strokeDasharray="3 3" stroke="#444" /> */}
 
           <XAxis
             dataKey="x"
             axisLine={false}     // removes the axis line
             tickLine={false}     // removes the small tick marks
-            tick={{ fill: "#ffffff", dy: 15 }}
+            // tick={{ fill: "#ffffff", dy: 15 }}
+             interval={0}
+              tick={tickStyle}
           />
 
           <YAxis

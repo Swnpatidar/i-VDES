@@ -33,24 +33,33 @@ const ConfirmSignUp = () => {
     return () => clearInterval(countdown);
   }, [resendDisabled, timer]);
 
-  const handleChange = (e, index) => {
-    const value = e.target.value.replace(/\D/, "");
-    if (!value) return;
+ const handleChange = (e, index) => {
+  const value = e.target.value;
 
-    const newOTP = [...OTP];
-    newOTP[index] = value;
+  const newOTP = [...OTP];
+
+  if (value === "") {
+    newOTP[index] = "";
     setOTP(newOTP);
+    return;
+  }
 
-    if (value && index < 5) {
-      inputRefs.current[index + 1]?.focus();
-    }
-  };
+  if (!/^\d$/.test(value)) return;
+
+  newOTP[index] = value;
+  setOTP(newOTP);
+
+  if (index < 5) {
+    inputRefs.current[index + 1]?.focus();
+  }
+};
 
   const handleKeyDown = (e, index) => {
-    if (e.key === "Backspace" && !OTP[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
-    }
-  };
+  if (e.key === "Backspace" && !OTP[index] && index > 0) {
+    inputRefs.current[index - 1]?.focus();
+  }
+};
+
 
   const handleSubmit = async () => {
     const code = OTP.join("");
@@ -118,6 +127,7 @@ const ConfirmSignUp = () => {
                   maxLength={1}
                   value={digit}
                   onChange={(e) => handleChange(e, idx)}
+                    onKeyDown={(e) => handleKeyDown(e, idx)} 
                   ref={(el) => (inputRefs.current[idx] = el)}
                   style={{
                     width: "3rem",

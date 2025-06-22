@@ -1010,3 +1010,11 @@ input:-webkit-autofill:focus {
 .arrow-left {
   transform: rotate(180deg);
 }
+
+.verificatiom-emaillogo{
+  width: 90px;
+  height: 90px;
+}
+.border-white{
+  border: 1px solid white !important;
+}

@@ -32,6 +32,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [formError, setFormError] = useState({});
   const [isPwdVisible, setIsPwdVisible] = useState("password");
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
@@ -53,8 +54,37 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setFormError({});
-    setIsLoading(true);
-    const { name, email, password } = registedPayload;
+    const { name, email, password ,confirmPassword} = registedPayload;
+    
+  // Mandatory field validation
+  if (name.trim() === "") {
+    return toast.error("Name is mandatory!");
+  }
+  if (email.trim() === "") {
+    return toast.error("Email is mandatory!");
+  }
+  if (password.trim() === "") {
+    return toast.error("Password is mandatory!");
+  }
+
+  // Regex validation
+  if (!validateRegex(email, EmailRegex)) {
+    return toast.error("Email is invalid!");
+  }
+  if (!validateRegex(password, PasswordRegex)) {
+    return toast.error(
+      "Password must be at least 8 characters long and include a special character, capital letter, and number."
+    );
+  }
+  if (confirmPassword.trim() === "") {
+  return toast.error("Confirm Password is mandatory!"); 
+}
+if (password !== confirmPassword) {
+  return toast.error("Passwords do not match!");
+}
+
+  setIsLoading(true);
+
     const signUpDynamicPayload = {
       username: email,
       password: password,
@@ -202,7 +232,7 @@ const Register = () => {
                     <div>
                       <Input
                         className="border-radius_input"
-                        type={isPwdVisible}
+                     type={isConfirmPasswordVisible}
                         value={registedPayload.confirmPassword}
                         name="confirmPassword"
                         placeHolder="Confirm Password"
@@ -212,11 +242,11 @@ const Register = () => {
                         showAsterisk={false}
                         showLabel={false}
                         rightIconSrc={
-                          isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
+                          isConfirmPasswordVisible  === "password" ? EYE_CLOSE : EYE_OPEN
                         }
                         onRightIconClick={() =>
-                          setIsPwdVisible(
-                            isPwdVisible === "password" ? "text" : "password"
+                          setIsConfirmPasswordVisible(
+                            isConfirmPasswordVisible  === "password" ? "text" : "password"
                           )
                         }
                       />

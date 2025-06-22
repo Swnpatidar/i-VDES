@@ -132,6 +132,9 @@
   .sidebar-logo-img {
     margin: 28px 0px !important;
   }
+  .card-body{
+    padding: 0px !important;
+  }
 }
 
 @media (max-width: 767px) {

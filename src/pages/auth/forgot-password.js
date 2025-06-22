@@ -9,6 +9,8 @@ import Button from "../../components/common/button";
 import { ErrorMsg } from "../../utils/form-utils";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
+import { validateRegex } from "../../utils/utilities";
+import { PasswordRegex } from "../../utils/regexValidation";
 
 const ForgotPassword = () => {
   const toast = useToast();
@@ -31,22 +33,41 @@ const ForgotPassword = () => {
     }));
   };
 
-  const validateStep = () => {
-    const errors = {};
-    if (!payload.email) {
-      errors.email = "Email is required";
+ const validateStep = () => {
+  const errors = {};
+
+  if (payload.email.trim() === "") {
+    toast.error("Email is mandatory!");
+    return false;
+  }
+
+  if (step === 2) {
+    if (!payload?.code) {
+      // errors.code = "OTP is required";
+        toast.error("OTP is required");
+    return false;
     }
-    if (step === 2) {
-      if (!payload.code) {
-        errors.code = "OTP is required";
-      }
-      if (!payload.password || payload.password.length < 6) {
-        errors.password = "Password must be at least 6 characters";
-      }
+      if (payload?.password.trim() === "") {
+    return toast.error("Password is mandatory!");
+     return false;
+  }
+    if (!validateRegex(payload?.password, PasswordRegex)) {
+        toast.error("Password must be at least 8 characters long and include a special character, capital letter, and number."
+);
+ 
     }
-    setFormError(errors);
-    return Object.keys(errors).length === 0;
-  };
+  }
+
+   setFormError(errors);
+
+  if (Object.keys(errors).length > 0) {
+    toast.error(Object.values(errors)[0]); // Show first error
+    return false;
+  }
+
+  return true;
+
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,14 +85,20 @@ const ForgotPassword = () => {
           confirmationCode: payload.code,
           newPassword: payload.password,
         });
-        toast.success("Password reset successfully! Redirecting to login...");
+        toast.success("Password reset successfully");
         navigate(ROUTES.LOGIN);
       }
 
     } catch (err) {
-      console.log(" err ravin", err)
-      toast.error(err.message || "Something went wrong.");
-    } finally {
+  console.log("AWS error:", err);
+
+  if (err.name === "EmptyConfirmResetPasswordNewPassword") {
+    // Ignore, since we already validated it
+    return;
+  }
+
+  toast.error(err.message || Message.Response.Default);
+} finally {
       setIsLoading(false);
     }
   };
@@ -102,7 +129,7 @@ const ForgotPassword = () => {
                   <div className="mb-3">
                     <Input
                       className="border-radius_input"
-                      type="email"
+                      type="text"
                       value={payload.email}
                       name="email"
                       placeHolder="Email"
