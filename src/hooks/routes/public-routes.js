@@ -16,13 +16,16 @@ const PublicRoutes = ({ component }) => {
     // Avoid decryption if token is not a valid encrypted string
     if (rawAccessToken && typeof rawAccessToken === "string") {
       decryptedToken = decryptAEStoString(rawAccessToken);
+ 
     }
   } catch (err) {
     console.error("Decryption failed:", err.message);
     decryptedToken = null; // fallback to safe value
   }
 
+  console.log("location==>",location)
   if (decryptedToken) {
+    // If already signed in, redirect to dashboard
     return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
 

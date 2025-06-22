@@ -74,14 +74,16 @@ const Login = () => {
   const handleChange = (e) => {
     setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError));
   };
+
+  // get token 
   const getSessionAndStore = async () => {
     try {
       const session = await fetchAuthSession();
       dispatch(
         setAmplifyAuthSession({
-          accessToken: session.tokens?.accessToken?.toString(),
-          idToken: session.tokens?.idToken?.toString(),
-          refreshToken: session.tokens?.refreshToken?.toString(),
+          accessToken: encryptJSONtoAES(session.tokens?.accessToken?.toString()),
+          idToken: encryptJSONtoAES(session.tokens?.idToken?.toString()),
+          refreshToken: encryptJSONtoAES(session.tokens?.refreshToken?.toString()),
         })
       );
     } catch (err) {
@@ -133,14 +135,12 @@ const Login = () => {
       const result = await signIn(loginDynamicPayload);
       console.log("result==>", result);
       if (result.isSignedIn) {
-        await getSessionAndStore();
-        toast.success("Login successful!");
-
-        setIsOpen(true);
+        setIsOpen(true)
         setTimeout(() => {
-          navigate(ROUTES?.DASHBOARD);
-          setIsOpen(false);
-        }, 1200);
+          navigate(ROUTES?.DASHBOARD)
+          setIsOpen(false)
+        }, 1400);
+        await getSessionAndStore(); //to get the Token
       } else {
         toast.error("Invalid user,please sign up.");
       }
@@ -168,6 +168,8 @@ const Login = () => {
   //     setIsOpen(false)
   //   }, 1200);
   // }
+     
+  
 
   return (
     <>
@@ -311,6 +313,6 @@ const Login = () => {
       </div>
     </>
   );
-};
+}
 
 export default Login;

@@ -819,6 +819,7 @@ input:-webkit-autofill:focus {
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 12px rgba(206, 206, 206, 0.3);
 }
+/* .Toastify__toast-theme--colored.Toastify__toast--success,.Toastify__toast-theme--colored.Toastify__toast--error,.Toastify__toast-theme--colored.Toastify__toast--info,.Toastify__toast-theme--colored.Toastify__toast--warn */
 .toast-success .Toastify__toast-icon {
   color: #12cf31;
 }
@@ -1010,6 +1011,7 @@ input:-webkit-autofill:focus {
 .arrow-left {
   transform: rotate(180deg);
 }
+<<<<<<< HEAD
 
 .verificatiom-emaillogo{
   width: 90px;
@@ -1017,4 +1019,18 @@ input:-webkit-autofill:focus {
 }
 .border-white{
   border: 1px solid white !important;
+=======
+.topbar-profile-icon .dropdown-toggle::after {
+  display: none;
+}
+.topbar-profile-icon .dropdown-toggle{
+  width: 40px;
+  height: 40px;
+  background-color: #1b00ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+>>>>>>> 81bcc4b4ab4268ac8a8abb19286b15acd7f005cd
 }

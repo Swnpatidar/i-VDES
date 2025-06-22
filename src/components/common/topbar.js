@@ -1,22 +1,42 @@
 import {
   LOGOUT_CONFIRM_PNG,
   LOGOUT_ICONSMALL,
-  LOGOUT_IMG,
   PROFILE_ICONSMALL,
-  SIDEBAR_SETTING_ACTIVE,
   TOPBAR_PROFILE,
 } from "../../utils/app-image-constant";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
-import Modal from "./Model";
 import MyModal from "./Modal/myModal";
 import withModalWrapper from "./HOC/withModalWrapper";
 import { useState } from "react";
+import useToast from "../../hooks/Custom-hooks/useToast";
+import { useSelector } from "react-redux";
+import { decryptAEStoString } from "../../utils/utilities";
+import { decodeJWT } from "@aws-amplify/auth";
 const Topbar = ({ setSidebarShow, sidebarShow }) => {
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
-  console.log("isOpen==>", isOpen)
+
+  const encrypIdToken = useSelector(state => state?.amplifyAuthSession?.idToken)
+  const decryIdToken = decodeJWT(decryptAEStoString(encrypIdToken))
+  const { name } = decryIdToken?.payload
+
+
+  // get initial letter for fullName
+  const getInitials = (fullName) => {
+    if (!fullName) return "";
+    const words = fullName.trim().split(" ").filter(Boolean);
+    if (words.length === 1) {
+      return words[0][0].toUpperCase();
+    }
+    const firstInitial = words[0][0].toUpperCase();
+    const lastInitial = words[words.length - 1][0].toUpperCase();
+    return firstInitial + lastInitial;
+  };
+
+
+
   return (
     <>
       {" "}
@@ -31,7 +51,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
             <Link to={ROUTES.INDEX}>
               {/* <img src={LOGO_ICON} alt="" className="logoimg d-none d-sm-block" /> */}
               <div className="topbarTextSection">
-                <h5 className="font-28 topbar-heading">Welcome Back, Hassan!</h5>
+                <h5 className="font-28 topbar-heading">{`Welcome Back, ${name}`}</h5>
                 <p className="">Hope Your Doing Good...!</p>
               </div>
             </Link>
@@ -41,8 +61,12 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
           <div
             className={`d-flex align-items-center m-0 justify-content-end gap-1 gap-sm-3`}
           >
-            <div className="dropdown">
-              <img
+            <div className="dropdown topbar-profile-icon">
+              <div className="dropdown-toggle cursor-pointer" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {getInitials(name)}
+              </div>
+              {/* <img
                 src={TOPBAR_PROFILE}
                 alt="PROFILE_PICTURE"
                 width={32}
@@ -51,12 +75,15 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              />
+              /> */}
 
               <ul className="dropdown-menu p-0 mt-2 top-right-topbar">
                 <Link to={ROUTES.MYPROFILE}>
                   <li>
                     <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
+                      <div className="profile-icon">
+
+                      </div>
                       <img src={PROFILE_ICONSMALL} alt="Profile Icon" />
                       <span>Profile</span>
                     </div>
@@ -75,6 +102,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
                     <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2" >
                       <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
                       <span onClick={() => setIsOpen(true)} >Logout</span>
+
                     </div>
                   </li>
                 </li>
