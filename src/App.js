@@ -87,7 +87,7 @@ function App() {
       {/* Notification toaster */}
       <ToastContainer
         hideProgressBar={false}
-        closeOnClick
+        closeOnClick={false}
         pauseOnHover
         draggable={false}
         newestOnTop

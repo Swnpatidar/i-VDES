@@ -16,7 +16,6 @@ const MyModal = ({ isOpen, onClose, icon, heading, subHeading, isButton = false 
     const logoutUser = async (dispatch) => {
         try {
             await signOut({ global: true });  // `global: true` signs out from all devices
-            toast.success("Logout Successfully")
             dispatch(clearAmplifyAuthSession())
             navigate(ROUTES?.LOGIN)
         } catch (error) {

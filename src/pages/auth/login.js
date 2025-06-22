@@ -126,12 +126,12 @@ const Login = () => {
       const result = await signIn(loginDynamicPayload);
       console.log("result==>", result)
       if (result.isSignedIn) {
-        await getSessionAndStore(); //to get the Token
         setIsOpen(true)
         setTimeout(() => {
           navigate(ROUTES?.DASHBOARD)
           setIsOpen(false)
-        }, 1200);
+        }, 1400);
+        await getSessionAndStore(); //to get the Token
       } else {
         toast.error("Account does not exist. Please sign up first.");
       }

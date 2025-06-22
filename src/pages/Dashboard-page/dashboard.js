@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import ImageUploadBox from './dashboardSection/imageUploadBox'
 import "./dashboard.css"
@@ -8,10 +8,13 @@ import { useNavigate } from 'react-router-dom'
 import { ROUTES } from '../../hooks/routes/routes-constant'
 import { ARROW_ICON } from '../../utils/app-image-constant'
 import { WrappedDountChart, WrappedLineChart, WrappedStylishlineChart } from './dashboardSection/wrappedChartComponent'
+import { getCurrentUser } from '@aws-amplify/auth'
 
 
 const Dashboard = () => {
   const navigate = useNavigate();
+
+  
   return (
     <>
       <div>
