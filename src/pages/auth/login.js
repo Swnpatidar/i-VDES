@@ -84,9 +84,9 @@ const Login = () => {
 
   const handleSubmit =  async(e) => { 
     e.preventDefault();
-    // if (loginPayload.email.trim() === "") {
-    //   return toast.error("Email is mandatory!");
-    // }
+    if (loginPayload.email.trim() === "") {
+      return toast.error("Email is mandatory!");
+    }
     if (loginPayload.password.trim() === "") {
       return toast.error("error", "Password is mandatory!");
     }

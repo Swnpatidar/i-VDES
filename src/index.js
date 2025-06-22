@@ -8,7 +8,6 @@ import { store } from "./hooks/redux/store";
 import App from "./App";
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from './amplifyconfiguration.json';
-import { LoaderSpinner } from "./utils/utilities";
 
 
 Amplify.configure(amplifyconfig);
@@ -17,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <Provider store={store} >
-      <PersistGate loading={<LoaderSpinner />} persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
 
       <React.StrictMode>
         <BrowserRouter basename="/I-VDES">

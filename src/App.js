@@ -10,15 +10,10 @@ import PublicRoutes from "./hooks/routes/public-routes";
 import { ROUTES } from "./hooks/routes/routes-constant";
 import "./App.css";
 import "./Responsive.css";
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
 import LandingPage from "./pages/landingPage";
 import Dashboard from "./pages/Dashboard-page/dashboard";
 import FirstLayout from "./components/layouts/first-layout";
 import DashboardDetails from "./pages/Dashboard-page/dashboard-details";
-import useToast from "./hooks/Custom-hooks/useToast";
-import useIdleLogout from "./utils/utilities";
-import { signOut } from "@aws-amplify/auth";
 
 import "./App.css";
 import "./Responsive.css";
@@ -30,14 +25,7 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Public Routes */}
-        {/* <Route path={ROUTES.INDEX} element={<PublicRoutes component={LandingPage} />} />
-        <Route path={ROUTES.LOGIN} element={<PublicRoutes component={Login} />} />
-        <Route path={ROUTES.REGISTER} element={<PublicRoutes component={Register} />} />
-        <Route path={ROUTES.CONFIRM_SINGUP} element={<PublicRoutes component={ConfirmSignUp} />} />
-        <Route path={ROUTES.FORGOT_PASSWORD} element={<PublicRoutes component={ForgotPassword} />} />
-        <Route path={ROUTES.NEW_PASSWORD} element={<PublicRoutes component={NewPassword} />} /> */}
-
+      
         {/* Dashboard Routes (wrapped in FirstLayout) */}
         <Route
           path={ROUTES?.INDEX}

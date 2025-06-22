@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: "root",
   storage,
-   blacklist: ['someLargeSlice'],
+  
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -28,4 +28,3 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);

@@ -17,6 +17,7 @@ import { useState } from "react";
 import MyModal from "./Modal/myModal";
 
 const Sidebar = ({ setSidebarShow, sidebarShow }) => {
+    const navigate = useNavigate();
   const location = useLocation();
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
@@ -43,13 +44,15 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
       src_active: SIDEBAR_SETTING_ACTIVE,
     },
   ];
-  console.log("sidebarShow==>", sidebarShow)
+   const handleLogoClick = () => {
+    navigate(ROUTES?.INDEX); 
+  };
   return (
     <>
 
       <div className={`sidebar p-0 bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""}`}>
         <div className="pb-3 pt-1 cursor-pointer" >
-          <div className="ms-2 me-2 text-center border-bottom-line" >
+          <div className="ms-2 me-2 text-center border-bottom-line"onClick={handleLogoClick}  >
             <img
               src={SIDEBAR_MAINLOGO}
               alt="Main Logo"

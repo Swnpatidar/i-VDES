@@ -1,32 +1,32 @@
-
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router";
 import { decryptAEStoString } from "../../utils/utilities";
-// import { useSelector } from "react-redux";
 
-const PublicRoutes = ({ component: Component }) => {
+const PublicRoutes = ({ component }) => {
   const location = useLocation();
 
-  // const rawAccessToken = useSelector(
-  //   (state) => state?.amplifyAuthSession?.accessToken
-  // );
-  const rawAccessToken="sdcv"
+  const rawAccessToken = useSelector(
+    (state) => state?.amplifyAuthSession?.accessToken
+  );
+
   let decryptedToken = null;
 
   try {
-    // Only attempt to decrypt if string looks valid
+    // Avoid decryption if token is not a valid encrypted string
     if (rawAccessToken && typeof rawAccessToken === "string") {
       decryptedToken = decryptAEStoString(rawAccessToken);
     }
-  } catch (error) {
-    console.error("Token decryption failed:", error.message);
+  } catch (err) {
+    console.error("Decryption failed:", err.message);
+    decryptedToken = null; // fallback to safe value
   }
 
   if (decryptedToken) {
     return <Navigate to="/dashboard" state={{ from: location }} replace />;
   }
 
-  return typeof Component === "function" ? <Component /> : Component;
+  return component;
 };
 
 export default PublicRoutes;
