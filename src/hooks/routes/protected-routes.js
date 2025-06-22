@@ -3,18 +3,17 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { decryptAEStoString } from "../../utils/utilities";
 
-const ProtectedRoutes = ({component}) => {
+const ProtectedRoutes = ({ component }) => {
   const location = useLocation();
 
   const rawAccessToken = useSelector(
     (state) => state?.amplifyAuthSession?.accessToken
   );
- let decryptedToken = null;
+  let decryptedToken = null;
 
   try {
     if (rawAccessToken && typeof rawAccessToken === "string") {
-      // decryptedToken = decryptAEStoString(rawAccessToken);
-      decryptedToken =rawAccessToken;
+      decryptedToken = decryptAEStoString(rawAccessToken);
     }
   } catch (error) {
     console.error("Token decryption failed:", error.message);
@@ -22,7 +21,12 @@ const ProtectedRoutes = ({component}) => {
   }
 
   if (!decryptedToken) {
-    return <Navigate to="/" state={{ from: location }} replace />;
+    if (location.pathname == '/dashboard') {
+      return <Navigate to="/login" state={{ from: location }} replace />;
+    } else {
+      return <Navigate to="/" state={{ from: location }} replace />;
+
+    }
   }
 
   return component;

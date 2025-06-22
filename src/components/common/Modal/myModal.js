@@ -4,26 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../hooks/routes/routes-constant';
 import { signOut } from '@aws-amplify/auth';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { clearAmplifyAuthSession } from '../../../hooks/redux/slice/auth-session';
 
 const MyModal = ({ isOpen, onClose, icon, heading, subHeading, isButton = false }) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     // Amplify Logout to clear session
-    const clearAmplifyAuthSession = async () => {
+    const logoutUser = async (dispatch) => {
         try {
             await signOut({ global: true });  // `global: true` signs out from all devices
-            toast.success("Successfully signed out and cleared session.")
+            toast.success("Logout Successfully")
+            dispatch(clearAmplifyAuthSession())
             navigate(ROUTES?.LOGIN)
-
         } catch (error) {
             console.error("Error signing out:", error);
         }
     };
 
     const handleLogoutConfirm = () => {
-        alert()
-        clearAmplifyAuthSession()
+        logoutUser(dispatch) //function to logout user
         localStorage.removeItem('persist:root');
         localStorage.clear();
         onClose()

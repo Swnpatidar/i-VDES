@@ -16,13 +16,6 @@ import { useState } from "react";
 const Topbar = ({ setSidebarShow, sidebarShow }) => {
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
-  console.log("isOpen==>", isOpen)
-
-// Logout Function
-const handleLogout=()=>{
-    setIsOpen(true)
-}
-
 
   return (
     <>
@@ -81,7 +74,7 @@ const handleLogout=()=>{
                   <li className="dropdown-divider-top">
                     <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2" >
                       <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
-                      <span onClick={handleLogout} >Logout</span>
+                      <span onClick={()=>setIsOpen(true)} >Logout</span>
                     </div>
                   </li>
                 </li>

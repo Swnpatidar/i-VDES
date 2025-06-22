@@ -15,8 +15,8 @@ const PublicRoutes = ({ component }) => {
   try {
     // Avoid decryption if token is not a valid encrypted string
     if (rawAccessToken && typeof rawAccessToken === "string") {
-      // decryptedToken = decryptAEStoString(rawAccessToken);
-      decryptedToken = rawAccessToken;
+      decryptedToken = decryptAEStoString(rawAccessToken);
+ 
     }
   } catch (err) {
     console.error("Decryption failed:", err.message);

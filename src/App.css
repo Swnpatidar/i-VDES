@@ -819,6 +819,7 @@ input:-webkit-autofill:focus {
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 12px rgba(206, 206, 206, 0.3);
 }
+/* .Toastify__toast-theme--colored.Toastify__toast--success,.Toastify__toast-theme--colored.Toastify__toast--error,.Toastify__toast-theme--colored.Toastify__toast--info,.Toastify__toast-theme--colored.Toastify__toast--warn */
 .toast-success .Toastify__toast-icon {
   color: #12cf31;
 }
