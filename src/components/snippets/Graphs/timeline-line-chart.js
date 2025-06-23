@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -11,13 +11,22 @@ import {
 } from "recharts";
 
 const TimelineChart = () => {
+
+   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const data = [
-    { x: "Jan", ECC: 0, ECC2: 40 },
-    { x: "Feb", ECC: 20, ECC2: 60 },
-    { x: "Mar", ECC: 25, ECC2: 45 },
-    { x: "Apr", ECC: 30, ECC2: 50 },
-    { x: "May", ECC: 28, ECC2: 40 },
-    { x: "Jun", ECC: 50, ECC2: 35 },
+
+    { x: "Jan", AEC: 0, RSA: 40 },
+    { x: "Feb", AEC: 20, RSA: 60 },
+    { x: "Mar", AEC: 25, RSA: 45 },
+    { x: "Apr", AEC: 30, RSA: 50 },
+    { x: "May", AEC: 28, RSA: 40 },
+    { x: "Jun", AEC: 50, RSA: 35 },
     
   ];
   const CustomLegend = (props) => {
@@ -53,7 +62,10 @@ const TimelineChart = () => {
 
         <ResponsiveContainer width="100%" height={350}>
 
-          <LineChart data={data}    >
+          <LineChart data={data} 
+        margin={{ top:isMobile ? 10 :0 , right: isMobile ? 5 :13, left:isMobile ? -15 :0 , bottom:isMobile ? 20 :6 }}
+          
+          >
 
 
             <XAxis
@@ -63,7 +75,14 @@ const TimelineChart = () => {
                 , strokeWidth: 4
               }} // custom axis line color
               tickLine={false}
-              tick={{ fill: "#ffffff", dy: 12 }}
+             
+               tick={{
+                fill: "#ffffff",
+                dy: 12,
+                angle: isMobile ? -35 : 0,
+                textAnchor: isMobile ? "end" : "middle"
+              }}
+              interval={0}
             />
 
             <YAxis
@@ -86,14 +105,14 @@ const TimelineChart = () => {
             />
             <Line
               type="monotone"
-              dataKey="ECC"
+              dataKey="AEC"
               stroke="#a16cff"
               strokeWidth={4}
               dot={false}
             />
             <Line
               type="monotone"
-              dataKey="ECC2"
+              dataKey="RSA"
               stroke="rgba(151, 219, 251, 1)"
               strokeWidth={4}
               dot={false}

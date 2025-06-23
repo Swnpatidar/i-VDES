@@ -135,6 +135,14 @@
   .card-body{
     padding: 0px !important;
   }
+  .dount-piechart{
+    width: 86%!important;
+    height: 100% !important;
+  }
+.upload-container {
+    width: 286px !important;
+    height: 276px!important;
+}
 }
 
 @media (max-width: 767px) {

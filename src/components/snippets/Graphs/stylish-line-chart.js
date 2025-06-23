@@ -237,9 +237,9 @@ const StylishLineChart = () => {
 
         <LineChart data={data}  margin={{
       top: 0,
-      right: 0 , // 👈 More right space for mobile
+      right:  isMobile ? 5 :20 ,
       left: isMobile ? -35 : 0,
-      bottom: isMobile ? 10 : 0,
+      bottom: isMobile ? 10 : 5,
     }}>
           {/* <CartesianGrid strokeDasharray="3 3" stroke="#444" /> */}
 

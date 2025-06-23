@@ -178,7 +178,7 @@
 
 
 // // Bridge & Shield Project
-export const ARROW_ICON = "./assets/common/arrow_icon.png";
+export const ARROW_ICON = "./assets/common/arrow_icon.svg";
 export const EYE_CLOSE = "./assets/loginicon/eye-close.png";
 export const EMAIL_ICON = "./assets/common/email_icon.png";
 export const CLOSE_ICON = "./assets/loginicon/cross-icon.png";
@@ -188,23 +188,23 @@ export const EYE_OPEN = "./assets/loginicon/open-eye.png";
 export const COMPANY_LOGO = "./assets/common/company-logo.png";
 export const LANDING_IMAGE_1 = "./assets/landing-image/Hero-image-left.png";
 export const LANDING_IMAGE_2 = "./assets/landing-image/Hero-image-right.png";
-export const HIGH_IMAGE = "./assets/common/image-classification-high.png";
-export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.png";
-export const LOW_IMAGE = "./assets/common/image-classification-low.png";
-export const NONE_IMAGE = "./assets/common/image-classification-none.png"
+export const HIGH_IMAGE = "./assets/common/image-classification-high.svg";
+export const MEDIUM_IMAGE = "./assets/common/image-classification-medium.svg";
+export const LOW_IMAGE = "./assets/common/image-classification-low.svg";
+export const NONE_IMAGE = "./assets/common/image-classification-none.svg"
 export const FORGET_PASSWORD = "./assets/common/forget-img.png"
 export const ARROWTOLEFT = "./assets/common/arrow-right.svg"
 
 // Topbar and Side Bar
-export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.png"
+export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.svg"
 export const SIDEBAR_ANALYSIS_ACTIVE="./assets/dashboardicons/Analyis-active-icon.png"
-export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon.png"
+export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon.svg"
 export const SIDEBAR_SETTING_ACTIVE="./assets/dashboardicons/setting-active-icon.png"
-export const SIDEBAR_DASHBOARD_ACTIVE="./assets/dashboardicons/dashboard-active-icon.png"
+export const SIDEBAR_DASHBOARD_ACTIVE="./assets/dashboardicons/dashboard-active-icon.svg"
 export const SIDEBAR_DASHBOARD_DEACTIVE="./assets/dashboardicons/dashboard-deactive-icon.png"
-export const SIDEBAR_LOGOUT="./assets/dashboardicons/logout-icon.png"
+export const SIDEBAR_LOGOUT="./assets/dashboardicons/logout-icon.svg"
 export const TOPBAR_PROFILE="./assets/dashboardicons/topbarprofile-icon.png"
-export const SIDEBAR_MAINLOGO="./assets/dashboardicons/dashboard-logo.png"
+export const SIDEBAR_MAINLOGO="./assets/dashboardicons/dashboard-logo.svg"
 export const LOGOUT_IMG = "./assets/common/logoutimg.png";
 export const PROFILE_ICONSMALL = "./assets/common/profile_icon.png";
 export const LOGOUT_ICONSMALL = "./assets/common/logout.png";
@@ -232,7 +232,7 @@ export const WHYWECHOOSE_IMAGE8 = "./assets/whywechooseImg/fluent_data-pie-32-fi
 // Breadcrum
 export const BREADCRUM_ICON = "./assets/dashboardicons/Bredcrum-icon.png";
 
-export const UPLOAD_ICON="./assets/dashboardicons/upload_icon.png"
+export const UPLOAD_ICON="./assets/dashboardicons/upload_icon.svg"
 
 // Auth bg
 export const AUTH_BACKGROUND_IMAGE="./assets/dashboardicons/Auth-bg.png"
@@ -259,3 +259,4 @@ export const INSTAGRAM_LOGO="./assets/footer/instagram-logo.svg"
 // home background image
 export const HOME_BACKGROUND_IMAGE = "./assets/landing-image/home-background-image.svg";
 export const VERFICATION_EMAIL_LOGO="./assets/loginicon/verfication-email-logo.png"
+ export const LOACK_ICON = "./assets/dashboardicons/loackicon.png";

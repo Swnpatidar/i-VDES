@@ -1,4 +1,6 @@
 import {
+  CHANGEPASSWORD_ICON,
+  LOACK_ICON,
   LOGOUT_CONFIRM_PNG,
   LOGOUT_ICONSMALL,
   PROFILE_ICONSMALL,
@@ -19,14 +21,31 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
 
   const encrypIdToken = useSelector(state => state?.amplifyAuthSession?.idToken)
-  const decryIdToken = decodeJWT(decryptAEStoString(encrypIdToken))
-  const { name } = decryIdToken?.payload
+  //  fast code
+  // const decryIdToken = decodeJWT(decryptAEStoString(encrypIdToken))
+  // const { name } = decryIdToken?.payload
 
+  // current code
+  let decryIdToken = {};
+let name = "User"; // Default fallback
+
+if (encrypIdToken && typeof encrypIdToken === "string") {
+  try {
+    const decryptedToken = decryptAEStoString(encrypIdToken);
+
+    if (decryptedToken && typeof decryptedToken === "string") {
+      decryIdToken = decodeJWT(decryptedToken);
+      name = decryIdToken?.payload?.name || "User";
+    }
+  } catch (error) {
+    console.error("Error decoding token:", error);
+  }
+}
 
   // get initial letter for fullName
   const getInitials = (fullName) => {
     if (!fullName) return "";
-    const words = fullName.trim().split(" ").filter(Boolean);
+    const words = fullName.trim()?.split(" ").filter(Boolean);
     if (words.length === 1) {
       return words[0][0].toUpperCase();
     }
@@ -41,7 +60,7 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
     <>
       {" "}
       <div className="row position-sticky top-0 bg-off-dark z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
-        <div className="col-6 col-md-4 p-0">
+        <div className="col-6 col-md-5 p-0">
           <div className="d-flex gap-1 justify-content-sm-start justify-content-md-start align-items-center">
             <i
               className={`bi-transiton bi fs-2 d-md-none me-3 cursor-pointer position-relative ${sidebarShow ? "bi-x" : "bi-list"
@@ -51,62 +70,46 @@ const Topbar = ({ setSidebarShow, sidebarShow }) => {
             <Link to={ROUTES.INDEX}>
               {/* <img src={LOGO_ICON} alt="" className="logoimg d-none d-sm-block" /> */}
               <div className="topbarTextSection">
-                <h5 className="font-28 topbar-heading">{`Welcome Back, ${name}`}</h5>
-                <p className="">Hope Your Doing Good...!</p>
+                <h5 className="font-28 topbar-heading">{`Welcome Back, ${name}`}!</h5>
+                <p className="">Hope Your Doing Good!</p>
               </div>
             </Link>
           </div>
         </div>
-        <div className="col-4 col-md-8 col-lg-8 col-xl-7 col-xxl-6 p-0">
+        <div className="col-4 col-md-7 col-lg-8 col-xl-7 col-xxl-6 p-0">
           <div
             className={`d-flex align-items-center m-0 justify-content-end gap-1 gap-sm-3`}
           >
             <div className="dropdown topbar-profile-icon">
-              <div className="dropdown-toggle cursor-pointer" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <div className="dropdown-toggle " 
+              >
                 {getInitials(name)}
               </div>
-              {/* <img
-                src={TOPBAR_PROFILE}
-                alt="PROFILE_PICTURE"
-                width={32}
-                height={32}
-                className="dropdown-toggle cursor-pointer "
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              /> */}
+            
 
-              <ul className="dropdown-menu p-0 mt-2 top-right-topbar">
+              {/* <ul className="dropdown-menu p-0 mt-2 top-right-topbar">
                 <Link to={ROUTES.MYPROFILE}>
                   <li>
-                    <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
+                    <div className="dropdown-item cursor-pointer d-flex align-items-center gap-1 ">
                       <div className="profile-icon">
 
                       </div>
-                      <img src={PROFILE_ICONSMALL} alt="Profile Icon" />
-                      <span>Profile</span>
+                      <img src={LOACK_ICON} alt="Profile Icon"  className="" />
+                      <span className="font-15 py-1">Change Password</span>
                     </div>
                   </li>
                 </Link>
-                {/* <Link to={ROUTES.MYPROFILE}>
-                  <li>
-                    <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2">
-                      <img src={SIDEBAR_SETTING_ACTIVE} alt="Profile Icon" />
-                      <span>Setting</span>
-                    </div>
-                  </li>
-                </Link> */}
+               
                 <li>
                   <li className="dropdown-divider-top">
                     <div className="dropdown-item cursor-pointer d-flex align-items-center gap-2" >
                       <img src={LOGOUT_ICONSMALL} alt="Logout Icon" />
-                      <span onClick={() => setIsOpen(true)} >Logout</span>
+                      <span className="font-15" onClick={() => setIsOpen(true)} >Logout</span>
 
                     </div>
                   </li>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

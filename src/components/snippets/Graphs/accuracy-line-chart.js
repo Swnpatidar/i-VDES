@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     LineChart,
     Line,
@@ -10,6 +10,13 @@ import {
 } from "recharts";
 
 const AccuracyLineChart = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
     const data = [
         { x: "Jan", encrypted: 0, },
         { x: "Feb", encrypted: 20, },
@@ -17,22 +24,27 @@ const AccuracyLineChart = () => {
         { x: "Apr", encrypted: 60, },
         { x: "May", encrypted: 50, },
         { x: "Jun", encrypted: 80, },
-       
-      
-
-    ];
+       ];
     return (
   <div className="d-flex justify-content-center align-items-center" >
     <div
      className="accuracy-chart-wrapper"
+    //  style={{ width: "100%", paddingRight: isMobile ? 20 : 0 }}
     >
       <ResponsiveContainer width="100%" height={400}>
-        <LineChart data={data}>
+        <LineChart data={data}
+        margin={{ top:isMobile ? 50 :0 , right: isMobile ? 5 :13, left:isMobile ? -15 :0 , bottom:isMobile ? 20 :10 }}
+        >
           <XAxis
             dataKey="x"
             axisLine={{ stroke: "rgba(134, 117, 255, 1)", strokeWidth: 4 }}
             tickLine={false}
-            tick={{ fill: "#ffffff", dy: 12 }}
+            tick={{
+                fill: "#ffffff",
+                dy:isMobile ? 4 :12,
+                angle: isMobile ? -35 : 0,
+                textAnchor: isMobile ? "end" : "middle"
+              }}
             interval={0}
           />
           <YAxis
@@ -56,55 +68,9 @@ const AccuracyLineChart = () => {
   </div>
 );
 
-    // return (
-    //     <div>
-    //         <div
-    //             style={{
-    //                 position: "relative",
-    //                 borderRadius: "16px",
-    //             }}
-    //             className="p-0"
-    //         >
-                
+  
 
-    //             <ResponsiveContainer width="100%" height={300}>
-    //                 <LineChart data={data}    >
-    //                     <XAxis
-    //                         dataKey="x"
-    //                         axisLine={{
-    //                             stroke: "rgba(134, 117, 255, 1)"
-    //                             , strokeWidth: 4
-    //                         }} // custom axis line color
-    //                         tickLine={false}
-    //                         tick={{ fill: "#ffffff", dy: 12 }}
-    //                           interval={0}
-    //                     />
-
-    //                     <YAxis
-    //                         stroke="#888"
-    //                         ticks={[0, 20, 40, 60, 80, 100]}
-    //                         axisLine={{
-    //                             stroke: " rgba(98, 129, 254, 1)"
-    //                             , strokeWidth: 4
-    //                         }} // custom axis line color
-    //                         tickLine={false}
-    //                         tick={{ fill: "#888" }}
-    //                         tickFormatter={(value) => `${value}%`}
-    //                     />
-
-    //                     <Line
-    //                         type="monotone"
-    //                         dataKey="encrypted"
-    //                         stroke="#a16cff"
-    //                         strokeWidth={4}
-    //                         dot={false}
-    //                     />
-    //                 </LineChart>
-
-    //             </ResponsiveContainer>
-    //         </div>
-    //     </div>
-    // );
+   
 }
 
 export default AccuracyLineChart;

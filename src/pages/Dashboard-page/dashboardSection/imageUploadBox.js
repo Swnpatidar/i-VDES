@@ -120,7 +120,7 @@ const ImageUploadBox = () => {
             </div>
           </div>
           <div className='set-center flex-column'>
-            <p className='my-3'><small>Accepted formats: JPG, JPEG, PNG. Maximum file size: 5MB.</small></p>
+            <p className='my-3'><small>Accepted formats: JPG, JPEG, PNG.</small></p>
             <h4 className='text-center my-5 display-6'>Unleashes a Quicker,<br /> Cleverer Method to Encrypt Your Data</h4>
           </div>
         </div>

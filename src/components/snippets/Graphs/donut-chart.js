@@ -55,8 +55,8 @@ const DonutChart = () => {
         <>
             
             <div className="donutposition">
-                <ResponsiveContainer>
-                    <PieChart>
+                <ResponsiveContainer width="100%" height={300}>
+                    <PieChart className="dount-piechart">
                         <Pie
                             data={data}
                             cx="50%"

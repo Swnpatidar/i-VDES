@@ -40,7 +40,7 @@ const Button = ({
       className="me-2 align-middle" 
       src={icon}
       alt="button_icon"
-      height={22}
+      height={20}
     />
   )}
 
@@ -51,7 +51,7 @@ const Button = ({
       className="ms-2 align-middle" 
       src={icon}
       alt="button_icon"
-      height={14}
+      height={12}
     />
   )}
 </button>

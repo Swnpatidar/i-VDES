@@ -22,7 +22,7 @@ const DashboardDetails = () => {
         />
         <Button
           label="Upload"
-          className="rounded-3 px-4 fs-14 "
+          className="rounded-3 px-3 fs-14 "
           onClick={() => navigate(ROUTES?.DASHBOARD)}
           icon={UPLOAD_ICON}
           iconPosition="front"

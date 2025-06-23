@@ -701,7 +701,8 @@ table tbody tr {
   background-color: rgba(16, 18, 30, 0.4);
   position: relative;
   border: 0px solid transparent;
-  border-radius: 1.25rem;
+  /* border-radius: 1.25rem; */
+  border-radius: 0.7rem;
   /* height: calc(100% - 30px); */
   padding: 20px;
   border: 1px solid rgba(83, 92, 165, 0.15);
@@ -1011,7 +1012,6 @@ input:-webkit-autofill:focus {
 .arrow-left {
   transform: rotate(180deg);
 }
-<<<<<<< HEAD
 
 .verificatiom-emaillogo{
   width: 90px;
@@ -1019,7 +1019,7 @@ input:-webkit-autofill:focus {
 }
 .border-white{
   border: 1px solid white !important;
-=======
+}
 .topbar-profile-icon .dropdown-toggle::after {
   display: none;
 }
@@ -1032,5 +1032,9 @@ input:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
   font-size: 18px;
->>>>>>> 81bcc4b4ab4268ac8a8abb19286b15acd7f005cd
 }
+
+ /* css for dount chart */
+ .font-15{
+  font-size: 15px;
+ }

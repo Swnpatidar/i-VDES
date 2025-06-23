@@ -15,25 +15,37 @@ import { PasswordRegex } from "../../utils/regexValidation";
 const ForgotPassword = () => {
   const toast = useToast();
   const navigate = useNavigate();
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState("password");
 
   const [step, setStep] = useState(1); // 1: enter email, 2: enter code + new password
   const [payload, setPayload] = useState({
     email: "",
     code: "",
     password: "",
+      confirmPassword: "", 
   });
   const [formError, setFormError] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isPwdVisible, setIsPwdVisible] = useState("password");
 
-  const handleChange = (e) => {
-    setPayload((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  // const handleChange = (e) => {
+  //   setPayload((prev) => ({
+  //     ...prev,
+  //     [e.target.name]: e.target.value,
+  //   }));
+  // };
+const handleChange = (e) => {
+  const { name, value } = e.target;
 
- const validateStep = () => {
+  if (name === "code" && value.length > 6) return;
+
+  setPayload((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const validateStep = () => {
   const errors = {};
 
   if (payload.email.trim() === "") {
@@ -43,31 +55,36 @@ const ForgotPassword = () => {
 
   if (step === 2) {
     if (!payload?.code) {
-      // errors.code = "OTP is required";
-        toast.error("OTP is required");
-    return false;
+      toast.error("OTP is required");
+      return false;
     }
-      if (payload?.password.trim() === "") {
-    return toast.error("Password is mandatory!");
-     return false;
-  }
+
+    if (payload?.password.trim() === "") {
+      toast.error("Password is mandatory!");
+      return false;
+    }
+
     if (!validateRegex(payload?.password, PasswordRegex)) {
-        toast.error("Password must be at least 8 characters long and include a special character, capital letter, and number."
-);
- 
+      toast.error("Password must be at least 8 characters long and include a special character, capital letter, and number.");
+      return false; // <-- This was missing
+    }
+
+    if (payload?.confirmPassword.trim() === "") {
+      toast.error("Confirm Password is mandatory!");
+      return false;
+    }
+
+    if (payload.password !== payload.confirmPassword) {
+      toast.error("Passwords do not match!");
+      return false;
     }
   }
 
-   setFormError(errors);
-
-  if (Object.keys(errors).length > 0) {
-    toast.error(Object.values(errors)[0]); // Show first error
-    return false;
-  }
+  setFormError(errors);
 
   return true;
-
 };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -132,7 +149,7 @@ const ForgotPassword = () => {
                       type="text"
                       value={payload.email}
                       name="email"
-                      placeHolder="Email"
+                      placeHolder="Enter Email"
                       handleChange={handleChange}
                       error={formError?.email}
                       showIcon={false}
@@ -145,29 +162,65 @@ const ForgotPassword = () => {
                 )}
                 {step === 2 && (
                   <>
-                    <div className="mb-3">
-                      <Input
-                        className="border-radius_input"
-                        type="text"
-                        value={payload.code}
-                        name="code"
-                        placeHolder="Code"
-                        handleChange={handleChange}
-                        error={formError?.code}
-                        showIcon={false}
-                        iconsrc={EMAIL_ICON}
-                        showAsterisk={false}
-                        showLabel={false}
-                      />
-                      <ErrorMsg error={formError?.code} />
-                    </div>
-                    <div className="mb-3">
+                
+      <div className="mb-2 position-relative">
+    <Input
+      className="border-radius_input  pe-5 "
+      type="text"
+      maxLength={6}
+      value={payload.code}
+      name="code"
+      placeHolder="Enter Verification Code"
+      // handleChange={handleChange}
+        handleChange={(e) => {
+      const inputValue = e.target.value;
+
+      if (/^\d{0,6}$/.test(inputValue)) {
+        handleChange(e); // Call your original handler
+      }
+    }}
+      error={formError?.code}
+      showIcon={false}
+      showAsterisk={false}
+      showLabel={false}
+    />
+
+    {/* Tick icon visible only when 6 digits are entered */}
+  
+    {payload.code.length === 6 && (
+   <i
+  className="fa fa-check position-absolute d-flex justify-content-center align-items-center"
+  style={{
+    top: "50%",
+    right: "10px",
+    transform: "translateY(-50%)",
+    backgroundColor: "#28a745",  // Bootstrap green or a strong green
+    color: "#fff",
+    fontSize: "14px",
+    width: "26px",
+    height: "26px",
+    zIndex: 10,                   // Higher to ensure visibility
+    borderRadius: "50%",
+    boxShadow: "0 0 5px rgba(0,0,0,0.2)",
+    pointerEvents: "none",       // Prevents interference with focus
+  }}
+></i>
+
+  )}
+
+
+
+    <ErrorMsg error={formError?.code} />
+  </div>
+
+
+                    <div className="mb-2">
                       <Input
                         className="border-radius_input"
                         type={isPwdVisible}
                         value={payload.password}
                         name="password"
-                        placeHolder="Password"
+                        placeHolder="Enter New Password"
                         handleChange={handleChange}
                         error={formError?.password}
                         showRightIcon={true}
@@ -183,6 +236,29 @@ const ForgotPassword = () => {
                         }
                       />
                       <ErrorMsg error={formError?.password} />
+                    </div>
+                        <div>
+                      <Input
+                        className="border-radius_input"
+                     type={isConfirmPasswordVisible}
+                        value={payload.confirmPassword}
+                        name="confirmPassword"
+                        placeHolder="Enter Confirm Password"
+                        handleChange={handleChange}
+                        error={formError?.confirmPassword}
+                        showRightIcon={true}
+                        showAsterisk={false}
+                        showLabel={false}
+                        rightIconSrc={
+                          isConfirmPasswordVisible  === "password" ? EYE_CLOSE : EYE_OPEN
+                        }
+                        onRightIconClick={() =>
+                          setIsConfirmPasswordVisible(
+                            isConfirmPasswordVisible  === "password" ? "text" : "password"
+                          )
+                        }
+                      />
+                      <ErrorMsg error={formError?.confirmPassword} />
                     </div>
                   </>
                 )}

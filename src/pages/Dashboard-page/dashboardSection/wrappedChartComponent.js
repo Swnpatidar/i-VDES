@@ -6,9 +6,9 @@ import StylishLineChart from "../../../components/snippets/Graphs/stylish-line-c
 import TimelineChart from "../../../components/snippets/Graphs/timeline-line-chart";
 import ImageClassification from "./image-classification";
 
-export const WrappedAccuracyLineChart=WithChartWrapper(AccuracyLineChart,"Modal Accuracy Chart")
+export const WrappedAccuracyLineChart=WithChartWrapper(AccuracyLineChart,"Model Accuracy Chart")
 export const WrappedDountChart=WithChartWrapper(DonutChart,"Data Statistics")
-export const WrappedTimelineChart=WithChartWrapper(TimelineChart,"Encryption Uses Timeline")
+export const WrappedTimelineChart=WithChartWrapper(TimelineChart,"Encryption Usage Timeline")
 export const WrappedLineChart=WithChartWrapper(ImageClassification,"Image Classification")
 export const WrappedStylishlineChart=WithChartWrapper(StylishLineChart,"Monthly Encryption & Decryption")
 
