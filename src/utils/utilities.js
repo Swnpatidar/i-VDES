@@ -176,5 +176,63 @@ export const LoaderSpinner = () => {
   );
 };
 
+let logoutTimer;
+
+const useIdleLogout = (callback, timeout = 3 * 60 * 1000) => {
+  useEffect(() => {
+    const events = [
+      "mousemove",
+      "keydown",
+      "mousedown",
+      "scroll",
+      "touchstart",
+    ];
+
+    const resetTimer = () => {
+      clearTimeout(logoutTimer);
+      logoutTimer = setTimeout(callback, timeout);
+    };
+
+    // Attach event listeners
+    events.forEach((event) => window.addEventListener(event, resetTimer));
+
+    // Start initial timer
+    logoutTimer = setTimeout(callback, timeout);
+
+    // Cleanup on unmount
+    return () => {
+      clearTimeout(logoutTimer);
+      events.forEach((event) => window.removeEventListener(event, resetTimer));
+    };
+  }, [callback, timeout]);
+};
+
+export default useIdleLogout;
 
 
+// Logged in user details using idToken
+export const useLoggedInUserDetails = () => {
+  const encryptedToken = useSelector(
+    (state) => state?.amplifyAuthSession?.idToken
+  );
+  let user = {
+    name: "User",
+    email: "",
+  };
+  if (!encryptedToken || typeof encryptedToken !== "string") return user;
+
+  try {
+    const decryptedToken = decryptAEStoString(encryptedToken);
+    if (decryptedToken) {
+      const decoded = decodeJWT(decryptedToken);
+     user = {
+        name: decoded?.payload?.name || 'User',
+        email: decoded?.payload?.email || '',
+      };
+    }
+  } catch (err) {
+    console.error("useCurrentUser error:", err);
+  }
+
+  return user;
+};
