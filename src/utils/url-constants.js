@@ -9,6 +9,6 @@ export const API_URL = {
     ResetPassword: "authController/changeUserPassword",
   },
    dashboard: {
-    uploadImage: "file/image",
+    uploadImage: "https://2p79kmr1tc.execute-api.eu-west-2.amazonaws.com/testing/saveToS3",
   },
 };

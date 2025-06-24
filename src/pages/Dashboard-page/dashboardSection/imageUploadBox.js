@@ -5,6 +5,7 @@ import useToast from '../../../hooks/Custom-hooks/useToast';
 import { handleAPiStatus } from '../../../utils/handleApiStatus';
 import { uploadImageFile } from '../../../hooks/services/api-services';
 import { Message } from '../../../utils/toastMessages';
+import { Content } from 'antd/es/layout/layout';
 
 const ImageUploadBox = () => {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -21,25 +22,55 @@ const ImageUploadBox = () => {
     fileInputRef?.current?.click(); // Trigger the hidden file input
   }
 
+  //This converts file/blob to base64
+  const fileToBase64String = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        resolve(reader.result); // this is the Base64 string
+      };
+      reader.onerror = (error) => {
+        reject(error);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   // Select file function
-  const handleFileSelect = (e) => {
+  const handleFileSelect = async (e) => {
     const file = e?.target?.files[0];
     if (!file) return;
-    // Check valid file Size upto 5MB
-    if (file?.size > 5242880) {
-      toast.error("File size should not exceed 5MB. Please choose again.")
-      return false;
-    }
-    // Check valid file type
+    // step 1- Check valid file Size upto 8MB
+    // if (file?.size > 5242880) {
+    //   toast.error("File size should not exceed 8MB. Please choose again.")
+    //   return false;
+    // }
+
+    // step 2- Check valid file type
     if (!allowedFileTypes?.includes(file?.type)) {
       toast.error("Invalid file format. Only JPG, JPEG, or PNG files are allowed.")
       return false;
     }
-    const fileObj = {
-      filePath: file,
-      size: file?.size,
-      fileName: file?.name,
-      fileType: file?.type
+
+    // step 3- Check valid image resolution
+    console.log("file===>", file)
+
+    let fileObj = {};
+
+    //get base64 string
+    if (file) {
+      try {
+        const base64String = await fileToBase64String(file);
+        fileObj = {
+          base64: base64String,
+          size: file?.size,
+          fileName: file?.name,
+          fileType: file?.type
+        }
+      } catch (error) {
+        console.error('Error converting to base64:', error);
+        return;
+      }
     }
     setSelectedFile(fileObj)
   }
@@ -49,24 +80,30 @@ const ImageUploadBox = () => {
   //trigger Proceed Next button
   const handleProceedNext = async (e) => {
     e.preventDefault();
-    setStartImageFlipping(true)
-    const { filePath } = selectedFile;
-    const formData = new FormData();
-    formData.append("file", filePath);
+    setStartImageFlipping(true)//flipping will strat
+ 
     setTimeout(() => {
-      uploadImage(formData) //function to call api 
+      uploadImage() //function to call api for image upload
     }, 15000);
   }
 
   // Api call
-  const uploadImage = async (formData) => {
+  const uploadImage = async () => {
+    const { base64, fileName } = selectedFile;
+    const imagePayload = {
+      folder: "Image",
+      filename:fileName,
+      content: base64
+    }
+    console.log("imagePayload in api==>", imagePayload)
+    return
     try {
-      const response = await uploadImageFile(formData)
+      const response = await uploadImageFile(imagePayload)
       console.log("res==>", response.status)
       if (response.status == 404) {
         toast.success(Message?.fileUpload)
-        setSelectedFile(null)
         setStartImageFlipping(false)
+        setSelectedFile(null)
         setGetData(true)
       } else {
         handleAPiStatus(response.status, toast)  //Pass the response status and toaster 
@@ -108,15 +145,15 @@ const ImageUploadBox = () => {
                   <p>Or Drag & Drop Here</p>
                   <input type="file" ref={fileInputRef} onChange={(e) => handleFileSelect(e)} />
                 </div>
-                </>)}
-                {getData && (<>
-                  {/* image encrypted Div */}
-                  <div className='image-upload-center-box'>
-                    <img src={IMAGE_ENCRYPTED_GIF} className='my-2' alt="upload-gif" width="70px" />
-                    <button type="button" className='img-upload-btn text-white pe-none'>Image Encrypted</button>
-                  </div>
-                </>)}
-              
+              </>)}
+              {getData && (<>
+                {/* image encrypted Div */}
+                <div className='image-upload-center-box'>
+                  <img src={IMAGE_ENCRYPTED_GIF} className='my-2' alt="upload-gif" width="70px" />
+                  <button type="button" className='img-upload-btn text-white pe-none'>Image Encrypted</button>
+                </div>
+              </>)}
+
             </div>
           </div>
           <div className='set-center flex-column'>

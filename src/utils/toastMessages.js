@@ -10,7 +10,8 @@ export const Message = {
         Login: "Login successful. Welcome back!",
         FileUpload: "File uploaded successfully.",
         Error:"Unexpected error occurred. Please try again later.",
-        Default:"Sorry, Something Went Wrong. Try again in a moment."
+        Default:"Sorry, Something Went Wrong. Try again in a moment.",
+        Sessionout:"Session expired. Please login again to continue."
     }
 }
 

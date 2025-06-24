@@ -25,7 +25,7 @@ const user = useLoggedInUserDetails();
     <>
       {" "}
       <div className="row position-sticky top-0 bg-off-dark z-index  border-bottom-line m-0 align-items-center py-3 justify-content-between flex-wrap">
-        <div className="col-6 col-md-5 p-0">
+        <div className="col-11 p-0">
           <div className="d-flex gap-1 justify-content-sm-start justify-content-md-start align-items-center">
             <i
               className={`bi-transiton bi fs-2 d-md-none me-3 cursor-pointer position-relative ${sidebarShow ? "bi-x" : "bi-list"
@@ -42,7 +42,7 @@ const user = useLoggedInUserDetails();
             </Link>
           </div>
         </div>
-        <div className="col-4 col-md-7 col-lg-8 col-xl-7 col-xxl-6 p-0">
+        <div className="col-1 p-0">
           <div
             className={`d-flex align-items-center m-0 justify-content-end gap-1 gap-sm-3`}
           >

@@ -93,8 +93,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginPayload.email.trim() === "") {
-      return toast.error("Email is mandatory!");
+    if (loginPayload.email.trim() === "" && loginPayload.password.trim() === "") {
+      return toast.error("Email and Password are mandatory!");
     }
     if (loginPayload.password.trim() === "") {
       return toast.error("Password is mandatory!");
@@ -126,7 +126,6 @@ const Login = () => {
 
   const AmplifySignIn = async () => {
     const { email, password } = loginPayload;
-    console.log("login payload===>", loginPayload);
     const loginDynamicPayload = {
       username: email,
       password: password,
@@ -192,13 +191,13 @@ const Login = () => {
 
             <div className="col-md-6 col-sm-12 d-flex justify-content-center h-100 ">
               <div className="login-box w-100 mx-3 position-relative">
-                <img
+                {/* <img
                   src={CLOSE_ICON}
                   alt="Close"
                   onClick={() => navigate(ROUTES?.INDEX)}
                   className="position-absolute top-0 end-0 m-4"
                   style={{ width: "25px", height: "25px", cursor: "pointer" }}
-                />
+                /> */}
                 <form>
                   <div className="login-welcome">
                     <h2 className="text-white">Login</h2>
