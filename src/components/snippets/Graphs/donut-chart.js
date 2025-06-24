@@ -5,7 +5,8 @@ import {
     Cell,
     ResponsiveContainer,
     Label,
-    Legend
+    Legend,
+    Tooltip
 } from "recharts";
 
 const data = [
@@ -14,25 +15,33 @@ const data = [
 ];
 
 const COLORS = ["#a16cff", "#97dbfb"]; // violet, light blue
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const item = payload[0];
+    const name = item.name;
+    const value = item.value;
+    const bgColor = name === "Structured" ? "#a16cff" : "#97dbfb";
 
-// const CustomLegend = (props) => {
-//     const { payload } = props;
-//     return (
-//         <div className="legent-flex-gap-container">
-//             {payload?.map((entry, index) => (
-//                 <div key={`item-${index}`} className="legent-flex-center-gap">
-//                     <div
-//                         className="legent-flex-width"
-//                         style={{
-//                             backgroundColor: entry.color,
-//                         }}
-//                     ></div>
-//                     <span style={{ color: '#fff', fontSize: "12px" }}>{entry.value}</span> {/* ✅ Use dynamic label */}
-//                 </div>
-//             ))}
-//         </div>
-//     );
-// };
+    return (
+      <div
+        style={{
+          backgroundColor: bgColor,
+          color: "#000000",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          fontSize: "14px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.15)"
+        }}
+      >
+        <strong>{name}:</strong> {value}%
+      </div>
+    );
+  }
+
+  return null;
+};
+
+
 const CustomLegend = (props) => {
     const { payload } = props;
     return (
@@ -113,6 +122,8 @@ const DonutChart = () => {
                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                             ))}
                         </Pie>
+    <Tooltip content={<CustomTooltip />} />
+
                         <Legend
                             content={<CustomLegend />}
                             layout="horizontal"

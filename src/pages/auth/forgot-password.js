@@ -149,7 +149,7 @@ const validateStep = () => {
                       type="text"
                       value={payload.email}
                       name="email"
-                      placeHolder="Enter Email"
+                      placeHolder="Email"
                       handleChange={handleChange}
                       error={formError?.email}
                       showIcon={false}
@@ -170,7 +170,7 @@ const validateStep = () => {
       maxLength={6}
       value={payload.code}
       name="code"
-      placeHolder="Enter Verification Code"
+      placeHolder="Verification Code"
       // handleChange={handleChange}
         handleChange={(e) => {
       const inputValue = e.target.value;
@@ -220,7 +220,7 @@ const validateStep = () => {
                         type={isPwdVisible}
                         value={payload.password}
                         name="password"
-                        placeHolder="Enter New Password"
+                        placeHolder="New Password"
                         handleChange={handleChange}
                         error={formError?.password}
                         showRightIcon={true}
@@ -243,7 +243,7 @@ const validateStep = () => {
                      type={isConfirmPasswordVisible}
                         value={payload.confirmPassword}
                         name="confirmPassword"
-                        placeHolder="Enter Confirm Password"
+                        placeHolder="Confirm Password"
                         handleChange={handleChange}
                         error={formError?.confirmPassword}
                         showRightIcon={true}

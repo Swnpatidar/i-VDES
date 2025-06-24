@@ -99,18 +99,7 @@ if (password !== confirmPassword) {
       const result = await signUp(signUpDynamicPayload);
       console.log("Sign up result:==>", result);
       
-      // {
-      //   "isSignUpComplete": false,
-      //     "nextStep": {
-      //     "signUpStep": "CONFIRM_SIGN_UP",
-      //       "codeDeliveryDetails": {
-      //       "destination": "k***@h***",
-      //         "deliveryMedium": "EMAIL",
-      //           "attributeName": "email"
-      //     }
-      //   },
-      //   "userId": "b682c2e4-6091-701f-9612-6a6372862016"
-      // }
+    
       if(result.userId && !result.isSignUpComplete){
         toast.success("Registration complete. We've sent a verification code to your email.")
         navigate(ROUTES.CONFIRM_SINGUP, { state: { email: registedPayload?.email } });

@@ -39,7 +39,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
     {
       id: 3,
       name: "Setting",
-      route: ROUTES.PATIENT,
+      route: ROUTES.CHANGE_PASSWORD,
       src_not_active: SIDEBAR_SETTING_DEACTIVE,
       src_active: SIDEBAR_SETTING_ACTIVE,
     },

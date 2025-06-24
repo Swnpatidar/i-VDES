@@ -1,48 +1,13 @@
-import {
-  CHANGEPASSWORD_ICON,
-  LOACK_ICON,
-  LOGOUT_CONFIRM_PNG,
-  LOGOUT_ICONSMALL,
-  PROFILE_ICONSMALL,
-  TOPBAR_PROFILE,
-} from "../../utils/app-image-constant";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../hooks/routes/routes-constant";
-import MyModal from "./Modal/myModal";
-import withModalWrapper from "./HOC/withModalWrapper";
-import { useState } from "react";
-import useToast from "../../hooks/Custom-hooks/useToast";
-import { useSelector } from "react-redux";
-import { decryptAEStoString } from "../../utils/utilities";
-import { decodeJWT } from "@aws-amplify/auth";
+import { useLoggedInUserDetails } from "../../utils/utilities";
 const Topbar = ({ setSidebarShow, sidebarShow }) => {
-  const LogoutModal = withModalWrapper(MyModal) //for logout modal
-  const [isOpen, setIsOpen] = useState(false); //for logout Modal
 
-  const encrypIdToken = useSelector(state => state?.amplifyAuthSession?.idToken)
-  //  fast code
-  // const decryIdToken = decodeJWT(decryptAEStoString(encrypIdToken))
-  // const { name } = decryIdToken?.payload
+//Current user details like name and email
+const user = useLoggedInUserDetails();
 
-  // current code
-  let decryIdToken = {};
-let name = "User"; // Default fallback
-
-if (encrypIdToken && typeof encrypIdToken === "string") {
-  try {
-    const decryptedToken = decryptAEStoString(encrypIdToken);
-
-    if (decryptedToken && typeof decryptedToken === "string") {
-      decryIdToken = decodeJWT(decryptedToken);
-      name = decryIdToken?.payload?.name || "User";
-    }
-  } catch (error) {
-    console.error("Error decoding token:", error);
-  }
-}
-
-  // get initial letter for fullName
+  // get initial letter from fullName
   const getInitials = (fullName) => {
     if (!fullName) return "";
     const words = fullName.trim()?.split(" ").filter(Boolean);
@@ -68,9 +33,10 @@ if (encrypIdToken && typeof encrypIdToken === "string") {
               onClick={() => setSidebarShow((prev) => !prev)}
             ></i>
             <Link to={ROUTES.INDEX}>
+            
               {/* <img src={LOGO_ICON} alt="" className="logoimg d-none d-sm-block" /> */}
               <div className="topbarTextSection">
-                <h5 className="font-28 topbar-heading">{`Welcome Back, ${name}`}!</h5>
+                <h5 className="font-28 topbar-heading">{`Welcome Back, ${user?.name}`}!</h5>
                 <p className="">Hope Your Doing Good!</p>
               </div>
             </Link>
@@ -83,7 +49,7 @@ if (encrypIdToken && typeof encrypIdToken === "string") {
             <div className="dropdown topbar-profile-icon">
               <div className="dropdown-toggle " 
               >
-                {getInitials(name)}
+                {getInitials(user?.name)}
               </div>
             
 
@@ -115,7 +81,6 @@ if (encrypIdToken && typeof encrypIdToken === "string") {
         </div>
       </div>
 
-      <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
     </>
   );
 };

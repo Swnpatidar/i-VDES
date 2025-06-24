@@ -38,16 +38,53 @@ const LineCharts = ({graphColor="",graphSensivityName="",icon=""}) => {
         },
     ]
 
-   
+     // Blurred large dot only on the last point
+  const CustomDot = ({ cx, cy, index }) => {
+    const isLast = index === data.length - 1;
+    return isLast ? (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={10}
+        fill={graphColor}
+        style={{ filter: "blur(3px)" }}
+      />
+    ) : null;
+  };
 
-    const CustomDot = (props) => {
-        const { cx, cy, payload, index, data } = props;
-        if (index === data.length - 1) {
-            return <Dot cx={cx} cy={cy} r={9} fill={graphColor} style={{ filter: "blur(3px)" }} />
-        }
+  // Custom tooltip without box
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload?.length) {
+      return (
+        <p style={{ margin: 0, fontSize: '15px', color: "#fff" }}>
+          {`${payload[0].value}%`}
+        </p>
+      );
+    }
+    return null;
+  };
+// Custom Active Dot with glow + solid circle
+const ActiveDotWithGlow = ({ cx, cy }) => (
+  <>
+    {/* Outer blurred circle */}
+    <circle
+      cx={cx}
+      cy={cy}
+      r={10}
+      fill={graphColor}
+      style={{ filter: 'blur(2px)' }}
+    />
+    {/* Inner solid circle */}
+    <circle
+      cx={cx}
+      cy={cy}
+      r={3}
+      fill={graphColor}
+    />
+  </>
+);
 
-        return null;
-    };
+ 
 
     return (
         <>
@@ -71,7 +108,7 @@ const LineCharts = ({graphColor="",graphSensivityName="",icon=""}) => {
                             margin={{
                                 top: 5,
                                 right: 10,
-                                left: 20,
+                                   left: 20,
                                 bottom: 5,
                             }}
                         >
@@ -80,9 +117,11 @@ const LineCharts = ({graphColor="",graphSensivityName="",icon=""}) => {
                                 dataKey="amt"
                                 stroke={graphColor}
                                 strokeWidth={4}
-                                dot={(props) => <CustomDot {...props} data={data} />}
-                                activeDot={{ r: 1 }} />
-                            {/* <Tooltip /> */}
+                                 dot={<CustomDot />}
+                                 activeDot={<ActiveDotWithGlow />}
+                                 />
+                                  
+                  <Tooltip      content={<CustomTooltip />}  cursor={false}/>
                         </LineChart>
                     </ResponsiveContainer>
 

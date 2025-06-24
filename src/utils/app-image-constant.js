@@ -197,9 +197,9 @@ export const ARROWTOLEFT = "./assets/common/arrow-right.svg"
 
 // Topbar and Side Bar
 export const SIDEBAR_ANALYSIS_DEACTIVE="./assets/dashboardicons/analyis-icon.svg"
-export const SIDEBAR_ANALYSIS_ACTIVE="./assets/dashboardicons/Analyis-active-icon.png"
-export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon.svg"
-export const SIDEBAR_SETTING_ACTIVE="./assets/dashboardicons/setting-active-icon.png"
+export const SIDEBAR_ANALYSIS_ACTIVE="./assets/dashboardicons/Analyis-active-icon.svg"
+export const SIDEBAR_SETTING_DEACTIVE="./assets/dashboardicons/setting-icon-deactive.svg"
+export const SIDEBAR_SETTING_ACTIVE="./assets/dashboardicons/setting-active-icon.svg"
 export const SIDEBAR_DASHBOARD_ACTIVE="./assets/dashboardicons/dashboard-active-icon.svg"
 export const SIDEBAR_DASHBOARD_DEACTIVE="./assets/dashboardicons/dashboard-deactive-icon.png"
 export const SIDEBAR_LOGOUT="./assets/dashboardicons/logout-icon.svg"
@@ -260,3 +260,5 @@ export const INSTAGRAM_LOGO="./assets/footer/instagram-logo.svg"
 export const HOME_BACKGROUND_IMAGE = "./assets/landing-image/home-background-image.svg";
 export const VERFICATION_EMAIL_LOGO="./assets/loginicon/verfication-email-logo.png"
  export const LOACK_ICON = "./assets/dashboardicons/loackicon.png";
+
+ export const CHANGE_PASSWORD_LOGO="./assets/dashboardicons/change-password-logo.png"

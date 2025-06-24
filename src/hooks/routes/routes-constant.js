@@ -6,7 +6,7 @@ export const ROUTES = {
   FORGOT_PASSWORD: `/forgot-password`,
   REGISTER: `/register`,
   CONFIRM_SINGUP:`/confirm-singup`,
-  NEW_PASSWORD: `/new-password`,
+  CHANGE_PASSWORD:`/change-password`,
   DASHBOARD: `/dashboard`,
   DASHBOARDDETAILS: `/dashboard/details`,
 

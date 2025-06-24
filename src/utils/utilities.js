@@ -6,6 +6,8 @@ import { useLocation } from "react-router-dom";
 import React from "react";
 import { DNA } from "react-loader-spinner";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { decodeJWT } from "@aws-amplify/auth";
 export const toastEmitter = (type = "info", message = "") => {
   switch (type) {
     case "success":
@@ -73,7 +75,7 @@ export const encryptJSONtoAES = (str) => {
 
 export const decryptAEStoJSON = (str) => {
   if (!str) return false;
-   try {
+  try {
     const bytes = CryptoJS.AES.decrypt(str, secretCodeAES);
     const decryptedText = bytes.toString(CryptoJS.enc.Utf8);
 
@@ -99,9 +101,6 @@ export const decryptAEStoString = (str) => {
   const bytes = CryptoJS.AES.decrypt(str, secretCodeAES);
   return bytes.toString(CryptoJS.enc.Utf8);
 };
-
-
-
 
 export const modifyTableDate = (str) => {
   if (!str) return false;
@@ -152,11 +151,8 @@ export const allowedTypes = [
   "image/pdf",
 ];
 export const allowedSizes = 5249980;
-export const allowedVideoTypes = [
-  'video/mp4', 'video/mov', 'video/avi'
-];
+export const allowedVideoTypes = ["video/mp4", "video/mov", "video/avi"];
 export const allowedVideoSizes = 52428800;
-
 
 export const LoaderSpinner = () => {
   return (
@@ -180,13 +176,17 @@ export const LoaderSpinner = () => {
   );
 };
 
-
-
 let logoutTimer;
 
 const useIdleLogout = (callback, timeout = 20 * 60 * 1000) => {
   useEffect(() => {
-    const events = ["mousemove", "keydown", "mousedown", "scroll", "touchstart"];
+    const events = [
+      "mousemove",
+      "keydown",
+      "mousedown",
+      "scroll",
+      "touchstart",
+    ];
 
     const resetTimer = () => {
       clearTimeout(logoutTimer);
@@ -194,7 +194,7 @@ const useIdleLogout = (callback, timeout = 20 * 60 * 1000) => {
     };
 
     // Attach event listeners
-    events.forEach(event => window.addEventListener(event, resetTimer));
+    events.forEach((event) => window.addEventListener(event, resetTimer));
 
     // Start initial timer
     logoutTimer = setTimeout(callback, timeout);
@@ -202,10 +202,37 @@ const useIdleLogout = (callback, timeout = 20 * 60 * 1000) => {
     // Cleanup on unmount
     return () => {
       clearTimeout(logoutTimer);
-      events.forEach(event => window.removeEventListener(event, resetTimer));
+      events.forEach((event) => window.removeEventListener(event, resetTimer));
     };
   }, [callback, timeout]);
 };
 
 export default useIdleLogout;
 
+
+// Logged in user details using idToken
+export const useLoggedInUserDetails = () => {
+  const encryptedToken = useSelector(
+    (state) => state?.amplifyAuthSession?.idToken
+  );
+  let user = {
+    name: "User",
+    email: "",
+  };
+  if (!encryptedToken || typeof encryptedToken !== "string") return user;
+
+  try {
+    const decryptedToken = decryptAEStoString(encryptedToken);
+    if (decryptedToken) {
+      const decoded = decodeJWT(decryptedToken);
+     user = {
+        name: decoded?.payload?.name || 'User',
+        email: decoded?.payload?.email || '',
+      };
+    }
+  } catch (err) {
+    console.error("useCurrentUser error:", err);
+  }
+
+  return user;
+};

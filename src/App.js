@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import PageNotFound from "./pages/pageNotFound";
 import Login from "./pages/auth/login";
 import ForgotPassword from "./pages/auth/forgot-password";
-import NewPassword from "./pages/auth/new-password";
 import PublicRoutes from "./hooks/routes/public-routes";
 import { ROUTES } from "./hooks/routes/routes-constant";
 import "./App.css";
@@ -20,6 +19,7 @@ import "./Responsive.css";
 import ConfirmSignUp from "./pages/auth/confirmsingup";
 import Register from "./pages/auth/register";
 import ProtectedRoutes from "./hooks/routes/protected-routes";
+import ChangePassword from "./pages/auth/changePassword";
 
 function App() {
 
@@ -53,10 +53,7 @@ function App() {
           element={<PublicRoutes component={<ForgotPassword />} />}
         />
         {/* Change Password */}
-        <Route
-          path={ROUTES?.NEW_PASSWORD}
-          element={<PublicRoutes component={<NewPassword />} />}
-        />
+      
 
         {/* ****************************Protected Route********************************* */}
         {/*Start Layout for protected route is FirstLayout*/}
@@ -77,6 +74,11 @@ function App() {
               />
             }
           />
+      {/* Change Password */}
+             <Route
+          path={ROUTES?.CHANGE_PASSWORD}
+          element={<ProtectedRoutes component={<ChangePassword />} />}
+        />
         </Route>
         {/* End Layout for protected route is FirstLayout*/}
 

@@ -25,6 +25,19 @@ const AccuracyLineChart = () => {
         { x: "May", encrypted: 50, },
         { x: "Jun", encrypted: 80, },
        ];
+
+   const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{ color: "#fff", fontSize: "14px", background: "transparent", padding: 4 }}>
+        <div>{`Month: ${label}`}</div>
+        <div>{`Encrypted: ${payload[0].value}%`}</div>
+      </div>
+    );
+  }
+  return null;
+};
+
     return (
   <div className="d-flex justify-content-center align-items-center" >
     <div
@@ -55,13 +68,37 @@ const AccuracyLineChart = () => {
             tick={{ fill: "#888" }}
             tickFormatter={(value) => `${value}%`}
           />
-          <Line
-            type="monotone"
-            dataKey="encrypted"
-            stroke="#a16cff"
-            strokeWidth={4}
-            dot={false}
-          />
+     <Line
+  type="monotone"
+  dataKey="encrypted"
+  stroke="#a16cff"
+  strokeWidth={4}
+  dot={false}
+  activeDot={({ cx, cy }) => (
+    <>
+      {/* Outer blurred purple glow */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={10}
+        fill="#a16cff"
+        style={{ filter: "blur(2px)", opacity: 0.6 }}
+      />
+      {/* White center dot */}
+      <circle
+        cx={cx}
+        cy={cy}
+        r={3}
+        fill="#ffffff"
+      />
+    </>
+  )}
+/>
+
+
+                     <Tooltip content={<CustomTooltip />} cursor={false} />
+
+          
         </LineChart>
       </ResponsiveContainer>
     </div>
