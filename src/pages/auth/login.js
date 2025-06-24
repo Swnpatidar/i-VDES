@@ -132,7 +132,6 @@ const Login = () => {
     };
     try {
       const result = await signIn(loginDynamicPayload);
-      console.log("result==>", result);
       if (result.isSignedIn) {
         setIsOpen(true)
         setTimeout(() => {

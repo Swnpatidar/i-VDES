@@ -23,7 +23,6 @@ const PublicRoutes = ({ component }) => {
     decryptedToken = null; // fallback to safe value
   }
 
-  console.log("location==>",location)
   if (decryptedToken) {
     // If already signed in, redirect to dashboard
     return <Navigate to="/dashboard" state={{ from: location }} replace />;

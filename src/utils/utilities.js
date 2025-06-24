@@ -178,7 +178,7 @@ export const LoaderSpinner = () => {
 
 let logoutTimer;
 
-const useIdleLogout = (callback, timeout = 3 * 60 * 1000) => {
+const useIdleLogout = (callback, timeout = 10 * 60 * 1000) => {
   useEffect(() => {
     const events = [
       "mousemove",
