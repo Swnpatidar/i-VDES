@@ -895,10 +895,10 @@ font-size: 14px !important;
   color: white; /* Ensure text color doesn't change */
 }
 .modal-btn-logout {
-  background-color: rgba(239, 83, 80, 1);
+  background-color: rgba(239, 83, 80, 1) !important;
 }
 .modal-btn-logout:hover {
-  background-color: rgba(239, 83, 80, 1);
+  background-color: rgba(239, 83, 80, 1) !important;
   color: white; /* Ensure text color doesn't change */
 }
 
@@ -1082,4 +1082,8 @@ font-size: 14px !important;
   border-color: transparent #303030 transparent transparent;
   transform: rotate(270deg);
 }
-
+ /* drag and drop */
+.upload-container.drag-over {
+  border: 2px dashed #00bfff;
+  background-color: #f0f8ff;
+}

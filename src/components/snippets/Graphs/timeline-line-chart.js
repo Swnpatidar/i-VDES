@@ -50,9 +50,9 @@ const TimelineChart = () => {
     <circle
       cx={cx}
       cy={cy}
-      r={8}
+      r={15}
       fill={color}
-      style={{ filter: "blur(2px)", opacity: 0.8 }}
+      style={{ filter: "blur(1px)", opacity: 0.6 }}
     />
     <circle
       cx={cx}

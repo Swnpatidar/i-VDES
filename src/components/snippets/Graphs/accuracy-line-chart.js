@@ -80,9 +80,9 @@ const AccuracyLineChart = () => {
       <circle
         cx={cx}
         cy={cy}
-        r={10}
+        r={15}
         fill="#a16cff"
-        style={{ filter: "blur(2px)", opacity: 0.6 }}
+        style={{ filter: "blur(1px)", opacity: 0.6 }}
       />
       {/* White center dot */}
       <circle

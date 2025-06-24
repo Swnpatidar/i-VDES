@@ -37,9 +37,54 @@ const ImageUploadBox = () => {
   }
 
   // Select file function
+// const handleFileSelect = async (e) => {
+//   e.preventDefault();
+//   setIsDragging(false);
+
+//   const file = e?.dataTransfer?.files[0];
+//   if (!file) return;
+
+//   // Validate file type
+//   if (!allowedFileTypes.includes(file.type)) {
+//     toast.error("Invalid file format. Only JPG, JPEG, or PNG files are allowed.");
+//     return;
+//   }
+
+//   try {
+//     const base64String = await fileToBase64String(file);
+//     const fileObj = {
+//       base64: base64String,
+//       size: file.size,
+//       fileName: file.name,
+//       fileType: file.type
+//     };
+//     setSelectedFile(fileObj);
+//   } catch (error) {
+//     console.error('Error converting to base64:', error);
+//     toast.error("Error processing image file.");
+//   }
+// };
+ // Select file function
   const handleFileSelect = async (e) => {
-    const file = e?.target?.files[0];
-    if (!file) return;
+    e.preventDefault(); 
+  setIsDragging(false);
+
+  let file = null;
+
+  if (e?.dataTransfer?.files?.[0]) {
+    file = e.dataTransfer.files[0]; // dragged file
+  } else if (e?.target?.files?.[0]) {
+    file = e.target.files[0]; // file from input
+  }
+
+
+  //  const files = e?.target?.files;
+  // if (!files || !files[0]) {
+  //   toast.error("No file selected.");
+  //   return;
+  // }
+
+  // const file = files[0];
     // step 1- Check valid file Size upto 8MB
     // if (file?.size > 5242880) {
     //   toast.error("File size should not exceed 8MB. Please choose again.")
@@ -113,6 +158,7 @@ const ImageUploadBox = () => {
       toast.error("")
     }
   }
+const [isDragging, setIsDragging] = useState(false);
 
 
   return (
@@ -120,7 +166,12 @@ const ImageUploadBox = () => {
       <div className='image-upload-box h-100'>
         <div className="card h-100">
           <div className='set-center'>
-            <div class="upload-container">
+            <div className={`upload-container ${isDragging ? 'drag-over' : ''}`}
+  onDragOver={(e) => e.preventDefault()}
+  onDrop={handleFileSelect}
+  onDragEnter={() => setIsDragging(true)}
+  onDragLeave={() => setIsDragging(false)}
+            >
               {selectedFile && (<>
                 {/* Proceed Next */}
                 <div className="orbit">
