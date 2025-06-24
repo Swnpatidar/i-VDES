@@ -181,10 +181,9 @@ export const LoaderSpinner = () => {
 };
 
 
-
+//Auto logout when user in Idle position for 3 minutes.
 let logoutTimer;
-
-const useIdleLogout = (callback, timeout = 20 * 60 * 1000) => {
+const useIdleLogout = (callback, timeout = 2 * 60 * 1000) => {
   useEffect(() => {
     const events = ["mousemove", "keydown", "mousedown", "scroll", "touchstart"];
 

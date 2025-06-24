@@ -15,9 +15,10 @@ import { ROUTES } from "../../hooks/routes/routes-constant";
 import withModalWrapper from "./HOC/withModalWrapper";
 import { useState } from "react";
 import MyModal from "./Modal/myModal";
+import Tooltip from "./tooltip";
 
 const Sidebar = ({ setSidebarShow, sidebarShow }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   const LogoutModal = withModalWrapper(MyModal) //for logout modal
   const [isOpen, setIsOpen] = useState(false); //for logout Modal
@@ -38,21 +39,21 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
     },
     {
       id: 3,
-      name: "Setting",
+      name: "Change password",
       route: ROUTES.PATIENT,
       src_not_active: SIDEBAR_SETTING_DEACTIVE,
       src_active: SIDEBAR_SETTING_ACTIVE,
     },
   ];
-   const handleLogoClick = () => {
-    navigate(ROUTES?.INDEX); 
+  const handleLogoClick = () => {
+    navigate(ROUTES?.INDEX);
   };
   return (
     <>
 
       <div className={`sidebar p-0 bg-sidebar rounded-30 ${sidebarShow ? "sidebar-show" : ""}`}>
-        <div className="pb-3 pt-1 cursor-pointer" >
-          <div className="ms-2 me-2 text-center border-bottom-line"onClick={handleLogoClick}  >
+        <div className="pt-1 cursor-pointer" >
+          <div className="ms-2 me-2 text-center border-bottom-line" onClick={handleLogoClick}  >
             <img
               src={SIDEBAR_MAINLOGO}
               alt="Main Logo"
@@ -73,7 +74,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
                 return (
                   <li
                     key={sidebar.id}
-                    className="position-relative pb-4 pe-1 pe-lg-0"
+                    className="position-relative my-4 pe-1 pe-lg-0"
                   >
                     <NavLink
                       to={sidebar.route}
@@ -85,14 +86,18 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
                     >
                       <div className="d-flex justify-content-center px-2">
                         <div className="sidebar-not-active-icon sidebar-active-icon w-auto d-inline-block">
-                          <img
-                            src={
-                              isActive
-                                ? sidebar.src_active
-                                : sidebar.src_not_active
-                            }
-                            alt="sidebar_icon"
-                          />
+                          <div className="tooltip-icon-wrapper">
+                            <img
+                              src={
+                                isActive
+                                  ? sidebar.src_active
+                                  : sidebar.src_not_active
+                              }
+                              alt="sidebar_icon"
+                            />
+                            <Tooltip tooltipText={sidebar?.name} />
+                          </div>
+
                         </div>
                       </div>
                     </NavLink>
@@ -102,8 +107,9 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
             </ul>
 
             {/* LOGOUT ICON */}
-            <div className="pt-3 pb-3 cursor-pointer" onClick={() => setIsOpen(true)}>
-              <div className="ms-2 me-2 text-center border-top-logout">
+            <div className=" pt-3 pb-3 cursor-pointer" onClick={() => setIsOpen(true)}>
+              <div className=" ms-2 me-2 text-center border-top-logout">
+                {/* <Tooltip tooltipText={"Logout"} /> */}
                 <img
                   src={SIDEBAR_LOGOUT}
                   alt="LOGOUT-ICON"
@@ -116,7 +122,7 @@ const Sidebar = ({ setSidebarShow, sidebarShow }) => {
       </div>
       {/* LOGOUT MODAL */}
       <LogoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} icon={LOGOUT_CONFIRM_PNG} heading="Come Back Soon!" subHeading="Are You Sure You Want To Logout?" isButton={true} />
-     
+
     </>
   );
 };

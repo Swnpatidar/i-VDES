@@ -9,12 +9,14 @@ import { ROUTES } from '../../hooks/routes/routes-constant'
 import { ARROW_ICON } from '../../utils/app-image-constant'
 import { WrappedDountChart, WrappedLineChart, WrappedStylishlineChart } from './dashboardSection/wrappedChartComponent'
 import { getCurrentUser } from '@aws-amplify/auth'
+import axios from 'axios'
 
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
   
+
   return (
     <>
       <div>
@@ -32,7 +34,6 @@ const Dashboard = () => {
               <h5 className="my-3">Upload Image</h5>
               <div className="flex-grow-1">
                 <ImageUploadBox />
-
               </div>
             </div>
 
