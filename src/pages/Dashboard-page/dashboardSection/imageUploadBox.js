@@ -5,6 +5,7 @@ import useToast from '../../../hooks/Custom-hooks/useToast';
 import { handleAPiStatus } from '../../../utils/handleApiStatus';
 import { uploadImageFile } from '../../../hooks/services/api-services';
 import { Message } from '../../../utils/toastMessages';
+import { Content } from 'antd/es/layout/layout';
 
 const ImageUploadBox = () => {
   const [selectedFile, setSelectedFile] = useState(null)
@@ -13,7 +14,6 @@ const ImageUploadBox = () => {
   const fileInputRef = useRef(null)
   const textRef = useRef(null);
   const toast = useToast()
-  
 
   // file formats
   const allowedFileTypes = ["image/jpg", "image/jpeg", "image/png"];
@@ -53,7 +53,7 @@ const ImageUploadBox = () => {
     }
 
     // step 3- Check valid image resolution
-     console.log("file===>",file)
+    console.log("file===>", file)
 
     let fileObj = {};
 
@@ -80,21 +80,25 @@ const ImageUploadBox = () => {
   //trigger Proceed Next button
   const handleProceedNext = async (e) => {
     e.preventDefault();
-    setStartImageFlipping(true)     //flipping will strat
-    const { base64 } = selectedFile;
-
-    // const formData = new FormData();
-    // formData.append("file", filePath);
+    setStartImageFlipping(true)//flipping will strat
+ 
     setTimeout(() => {
-      uploadImage(base64) //function to call api for image upload
+      uploadImage() //function to call api for image upload
     }, 15000);
   }
 
   // Api call
-  const uploadImage = async (base64) => {
-    console.log("base64 in api==>", base64)
+  const uploadImage = async () => {
+    const { base64, fileName } = selectedFile;
+    const imagePayload = {
+      folder: "Image",
+      filename:fileName,
+      content: base64
+    }
+    console.log("imagePayload in api==>", imagePayload)
+    return
     try {
-      const response = await uploadImageFile(base64)
+      const response = await uploadImageFile(imagePayload)
       console.log("res==>", response.status)
       if (response.status == 404) {
         toast.success(Message?.fileUpload)
