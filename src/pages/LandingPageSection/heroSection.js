@@ -3,14 +3,15 @@ import "../landingPage.css"
 import { ARROW_ICON, LANDING_IMAGE_1, LANDING_IMAGE_2, } from '../../utils/app-image-constant';
 import Button from '../../components/common/button';
 import '@aws-amplify/ui-react/styles.css';
+import { ROUTES } from '../../hooks/routes/routes-constant';
+import { useNavigate } from 'react-router-dom';
 
 // Amplify.configure(awsExport);
 
 const HeroSection = () => {
-
+const navigate = useNavigate();
   return (
     <>
-      {/* <Authenticator></Authenticator> */}
 
       <div className='hero-section mt-0'>
       
@@ -30,7 +31,7 @@ const HeroSection = () => {
             <div className='imageBox mb-3'>
               <img src={LANDING_IMAGE_2} alt="image" width="100%" height="100%" className='mb-2' />
             </div>
-            <Button label="Try Now" icon={ARROW_ICON} className="tryNowButton" iconPosition='back' />
+            <Button label="Try Now" icon={ARROW_ICON}  className="tryNowButton" iconPosition='back'  onClick={() => navigate(ROUTES?.LOGIN)} />
           </div>
         </div>
       </div>

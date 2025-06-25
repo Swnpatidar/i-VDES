@@ -2,6 +2,7 @@ import moment from "moment";
 import {
   alphaletter,
   alphaLetterWithnoSpaces,
+  alphaletterwithtleadingspaces,
   alphaNumericLetterWithNoSpecialCharacter,
   EmailRegex,
   NumberRegex,
@@ -134,20 +135,21 @@ export const fileDownload = (imageUrl) => {
 
 export const ErrorMessage = {
   Name: "Name is mandatory!",
-
+   Allfieldmandatory:"All fields are mandatory!",
  EmailandPassword :"Email and Password are mandatory!",
   Email: "Email is mandatory!",
   Password: "Password is mandatory!",
   Oldpassword:"Old password is mandatory!",
   NewPassword:"New password is mandatory!",
   ConfirmPassword: "Confirm Password is mandatory!",
-  MatchPassword: "Passwords do not match!",
+  MatchPassword: "Please make sure the confirm password is the same as the new password.",
  
   EmailAlreadyRegistered:"This email is already registered.",
   OTP_mandatory:"OTP is mandatory!",
   Six_digit_OTP:"Please enter a 6-digit OTP.",
   
   Valid: {
+    Name:"Name is invalid!",
     Email: "Email is invalid!",
     Password: "Password is invalid!",
     ConfirmPassword: "Confirm Password is Invalid",
@@ -170,6 +172,7 @@ export const checkValidation = (
   formError,
   setFormError
 ) => {
+    console.log("fieldName",fieldName)
   const updatedError = { ...formError };
 
   let statusName = `${fieldName}Status`;
@@ -199,21 +202,30 @@ export const ErrorMsg = ({ error }) => {
 export const hasValidationErrors = (formError) => {
   return Object.values(formError).some((err) => err !== "" && err !== false);
 };
-
-export const restrictInputByRegex = (regex) => {
-  return (e) => {
-    if (!regex.test(e.data)) {
-      e.preventDefault();
-    }
-  };
+  //To check if all values are empty after trimming
+export const isEmptyPayload = (payload = {}) => {
+  return Object.values(payload).every(
+    val => typeof val === "string" ? val.trim() === "" : !val
+  );
 };
-export const convertToPoints = (html) => {
-  const text = html?.replace(/<[^>]+>/g, ""); // Remove HTML tags
-  const points = text?.split(/\d+\.\s/).filter((item) => item?.trim() !== "");
-  return points;
-};
+// export const restrictInputByRegex = (regex) => {
+//   return (e) => {
+//     if (!regex.test(e.data)) {
+//       e.preventDefault();
+//     }
+//   };
+// };
+// export const convertToPoints = (html) => {
+//   const text = html?.replace(/<[^>]+>/g, ""); // Remove HTML tags
+//   const points = text?.split(/\d+\.\s/).filter((item) => item?.trim() !== "");
+//   return points;
+// };
 
 const validationConfig = {
+    name: {
+    regex: alphaletterwithtleadingspaces,
+    message: ErrorMessage.Valid.Name,
+  },
   firstName: {
     regex: alphaLetterWithnoSpaces,
     message: ErrorMessage.Valid.FirstName,
@@ -229,6 +241,7 @@ const validationConfig = {
     message: ErrorMessage.Valid.MobileNumber,
   },
   password: { regex: PasswordRegex, message: ErrorMessage.Valid.Password },
+  oldPassword: { regex: PasswordRegex, message: ErrorMessage.Valid.Password },
   experiance: { regex: NumberRegex, message: ErrorMessage.Valid.Number },
   iban: {
     regex: alphaNumericLetterWithNoSpecialCharacter,
@@ -249,3 +262,4 @@ const validationConfig = {
   },
   // add other fields here as needed
 };
+

@@ -179,12 +179,12 @@
 
 // // Bridge & Shield Project
 export const ARROW_ICON = "./assets/common/arrow_icon.svg";
-export const EYE_CLOSE = "./assets/loginicon/eye-close.png";
+export const EYE_CLOSE = "./assets/loginicon/eye-close.svg";
 export const EMAIL_ICON = "./assets/common/email_icon.png";
 export const CLOSE_ICON = "./assets/loginicon/cross-icon.png";
 export const PAGE_404 = "./assets/img/404page.svg";
 export const RIGHTARROW_IMG = "./assets/common/rightarrowimg.png";
-export const EYE_OPEN = "./assets/loginicon/open-eye.png";
+export const EYE_OPEN = "./assets/loginicon/open-eye.svg";
 export const COMPANY_LOGO = "./assets/common/company-logo.png";
 export const LANDING_IMAGE_1 = "./assets/landing-image/Hero-image-left.png";
 export const LANDING_IMAGE_2 = "./assets/landing-image/Hero-image-right.png";

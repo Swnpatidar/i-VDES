@@ -1098,3 +1098,11 @@ input:-webkit-autofill:focus {
   padding: 15px 30px;
   border: 1px solid #fff !important;
 }
+button[type="submit"] {
+  z-index: 1;
+}
+
+.resend-otp-btn {
+  z-index: 10;
+  position: relative;
+}

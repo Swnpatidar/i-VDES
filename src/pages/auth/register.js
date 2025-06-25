@@ -16,7 +16,7 @@ import {
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { ErrorMessage, ErrorMsg, handleFormInput } from "../../utils/form-utils";
+import { ErrorMessage, ErrorMsg, handleFormInput, isEmptyPayload } from "../../utils/form-utils";
 import Modal from "../../components/common/Model";
 import { signUp } from '@aws-amplify/auth'; //Gen2
 import useToast from "../../hooks/Custom-hooks/useToast";
@@ -49,7 +49,10 @@ const Register = () => {
     setFormError({});
     const { name, email, password ,confirmPassword} = registedPayload;
     
-  // Mandatory field validation
+  // Mandatory field 
+ if (isEmptyPayload(registedPayload)) {
+  return toast.error(ErrorMessage?.Allfieldmandatory);
+}
   if (name.trim() === "") {
     return toast.error(ErrorMessage?.Name);
   }
@@ -71,21 +74,21 @@ const Register = () => {
   return toast.error(ErrorMessage?.ConfirmPassword); 
 }
 if (password !== confirmPassword) {
-  return toast.error(ErrorMessage?.MatchPassword);
+  return toast.warn("Please make sure the confirm password is the same as the password.");
 }
 
   setIsLoading(true);
 
-    const signUpDynamicPayload = {
-      username: email,
-      password: password,
-      options: {
-        userAttributes: {
-          ...(email && { email }),
-          ...(name && { name }),
-        }
-      }
+  const signUpDynamicPayload = {
+  username: email,
+  password: password,
+  options: {
+    userAttributes: {
+      ...(email && { email }),
+      ...(name && { name: name.trim() }),
     }
+  }
+};
     try {
       const result = await signUp(signUpDynamicPayload);
       
@@ -130,13 +133,13 @@ if (password !== confirmPassword) {
 
             <div className="col-md-6 col-sm-12 d-flex justify-content-center h-100 ">
               <div className="login-box w-100 mx-3 position-relative">
-                <img
+                {/* <img
                   src={CLOSE_ICON}
                   alt="Close"
                   onClick={() => navigate(ROUTES?.INDEX)}
                   className="position-absolute top-0 end-0 m-4"
                   style={{ width: "25px", height: "25px", cursor: "pointer" }}
-                />
+                /> */}
                 <form onSubmit={handleRegister}>
                   <div className="login-welcome">
                     <h2 className="text-white">Signup</h2>

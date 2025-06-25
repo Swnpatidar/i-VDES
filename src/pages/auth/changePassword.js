@@ -6,7 +6,12 @@ import { ROUTES } from "../../hooks/routes/routes-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import useToast from "../../hooks/Custom-hooks/useToast";
-import { ErrorMessage, ErrorMsg, handleFormInput } from "../../utils/form-utils";
+import {
+  ErrorMessage,
+  ErrorMsg,
+  handleFormInput,
+  isEmptyPayload,
+} from "../../utils/form-utils";
 import {
   CHANGE_PASSWORD_LOGO,
   EYE_CLOSE,
@@ -29,37 +34,36 @@ const ChangePassword = () => {
 
   const [payload, setPayload] = useState({
     oldPassword: "",
-    newPassword: "",
+    password: "",
     confirmPassword: "",
   });
-
 
   const handleChange = (e) => {
     setPayload(handleFormInput(e, payload, formError, setFormError));
   };
+
   const validateForm = () => {
     const errors = {};
-
+    if (isEmptyPayload(payload)) {
+      return toast.error(ErrorMessage?.Allfieldmandatory);
+    }
     if (payload?.oldPassword?.trim() === "") {
       toast.error(ErrorMessage?.Oldpassword);
       return false;
     }
-    if (payload.newPassword.trim() === "") {
+    if (payload.password?.trim() === "") {
       toast.error(ErrorMessage?.NewPassword);
       return false;
-    }
-    else if (!validateRegex(payload.newPassword, PasswordRegex)) {
+    } else if (!validateRegex(payload.password, PasswordRegex)) {
       toast.error(ErrorMessage?.Valid?.Password_Requirements);
       return false;
     }
 
-    if (payload?.confirmPassword.trim() === "") {
+    if (payload?.confirmPassword?.trim() === "") {
       toast.error(ErrorMessage?.ConfirmPassword);
       return false;
-    }
-
-    else if (payload.password !== payload.confirmPassword) {
-      toast.error(ErrorMessage?.MatchPassword);
+    } else if (payload.password !== payload.confirmPassword) {
+      toast.warn(ErrorMessage?.MatchPassword);
       return false;
     }
 
@@ -76,15 +80,21 @@ const ChangePassword = () => {
       await getCurrentUser(); // Ensure the user is authenticated
       await updatePassword({
         oldPassword: payload.oldPassword,
-        newPassword: payload.newPassword,
+        newPassword: payload.password,
       });
 
       toast.success(Message?.Response?.Password_Reset_success);
       navigate(ROUTES.DASHBOARD);
     } catch (err) {
-      toast.error(
-        err.message || Message?.Response?.Default
-      );
+      console.log("err",err)
+      if(err.name=="NotAuthorizedException"){
+        toast.warn("Old password is incorrect. Please check and try again.")
+
+      }
+      // toast.error(err.message || Message?.Response?.Default);
+      if (err.name === "EmptyUpdatePassword") {
+        return;
+      }
     } finally {
       setIsLoading(false);
     }
@@ -99,7 +109,12 @@ const ChangePassword = () => {
             {/* <div className="col-12 "> */}
             <div className="modal-content changePasswordBody">
               <div className="text-center">
-                <img src={CHANGE_PASSWORD_LOGO} className="mb-3" alt="password" width="90px" />
+                <img
+                  src={CHANGE_PASSWORD_LOGO}
+                  className="mb-3"
+                  alt="password"
+                  width="90px"
+                />
                 <h4 className="text-white mb-3">Change Password</h4>
               </div>
 
@@ -111,9 +126,12 @@ const ChangePassword = () => {
                     name="oldPassword"
                     value={payload.oldPassword}
                     placeHolder="Old Password"
+                    error={formError.oldPassword}
                     handleChange={handleChange}
                     showRightIcon
-                    rightIconSrc={showOldPwd === "password" ? EYE_CLOSE : EYE_OPEN}
+                    rightIconSrc={
+                      showOldPwd === "password" ? EYE_CLOSE : EYE_OPEN
+                    }
                     onRightIconClick={() =>
                       setShowOldPwd((prev) =>
                         prev === "password" ? "text" : "password"
@@ -128,20 +146,24 @@ const ChangePassword = () => {
                   <Input
                     className="border-radius_input"
                     type={isPwdVisible}
-                    name="newPassword"
-                    value={payload.newPassword}
+                    name="password"
+                    value={payload.password}
                     placeHolder="New Password"
                     handleChange={handleChange}
-                    error={formError.newPassword}
+                    error={formError.password}
                     showRightIcon
                     showAsterisk={false}
                     showLabel={false}
-                    rightIconSrc={isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN}
+                    rightIconSrc={
+                      isPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
+                    }
                     onRightIconClick={() =>
-                      setIsPwdVisible(isPwdVisible === "password" ? "text" : "password")
+                      setIsPwdVisible(
+                        isPwdVisible === "password" ? "text" : "password"
+                      )
                     }
                   />
-                  <ErrorMsg error={formError.newPassword} />
+                  <ErrorMsg error={formError.password} />
                 </div>
                 <div className="mb-3">
                   <Input
@@ -160,7 +182,7 @@ const ChangePassword = () => {
                     }
                     onRightIconClick={() =>
                       setIsConfirmPwdVisible(
-                        setIsConfirmPwdVisible === "password" ? "text" : "password"
+                        isConfirmPwdVisible === "password" ? "text" : "password"
                       )
                     }
                   />
@@ -175,15 +197,13 @@ const ChangePassword = () => {
                   />
                 </div>
               </form>
-
             </div>
             {/* </div> */}
           </div>
           <div className="col-12 col-md-3"></div>
-
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

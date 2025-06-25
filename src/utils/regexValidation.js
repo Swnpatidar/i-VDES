@@ -6,6 +6,7 @@ export const PasswordRegex =
 export const LinkValidationRegex =
   /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-/]))?/;
 export const alphaletter = /^(?! )[a-zA-Z\u0900-\u097F]+(?: [a-zA-Z\u0900-\u097F]+)*$/;
+export const alphaletterwithtleadingspaces=/^(?!\s)[a-zA-Z\u0900-\u097F\s]+$/;
 export const alphaLetterWithnoSpaces = /^[a-zA-Z\u0900-\u097F]+$/;
 export const alphaletterwithApostrophe =
   /^(?!\s)[a-zA-Z ]+('[a-zA-Z ])?[a-zA-Z ]*$|^(?!\s)[\u0900-\u097F ]*$/;

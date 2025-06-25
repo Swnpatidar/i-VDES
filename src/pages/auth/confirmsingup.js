@@ -28,7 +28,7 @@ const ConfirmSignUp = () => {
       }, 1000);
     } else if (timer === 0) {
       setResendDisabled(false);
-      setTimer(30);
+      setTimer(60);
     }
     return () => clearInterval(countdown);
   }, [resendDisabled, timer]);
@@ -77,7 +77,15 @@ const ConfirmSignUp = () => {
       toast.success(Message?.Response?.Verfication_success);
       navigate(ROUTES?.LOGIN);
     } catch (err) {
-      toast.error(err.message || Message.Response.Default);
+       console.log("err cofirm>>>>>>>>",err)
+       if(err.name=="CodeMismatchException"){
+        toast.warn("Incorrect verification code, please try again.");
+       }else if (err.name === "LimitExceededException") {
+        toast.warn("You have blocked. please try again after 10 minutes.");
+      } else{
+
+         toast.error(err.message || Message.Response.Default);
+       }
     } finally {
       setLoading(false);
     }
@@ -150,7 +158,7 @@ const ConfirmSignUp = () => {
               />
             </div>
 
-            <p className="mt-3">
+            {/* <p className="mt-3">
               Didn’t receive the OTP?{" "}
 
               <span
@@ -168,7 +176,26 @@ const ConfirmSignUp = () => {
 
             </p>
 
-            {resendDisabled && <small>Resend available in {timer}s</small>}
+            {resendDisabled && <small>Resend OTP in {timer}s</small>} */}
+            <p className="mt-3">
+  Didn’t receive the OTP?{" "}
+  {resendDisabled ? (
+    <small>Resend OTP in {timer}s</small>
+  ) : (
+    <span
+      onClick={handleResend}
+      className="singup-color"
+      style={{
+        fontSize: "15px",
+        textDecoration: "underline",
+        cursor: "pointer",
+      }}
+    >
+      Resend OTP
+    </span>
+  )}
+</p>
+
           </div>
         </div>
       </div>
