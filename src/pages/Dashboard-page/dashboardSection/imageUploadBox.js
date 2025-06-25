@@ -68,7 +68,6 @@ const ImageUploadBox = () => {
       return;
     }
 
-
     let fileObj = {};
     let fileToBase64 = {};
     //get base64 string
@@ -103,6 +102,10 @@ const ImageUploadBox = () => {
     }
 
     // step 3- Check valid image resolution 800X600
+<<<<<<< HEAD
+=======
+
+>>>>>>> 70633885ba967ca8466f6c2c049ba8b82eb212b3
     if (fileToBase64?.width < 800 || fileToBase64?.height < 600) {
       toast.error(
         "Your image resolution is too low. Minimum required size is 800 × 600 pixels."

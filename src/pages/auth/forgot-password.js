@@ -6,7 +6,7 @@ import { ROUTES } from "../../hooks/routes/routes-constant";
 import { EMAIL_ICON, ARROW_ICON, EYE_CLOSE, EYE_OPEN, FORGET_PASSWORD } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { ErrorMsg } from "../../utils/form-utils";
+import { ErrorMessage, ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
 import { validateRegex } from "../../utils/utilities";
@@ -28,54 +28,42 @@ const ForgotPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPwdVisible, setIsPwdVisible] = useState("password");
 
-  // const handleChange = (e) => {
-  //   setPayload((prev) => ({
-  //     ...prev,
-  //     [e.target.name]: e.target.value,
-  //   }));
-  // };
+
 const handleChange = (e) => {
-  const { name, value } = e.target;
-
-  if (name === "code" && value.length > 6) return;
-
-  setPayload((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
+  if (e.target.name === "code" && e.target.value.length > 6) return;
+setPayload(handleFormInput(e, payload, formError, setFormError));
 };
-
 const validateStep = () => {
   const errors = {};
 
   if (payload.email.trim() === "") {
-    toast.error("Email is mandatory!");
+    toast.error(ErrorMessage?.Email);
     return false;
   }
 
   if (step === 2) {
     if (!payload?.code) {
-      toast.error("OTP is required");
+      toast.error(ErrorMessage?.OTP_mandatory);
       return false;
     }
 
     if (payload?.password.trim() === "") {
-      toast.error("Password is mandatory!");
+      toast.error(ErrorMessage?.Password);
       return false;
     }
 
     if (!validateRegex(payload?.password, PasswordRegex)) {
-      toast.error("Password must be at least 8 characters long and include a special character, capital letter, and number.");
-      return false; // <-- This was missing
+      toast.error(ErrorMessage?.Valid?.Password_Requirements);
+      return false; 
     }
 
     if (payload?.confirmPassword.trim() === "") {
-      toast.error("Confirm Password is mandatory!");
+      toast.error(ErrorMessage?.ConfirmPassword);
       return false;
     }
 
     if (payload.password !== payload.confirmPassword) {
-      toast.error("Passwords do not match!");
+      toast.error(ErrorMessage?.MatchPassword);
       return false;
     }
   }
@@ -94,7 +82,7 @@ const validateStep = () => {
     try {
       if (step === 1) {
         await resetPassword({ username: payload.email });
-        toast.success("OTP sent to your email.");
+        toast.success(Message?.Response?.Otpsent_email);
         setStep(2);
       } else {
         await confirmResetPassword({
@@ -102,12 +90,11 @@ const validateStep = () => {
           confirmationCode: payload.code,
           newPassword: payload.password,
         });
-        toast.success("Password reset successfully");
+        toast.success(Message?.Response?.Password_Reset_success);
         navigate(ROUTES.LOGIN);
       }
 
     } catch (err) {
-  console.log("AWS error:", err);
 
   if (err.name === "EmptyConfirmResetPasswordNewPassword") {
     // Ignore, since we already validated it
@@ -171,7 +158,6 @@ const validateStep = () => {
       value={payload.code}
       name="code"
       placeHolder="Verification Code"
-      // handleChange={handleChange}
         handleChange={(e) => {
       const inputValue = e.target.value;
 

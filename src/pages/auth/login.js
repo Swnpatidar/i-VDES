@@ -3,12 +3,10 @@ import { useState } from "react";
 import "./login.css";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import { signIn } from "../../hooks/services/api-services";
 import {
   decryptAEStoString,
   encryptJSONtoAES,
   encryptStringtoAES,
-  toastEmitter,
   validateRegex,
 } from "../../utils/utilities";
 
@@ -18,25 +16,23 @@ import {
   EYE_OPEN,
   EMAIL_ICON,
   EYE_CLOSE,
-  ARROW_ICON,
-  RIGHTARROW_IMG,
-  CLOSE_ICON,
-  LOGIN_SUCCESS_ICON,
-  LOGIN_SUCCESS_PNG,
+ LOGIN_SUCCESS_PNG,
   ARROWTOLEFT,
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
+import {
+  ErrorMessage,
+  ErrorMsg,
+  handleFormInput,
+} from "../../utils/form-utils";
 import withModalWrapper from "../../components/common/HOC/withModalWrapper";
 import MyModal from "../../components/common/Modal/myModal";
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
 import {
   fetchAuthSession,
-  getCurrentUser,
   signIn,
-  signOut,
 } from "@aws-amplify/auth";
 import { setAmplifyAuthSession } from "../../hooks/redux/slice/auth-session";
 
@@ -47,7 +43,6 @@ const Login = () => {
   const [isPwdVisible, setIsPwdVisible] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const addbuttonClick = useRef();
   const LogInModal = withModalWrapper(MyModal); //for login modal
   const [isOpen, setIsOpen] = useState(false); //for login Modal
   const toast = useToast();
@@ -75,37 +70,42 @@ const Login = () => {
     setLoginPayload(handleFormInput(e, loginPayload, formError, setFormError));
   };
 
-  // get token 
+  // get token
   const getSessionAndStore = async () => {
     try {
       const session = await fetchAuthSession();
       dispatch(
         setAmplifyAuthSession({
-          accessToken: encryptJSONtoAES(session.tokens?.accessToken?.toString()),
+          accessToken: encryptJSONtoAES(
+            session.tokens?.accessToken?.toString()
+          ),
           idToken: encryptJSONtoAES(session.tokens?.idToken?.toString()),
-          refreshToken: encryptJSONtoAES(session.tokens?.refreshToken?.toString()),
+          refreshToken: encryptJSONtoAES(
+            session.tokens?.refreshToken?.toString()
+          ),
         })
       );
     } catch (err) {
-      console.error("Error fetching session:", err);
+         toast.error(Message.Response.Default);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginPayload.email.trim() === "" && loginPayload.password.trim() === "") {
-      return toast.error("Email and Password are mandatory!");
+    if (
+      loginPayload.email.trim() === "" &&
+      loginPayload.password.trim() === ""
+    ) {
+      return toast.error(ErrorMessage?.EmailandPassword);
     }
     if (loginPayload.password.trim() === "") {
-      return toast.error("Password is mandatory!");
+      return toast.error(ErrorMessage?.Password);
     }
     if (!validateRegex(loginPayload.email, EmailRegex)) {
-      return toast.error("Email is invalid!");
+      return toast.error(ErrorMessage?.Valid?.Email);
     }
     if (!validateRegex(loginPayload.password, PasswordRegex)) {
-      return toast.error(
-        "password should be a combination  8  characters which include altleast one special character , special symbol , capital letter and number"
-      );
+      return toast.error(ErrorMessage?.Valid?.Password_Requirements);
     }
     setIsLoading(true);
     await AmplifySignIn();
@@ -133,41 +133,27 @@ const Login = () => {
     try {
       const result = await signIn(loginDynamicPayload);
       if (result.isSignedIn) {
-        setIsOpen(true)
+        setIsOpen(true);
         setTimeout(() => {
-          navigate(ROUTES?.DASHBOARD)
-          setIsOpen(false)
+          navigate(ROUTES?.DASHBOARD);
+          setIsOpen(false);
         }, 1400);
         await getSessionAndStore(); //to get the Token
       } else {
-        toast.error("Invalid user,please sign up.");
+        toast.error(ErrorMessage?.Valid?.Singup_Required);
       }
     } catch (error) {
-       if (error.name === "NotAuthorizedException") {
-      toast.error("Invalid credentials,Please check.");
-    } else if (error.name === "UserNotFoundException") {
-      toast.error("Invalid user,Please sign up.");
-    } else if (error.name === "UserAlreadyAuthenticatedException") {
-      toast.error("You're already logged in.");
-    } else {
-         toast.error(Message.Response.Default);
+      if (error.name === "NotAuthorizedException") {
+        toast.error(ErrorMessage?.Valid?.Invalid_Credentials);
+      } else if (error.name === "UserNotFoundException") {
+        toast.error(ErrorMessage?.Valid?.Singup_Required);
+      } else if (error.name === "UserAlreadyAuthenticatedException") {
+        toast.error(ErrorMessage?.Valid?.Already_Logged_In);
+      } else {
+        toast.error(Message.Response.Default);
+      }
     }
-  }
-    
-   
-    
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setIsOpen(true)
-  //   setTimeout(() => {
-  //     navigate(ROUTES?.DASHBOARD)
-  //     setIsOpen(false)
-  //   }, 1200);
-  // }
-     
-  
 
   return (
     <>
@@ -311,6 +297,6 @@ const Login = () => {
       </div>
     </>
   );
-}
+};
 
 export default Login;
