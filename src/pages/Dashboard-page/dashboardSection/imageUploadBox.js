@@ -89,9 +89,10 @@ const ImageUploadBox = () => {
       }
     }
 
-    // step 1- Check valid file Size upto 7.5MB
-    if (file?.size > 7864320) {
-      toast.error("File size should not exceed 7.5MB. Please choose again.");
+    // step 1- Check valid file Size upto 5GB
+    const MAX_FILE_SIZE = 5 * 1024 * 1024 * 1024;
+    if (file?.size > MAX_FILE_SIZE) {
+      toast.error("File size should not exceed 5GB. Please choose again.");
       return false;
     }
 
