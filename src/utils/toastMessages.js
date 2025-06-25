@@ -11,7 +11,13 @@ export const Message = {
         FileUpload: "File uploaded successfully.",
         Error:"Unexpected error occurred. Please try again later.",
         Default:"Sorry, Something Went Wrong. Try again in a moment.",
-        Sessionout:"Session expired. Please login again to continue."
+        Sessionout:"Session expired. Please login again to continue.",
+         RegistrationSuccess:"Registration complete. We've sent a verification code to your email.",
+         Otpsent_email:"OTP sent to your email.",
+        Password_Reset_success:"Password reset successfully.",
+        Verfication_success:"Verification successful.",
+        OTP_Resend_success:"OTP resent successfully.",
+        Failed_Resend_Otp:"Failed to resend OTP. Please try again later."
     }
 }
 

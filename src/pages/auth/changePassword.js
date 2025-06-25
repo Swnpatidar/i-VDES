@@ -6,7 +6,7 @@ import { ROUTES } from "../../hooks/routes/routes-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
 import useToast from "../../hooks/Custom-hooks/useToast";
-import { ErrorMsg } from "../../utils/form-utils";
+import { ErrorMessage, ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import {
   CHANGE_PASSWORD_LOGO,
   EYE_CLOSE,
@@ -15,6 +15,7 @@ import {
 import { validateRegex } from "../../utils/utilities";
 import { PasswordRegex } from "../../utils/regexValidation";
 import BreadCrum from "../../components/common/BreadCrum";
+import { Message } from "../../utils/toastMessages";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -32,29 +33,36 @@ const ChangePassword = () => {
     confirmPassword: "",
   });
 
-  const handleChange = (e) => {
-    setPayload((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
+ 
+const handleChange = (e) => {
+setPayload(handleFormInput(e, payload, formError, setFormError));
+};
   const validateForm = () => {
     const errors = {};
-    if (!payload.oldPassword.trim()) {
-      errors.oldPassword = "Old password is required";
+    
+     if (payload?.oldPassword?.trim() === "") {
+          toast.error(ErrorMessage?.Oldpassword);
+          return false;
+        }
+    if (payload.newPassword.trim()==="") {
+        toast.error(ErrorMessage?.NewPassword);
+          return false;
     }
-    if (!payload.newPassword.trim()) {
-      errors.newPassword = "New password is required";
-    } else if (!validateRegex(payload.newPassword, PasswordRegex)) {
-      errors.newPassword =
-        "Password must be at least 8 characters long and include a special character, capital letter, and number.";
-    }
-    if (!payload.confirmPassword.trim()) {
-      errors.confirmPassword = "Confirm password is required";
-    } else if (payload.newPassword !== payload.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
-    }
+     else if (!validateRegex(payload.newPassword, PasswordRegex)) 
+      {
+            toast.error(ErrorMessage?.Valid?.Password_Requirements);
+            return false; 
+          }
+  
+     if (payload?.confirmPassword.trim() === "") {
+          toast.error(ErrorMessage?.ConfirmPassword);
+          return false;
+        }
+
+    else if(payload.password !== payload.confirmPassword) {
+          toast.error(ErrorMessage?.MatchPassword);
+          return false;
+        }
 
     setFormError(errors);
     return Object.keys(errors).length === 0;
@@ -72,12 +80,11 @@ const ChangePassword = () => {
         newPassword: payload.newPassword,
       });
 
-      toast.success("Password changed successfully");
+      toast.success(Message?.Response?.Password_Reset_success);
       navigate(ROUTES.DASHBOARD);
     } catch (err) {
-      console.log("error changing password", err);
       toast.error(
-        err.message || "Something went wrong while changing password"
+        err.message || Message?.Response?.Default
       );
     } finally {
       setIsLoading(false);

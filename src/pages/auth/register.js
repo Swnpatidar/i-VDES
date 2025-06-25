@@ -1,14 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, {  useRef } from "react";
 import { useState } from "react";
 import "./login.css";
-
-// import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signIn } from "../../hooks/services/api-services";
 import {
-  decryptAEStoString,
-  toastEmitter,
-  validateRegex,
+validateRegex,
 } from "../../utils/utilities";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import { EmailRegex, PasswordRegex } from "../../utils/regexValidation";
@@ -21,9 +16,8 @@ import {
 } from "../../utils/app-image-constant";
 import Input from "../../components/common/input";
 import Button from "../../components/common/button";
-import { ErrorMsg, handleFormInput } from "../../utils/form-utils";
+import { ErrorMessage, ErrorMsg, handleFormInput } from "../../utils/form-utils";
 import Modal from "../../components/common/Model";
-// import { Auth } from "aws-amplify";
 import { signUp } from '@aws-amplify/auth'; //Gen2
 import useToast from "../../hooks/Custom-hooks/useToast";
 import { Message } from "../../utils/toastMessages";
@@ -34,7 +28,6 @@ const Register = () => {
   const [isPwdVisible, setIsPwdVisible] = useState("password");
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState("password");
   const [isLoading, setIsLoading] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const addbuttonClick = useRef();
   const toast = useToast();
 
@@ -58,29 +51,27 @@ const Register = () => {
     
   // Mandatory field validation
   if (name.trim() === "") {
-    return toast.error("Name is mandatory!");
+    return toast.error(ErrorMessage?.Name);
   }
   if (email.trim() === "") {
-    return toast.error("Email is mandatory!");
+    return toast.error(ErrorMessage?.Email);
   }
   if (password.trim() === "") {
-    return toast.error("Password is mandatory!");
+    return toast.error(ErrorMessage?.Password);
   }
 
   // Regex validation
   if (!validateRegex(email, EmailRegex)) {
-    return toast.error("Email is invalid!");
+    return toast.error(ErrorMessage?.Valid?.Email);
   }
   if (!validateRegex(password, PasswordRegex)) {
-    return toast.error(
-      "Password must be at least 8 characters long and include a special character, capital letter, and number."
-    );
+    return toast.error(ErrorMessage?.Valid?.Password_Requirements);
   }
   if (confirmPassword.trim() === "") {
-  return toast.error("Confirm Password is mandatory!"); 
+  return toast.error(ErrorMessage?.ConfirmPassword); 
 }
 if (password !== confirmPassword) {
-  return toast.error("Passwords do not match!");
+  return toast.error(ErrorMessage?.MatchPassword);
 }
 
   setIsLoading(true);
@@ -97,36 +88,26 @@ if (password !== confirmPassword) {
     }
     try {
       const result = await signUp(signUpDynamicPayload);
-      console.log("Sign up result:==>", result);
       
     
       if(result.userId && !result.isSignUpComplete){
-        toast.success("Registration complete. We've sent a verification code to your email.")
+        toast.success(Message?.Response?.RegistrationSuccess)
         navigate(ROUTES.CONFIRM_SINGUP, { state: { email: registedPayload?.email } });
       }else{
         toast.error(Message.Response.Default)
       }
     } catch (error) {
-      toast.error(Message.Response.Error);
+
+  if (error.name === "UsernameExistsException") {
+    toast.error(ErrorMessage?.EmailAlreadyRegistered);
+  } else {
+    toast.error(Message.Response.Default); // fallback generic error
+  }
+
     } finally {
       setIsLoading(false);
     }
   };
-
-
-  // useEffect(() => {
-  //   const savedEmail = decryptAEStoString(localStorage.getItem("email"));
-  //   const savedPassword = decryptAEStoString(localStorage.getItem("password"));
-  //   const savedRememberMe = localStorage.getItem("rememberMe") === "true";
-  //   if (savedRememberMe) {
-  //     setRegistedPayload({
-  //       ...registedPayload,
-  //       email: savedEmail,
-  //       password: savedPassword,
-  //     });
-  //     setRememberMe(true);
-  //   }
-  // }, []);
 
 
   return (

@@ -6,11 +6,11 @@ import useToast from "../../hooks/Custom-hooks/useToast";
 import { ROUTES } from "../../hooks/routes/routes-constant";
 import { Message } from "../../utils/toastMessages";
 import { VERFICATION_EMAIL_LOGO } from "../../utils/app-image-constant";
+import { ErrorMessage } from "../../utils/form-utils";
 
 const ConfirmSignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log("location", location)
   const toast = useToast();
   const user_email = location?.state?.email;
 
@@ -64,7 +64,7 @@ const ConfirmSignUp = () => {
   const handleSubmit = async () => {
     const code = OTP.join("");
     if (code.length !== 6) {
-      toast.error("Please enter a 6-digit OTP.");
+      toast.error(ErrorMessage?.Six_digit_OTP);
       return;
     }
 
@@ -74,7 +74,7 @@ const ConfirmSignUp = () => {
         username: user_email,
         confirmationCode: code,
       });
-      toast.success("Verification successful!");
+      toast.success(Message?.Response?.Verfication_success);
       navigate(ROUTES?.LOGIN);
     } catch (err) {
       toast.error(err.message || Message.Response.Default);
@@ -87,9 +87,9 @@ const ConfirmSignUp = () => {
     try {
       setResendDisabled(true);
       await resendSignUpCode({ username: user_email });
-      toast.success("OTP resent successfully!");
+      toast.success(Message?.Response?.OTP_Resend_success);
     } catch (error) {
-      toast.error("Failed to resend OTP. Please try again later.");
+      toast.error(Message?.Response?.Failed_Resend_Otp);
       setResendDisabled(false);
     }
   };
