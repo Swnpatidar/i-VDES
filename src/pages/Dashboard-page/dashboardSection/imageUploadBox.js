@@ -15,6 +15,7 @@ import { useLoggedInUserDetails } from "../../../utils/utilities";
 const ImageUploadBox = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [startImageFlipping, setStartImageFlipping] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [getData, setGetData] = useState(false);
   const fileInputRef = useRef(null);
   const textRef = useRef(null);
@@ -55,7 +56,7 @@ const ImageUploadBox = () => {
   };
 
   const handleFileSelect = async (e) => {
-    let file=null
+    let file = null
     if (e?.dataTransfer?.files[0]) {
       file = e.dataTransfer.files[0]; // dragged file
     } else if (e?.target?.files[0]) {
@@ -102,7 +103,7 @@ const ImageUploadBox = () => {
     }
 
     // step 3- Check valid image resolution 800X600
-    if (fileToBase64?.width < 800 && fileToBase64?.height < 600) {
+    if (fileToBase64?.width < 800 || fileToBase64?.height < 600) {
       toast.error(
         "Your image resolution is too low. Minimum required size is 800 × 600 pixels."
       );
@@ -112,7 +113,6 @@ const ImageUploadBox = () => {
     setSelectedFile(fileObj);
   };
 
-  console.log("Select File==>", selectedFile);
 
   //trigger Proceed Next button
   const handleProceedNext = async (e) => {
@@ -145,7 +145,7 @@ const ImageUploadBox = () => {
       toast.error(Message?.Response?.Default);
     }
   };
-  const [isDragging, setIsDragging] = useState(false);
+
 
   return (
     <>
@@ -155,7 +155,11 @@ const ImageUploadBox = () => {
             <div
               className={`upload-container ${isDragging ? "drag-over" : ""}`}
               onDragOver={(e) => e.preventDefault()}
-              onDrop={handleFileSelect}
+              onDrop={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleFileSelect(e);
+              }}
               onDragEnter={() => setIsDragging(true)}
               onDragLeave={() => setIsDragging(false)}
             >

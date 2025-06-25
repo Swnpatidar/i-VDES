@@ -129,9 +129,9 @@ const validateStep = () => {
               {/* Header */}
               <div className="text-center mb-4">
                 <img src={FORGET_PASSWORD} className="mb-3" alt="password" width="100px" />
-                <h5 className="text-white mb-2">
+                <h4 className="text-white mb-2">
                   {step === 1 ? "Forgot Password!" : "Reset Password"}
-                </h5>
+                </h4>
                 <p className="mb-0">
                   {step === 1
                     ? "Please enter your registered email address. We will send you a One-Time Password to verify your identity."

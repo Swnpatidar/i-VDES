@@ -812,20 +812,24 @@ input:-webkit-autofill:focus {
   color: var(--singupcolor);
 }
 /* -------------------------Toast CSS------------------------ */
-.Toastify__toast-theme--colored.Toastify__toast--success ,.Toastify__toast-theme--colored.Toastify__toast--error,.Toastify__toast-theme--colored.Toastify__toast--info,.Toastify__toast-theme--colored.Toastify__toast--warning  {
+.Toastify__toast-theme--colored.Toastify__toast--success,
+.Toastify__toast-theme--colored.Toastify__toast--error,
+.Toastify__toast-theme--colored.Toastify__toast--info,
+.Toastify__toast-theme--colored.Toastify__toast--warning {
   background-color: #14172b !important;
   border: 1px solid rgba(255, 255, 255, 0.5) !important;
   box-shadow: 0 4px 12px rgba(206, 206, 206, 0.3) !important;
 }
-.Toastify__toast{
- font-family: "Hanken Grotesk", sans-serif !important;
-font-size: 14px !important;
+.Toastify__toast {
+  font-family: "Hanken Grotesk", sans-serif !important;
+  font-size: 14px !important;
 }
 
 .Toastify__toast-theme--colored.Toastify__toast--success .Toastify__toast-icon {
   color: #12cf31 !important;
 }
-.Toastify__toast-theme--colored.Toastify__toast--success .Toastify__progress-bar {
+.Toastify__toast-theme--colored.Toastify__toast--success
+  .Toastify__progress-bar {
   background: #12cf31 !important;
 }
 .Toastify__toast-theme--colored.Toastify__toast--error .Toastify__toast-icon {
@@ -843,7 +847,8 @@ font-size: 14px !important;
 .Toastify__toast-theme--colored.Toastify__toast--warning .Toastify__toast-icon {
   color: #ffc107 !important;
 }
-.Toastify__toast-theme--colored.Toastify__toast--warning .Toastify__progress-bar {
+.Toastify__toast-theme--colored.Toastify__toast--warning
+  .Toastify__progress-bar {
   background: #ffc107 !important;
 }
 
@@ -1051,7 +1056,7 @@ font-size: 14px !important;
   visibility: hidden;
   opacity: 0;
   width: 70px;
-  background-color: #303030;
+  background-color: #0b006c;
   color: #fff;
   font-size: 10px;
   text-align: center;
@@ -1079,11 +1084,17 @@ font-size: 14px !important;
   left: 41%;
   border-width: 7px;
   border-style: solid;
-  border-color: transparent #303030 transparent transparent;
+  border-color: transparent #0b006c transparent transparent;
   transform: rotate(270deg);
 }
- /* drag and drop */
+/* drag and drop */
 .upload-container.drag-over {
   border: 2px dashed #00bfff;
   background-color: #f0f8ff;
+}
+.changePasswordBody {
+  width: 100%;
+  max-width: 100%;
+  padding: 15px 30px;
+  border: 1px solid #fff !important;
 }

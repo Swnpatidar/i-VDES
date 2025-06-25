@@ -15,6 +15,7 @@ import {
 import { validateRegex } from "../../utils/utilities";
 import { PasswordRegex } from "../../utils/regexValidation";
 import BreadCrum from "../../components/common/BreadCrum";
+import { Message } from "../../utils/toastMessages";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -50,11 +51,7 @@ const ChangePassword = () => {
       errors.newPassword =
         "Password must be at least 8 characters long and include a special character, capital letter, and number.";
     }
-    if (!payload.confirmPassword.trim()) {
-      errors.confirmPassword = "Confirm password is required";
-    } else if (payload.newPassword !== payload.confirmPassword) {
-      errors.confirmPassword = "Passwords do not match";
-    }
+
 
     setFormError(errors);
     return Object.keys(errors).length === 0;
@@ -75,10 +72,8 @@ const ChangePassword = () => {
       toast.success("Password changed successfully");
       navigate(ROUTES.DASHBOARD);
     } catch (err) {
-      console.log("error changing password", err);
-      toast.error(
-        err.message || "Something went wrong while changing password"
-      );
+      console.log("Change password error", err);
+      toast.error(Message.Response.Default);
     } finally {
       setIsLoading(false);
     }
@@ -86,22 +81,19 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-between align-items-center">
-        <BreadCrum firstData="Change Password" iconshow1={false} />
-      </div>
-
-      <div className="Auth-common-bg min-vh-100">
+      <div className="Auth-common-bg border-0">
         <div className="row">
-          <div className="col-12 d-flex justify-content-center align-items-center">
-            <div className="w-50">
-              <div className="modal-content p-4 border-white">
-                <div className="text-center mb-4">
-                  <img src={CHANGE_PASSWORD_LOGO} className="mb-3" alt="password" width="100px" />
-                  <h5 className="text-white mb-1">Change Password</h5>
+          <div className="col-3"></div>
+          <div className="col-6 m-2 d-flex justify-content-center align-items-center">
+            {/* <div className="col-12 "> */}
+              <div className="modal-content changePasswordBody">
+                <div className="text-center">
+                  <img src={CHANGE_PASSWORD_LOGO} className="mb-3" alt="password" width="90px" />
+                  <h4 className="text-white mb-3">Change Password</h4>
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                  <div className="mb-2">
+                  <div className="mb-3">
                     <Input
                       className="border-radius_input"
                       type={showOldPwd}
@@ -121,7 +113,7 @@ const ChangePassword = () => {
                     <ErrorMsg error={formError.oldPassword} />
                   </div>
 
-                  <div className="mb-2">
+                  <div className="mb-3">
                     <Input
                       className="border-radius_input"
                       type={isPwdVisible}
@@ -140,30 +132,30 @@ const ChangePassword = () => {
                     />
                     <ErrorMsg error={formError.newPassword} />
                   </div>
-
                   <div className="mb-3">
                     <Input
                       className="border-radius_input"
                       type={isConfirmPwdVisible}
-                      name="confirmPassword"
                       value={payload.confirmPassword}
+                      name="confirmPassword"
                       placeHolder="Confirm Password"
                       handleChange={handleChange}
-                      error={formError.confirmPassword}
-                      showRightIcon
+                      error={formError?.confirmPassword}
+                      showRightIcon={true}
                       showAsterisk={false}
                       showLabel={false}
-                      rightIconSrc={isConfirmPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN}
+                      rightIconSrc={
+                        isConfirmPwdVisible === "password" ? EYE_CLOSE : EYE_OPEN
+                      }
                       onRightIconClick={() =>
                         setIsConfirmPwdVisible(
-                          isConfirmPwdVisible === "password" ? "text" : "password"
+                          setIsConfirmPwdVisible === "password" ? "text" : "password"
                         )
                       }
                     />
-                    <ErrorMsg error={formError.confirmPassword} />
+                    <ErrorMsg error={formError?.confirmPassword} />
                   </div>
-
-                  <div className="text-center my-3">
+                  <div className="text-center">
                     <Button
                       className="rounded-3"
                       label="Change Password"
@@ -174,11 +166,13 @@ const ChangePassword = () => {
                 </form>
 
               </div>
-            </div>
+            {/* </div> */}
           </div>
+          <div className="col-3"></div>
+
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 
