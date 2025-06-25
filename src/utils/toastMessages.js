@@ -1,4 +1,3 @@
-import { DefaultIdentityIdStore } from "@aws-amplify/auth/cognito";
 
 export const Message = {
     Response: {

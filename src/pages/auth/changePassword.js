@@ -14,7 +14,6 @@ import {
 } from "../../utils/app-image-constant";
 import { validateRegex } from "../../utils/utilities";
 import { PasswordRegex } from "../../utils/regexValidation";
-import BreadCrum from "../../components/common/BreadCrum";
 import { Message } from "../../utils/toastMessages";
 
 const ChangePassword = () => {

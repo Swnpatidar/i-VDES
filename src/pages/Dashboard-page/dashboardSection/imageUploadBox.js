@@ -8,9 +8,10 @@ import {
 import ImageProcessingLoader from "../../../components/snippets/Image-processing/image-processing-loader";
 import useToast from "../../../hooks/Custom-hooks/useToast";
 import { handleAPiStatus } from "../../../utils/handleApiStatus";
-import { uploadImageFile } from "../../../hooks/services/api-services";
+import { presigned, uploadImageFile } from "../../../hooks/services/api-services";
 import { Message } from "../../../utils/toastMessages";
 import { useLoggedInUserDetails } from "../../../utils/utilities";
+import axios from "axios";
 
 const ImageUploadBox = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -77,6 +78,7 @@ const ImageUploadBox = () => {
         const pureBase64 = fileToBase64?.base64String?.split(",")?.[1];
         fileObj = {
           base64: pureBase64,
+          filePath: file,
           size: file?.size,
           fileName: file?.name,
           fileType: file?.type,
@@ -102,10 +104,6 @@ const ImageUploadBox = () => {
     }
 
     // step 3- Check valid image resolution 800X600
-<<<<<<< HEAD
-=======
-
->>>>>>> 70633885ba967ca8466f6c2c049ba8b82eb212b3
     if (fileToBase64?.width < 800 || fileToBase64?.height < 600) {
       toast.error(
         "Your image resolution is too low. Minimum required size is 800 × 600 pixels."
@@ -122,32 +120,67 @@ const ImageUploadBox = () => {
     e.preventDefault();
     setStartImageFlipping(true); //flipping will strat
     setTimeout(() => {
-      uploadImage(); //function to call api for image upload
-    }, 15000);
+      uploadImageFile(); //function to call api for get presigned url
+    }, 14000);
   };
 
-  // Api call
-  const uploadImage = async () => {
-    const { base64, fileName } = selectedFile;
-    const imagePayload = {
-      folder: user?.email,
-      filename: fileName,
-      content: base64,
+
+  // Upload the file to S3 using the presigned URL
+  // const uploadImageToS3 = async () => {
+  //   const { base64, fileName } = selectedFile;
+  //   const imagePayload = {
+  //     folder: user?.email,
+  //     filename: fileName,
+  //     content: base64,
+  //   };
+  //   try {
+  //     const response = await uploadImageFile(imagePayload);
+  //     if (response.status === 200) {
+  //       toast.success(Message?.Response?.FileUpload);
+  //       setStartImageFlipping(false);
+  //       setSelectedFile(null);
+  //       setGetData(true);
+  //     } else {
+  //       handleAPiStatus(response.status, toast); //Pass the response status and toaster
+  //     }
+  //   } catch (err) {
+  //     toast.error(Message?.Response?.Default);
+  //   }
+  // };
+
+
+  //Requests a presigned URL from your backend using API
+  const getPresignedUrl = async (fileName, email) => {
+    const presignedBody = {
+      folder: email,
+      filename: fileName
     };
+    const response = await presigned(presignedBody);
+    return response.data.upload_url;
+  }
+
+  //Upload file to S3 using presigned URL
+  const uploadImageFile = async () => {
+    const { fileName, filePath, fileType } = selectedFile;
     try {
-      const response = await uploadImageFile(imagePayload);
-      if (response.status === 200) {
-        toast.success(Message?.Response?.FileUpload);
+      const presignedUrl = await getPresignedUrl(fileName, user?.email);
+      // Actual upload to S3
+      const res = await axios.put(presignedUrl, filePath, {
+        headers: { 'Content-Type': fileType || 'application/octet-stream' }
+      });
+      if (res.status === 200) {
+        toast.success(Message.Response.FileUpload);
         setStartImageFlipping(false);
-        setSelectedFile(null);
+        setSelectedFile(null)
         setGetData(true);
+        // return presignedUrl.split('?')[0]; 
       } else {
-        handleAPiStatus(response.status, toast); //Pass the response status and toaster
+        handleAPiStatus(res.status, toast)
       }
     } catch (err) {
-      toast.error(Message?.Response?.Default);
+      toast.error(Message.Response.Default)
     }
-  };
+  }
 
 
   return (
