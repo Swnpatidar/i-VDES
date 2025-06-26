@@ -154,13 +154,13 @@ export const ErrorMessage = {
     Password: "Password is invalid!",
     ConfirmPassword: "Confirm Password is Invalid",
     Password_Requirements:"Password must be at least 8 characters long and include at least one special character, symbol, uppercase letter, and number.",
-  Invalid_Credentials:"Invalid credentials,Please check.",
-   Singup_Required:"Invalid user,Please sign up.",
+  Invalid_Credentials:"Invalid credentials, please check.",
+   Singup_Required:"Invalid user, please sign up.",
    Already_Logged_In:"You're already logged in." ,
      
   },
   Invalid: {
-    Formate: "Format is not valid",
+    Formate: "Format is invalid",
   },
 };
 
